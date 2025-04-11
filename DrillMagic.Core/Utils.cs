@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 namespace DrillMagic.Core;
 public static class Utils
 {
-
+    
 }

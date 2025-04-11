@@ -1,0 +1,7122 @@
+{
+  "150": {
+    "Name": "Red - Bright",
+    "DMCNumber": 150,
+    "Hex": "#CF0053",
+    "Color": {
+      "R": 207,
+      "G": 0,
+      "B": 83,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffcf0053"
+    }
+  },
+  "151": {
+    "Name": "Pink",
+    "DMCNumber": 151,
+    "Hex": "#FFCBD7",
+    "Color": {
+      "R": 255,
+      "G": 203,
+      "B": 215,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffffcbd7"
+    }
+  },
+  "152": {
+    "Name": "Tawny - Dark",
+    "DMCNumber": 152,
+    "Hex": "#E1A1A1",
+    "Color": {
+      "R": 225,
+      "G": 161,
+      "B": 161,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffe1a1a1"
+    }
+  },
+  "153": {
+    "Name": "Lilac",
+    "DMCNumber": 153,
+    "Hex": "#EAC5EB",
+    "Color": {
+      "R": 234,
+      "G": 197,
+      "B": 235,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffeac5eb"
+    }
+  },
+  "154": {
+    "Name": "Red - Very Dark",
+    "DMCNumber": 154,
+    "Hex": "#4B233A",
+    "Color": {
+      "R": 75,
+      "G": 35,
+      "B": 58,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff4b233a"
+    }
+  },
+  "155": {
+    "Name": "Forget-me-not Blue",
+    "DMCNumber": 155,
+    "Hex": "#9774B6",
+    "Color": {
+      "R": 151,
+      "G": 116,
+      "B": 182,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff9774b6"
+    }
+  },
+  "156": {
+    "Name": "Blue - Medium",
+    "DMCNumber": 156,
+    "Hex": "#8577B4",
+    "Color": {
+      "R": 133,
+      "G": 119,
+      "B": 180,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff8577b4"
+    }
+  },
+  "157": {
+    "Name": "Blue - Light",
+    "DMCNumber": 157,
+    "Hex": "#B5B8EA",
+    "Color": {
+      "R": 181,
+      "G": 184,
+      "B": 234,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffb5b8ea"
+    }
+  },
+  "158": {
+    "Name": "Blue - Dark",
+    "DMCNumber": 158,
+    "Hex": "#393068",
+    "Color": {
+      "R": 57,
+      "G": 48,
+      "B": 104,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff393068"
+    }
+  },
+  "159": {
+    "Name": "Petrol Blue - Light",
+    "DMCNumber": 159,
+    "Hex": "#BCB5DE",
+    "Color": {
+      "R": 188,
+      "G": 181,
+      "B": 222,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffbcb5de"
+    }
+  },
+  "160": {
+    "Name": "Petrol Blue - Medium",
+    "DMCNumber": 160,
+    "Hex": "#8178A9",
+    "Color": {
+      "R": 129,
+      "G": 120,
+      "B": 169,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff8178a9"
+    }
+  },
+  "161": {
+    "Name": "Petrol Blue - Dark",
+    "DMCNumber": 161,
+    "Hex": "#60568B",
+    "Color": {
+      "R": 96,
+      "G": 86,
+      "B": 139,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff60568b"
+    }
+  },
+  "162": {
+    "Name": "Baby Blue - Light",
+    "DMCNumber": 162,
+    "Hex": "#CAE7F0",
+    "Color": {
+      "R": 202,
+      "G": 231,
+      "B": 240,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffcae7f0"
+    }
+  },
+  "163": {
+    "Name": "Green",
+    "DMCNumber": 163,
+    "Hex": "#557A60",
+    "Color": {
+      "R": 85,
+      "G": 122,
+      "B": 96,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff557a60"
+    }
+  },
+  "164": {
+    "Name": "Green - Light",
+    "DMCNumber": 164,
+    "Hex": "#BAE4B6",
+    "Color": {
+      "R": 186,
+      "G": 228,
+      "B": 182,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffbae4b6"
+    }
+  },
+  "165": {
+    "Name": "Green - Bright",
+    "DMCNumber": 165,
+    "Hex": "#E1F477",
+    "Color": {
+      "R": 225,
+      "G": 244,
+      "B": 119,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffe1f477"
+    }
+  },
+  "166": {
+    "Name": "Lime Green",
+    "DMCNumber": 166,
+    "Hex": "#ADC238",
+    "Color": {
+      "R": 173,
+      "G": 194,
+      "B": 56,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffadc238"
+    }
+  },
+  "167": {
+    "Name": "Khaki Brown",
+    "DMCNumber": 167,
+    "Hex": "#855D31",
+    "Color": {
+      "R": 133,
+      "G": 93,
+      "B": 49,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff855d31"
+    }
+  },
+  "168": {
+    "Name": "Silver Gray",
+    "DMCNumber": 168,
+    "Hex": "#B1AEB7",
+    "Color": {
+      "R": 177,
+      "G": 174,
+      "B": 183,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffb1aeb7"
+    }
+  },
+  "169": {
+    "Name": "Light Pewter",
+    "DMCNumber": 169,
+    "Hex": "#827D7D",
+    "Color": {
+      "R": 130,
+      "G": 125,
+      "B": 125,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff827d7d"
+    }
+  },
+  "208": {
+    "Name": "Lavender - Very Dark",
+    "DMCNumber": 208,
+    "Hex": "#9442A7",
+    "Color": {
+      "R": 148,
+      "G": 66,
+      "B": 167,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff9442a7"
+    }
+  },
+  "209": {
+    "Name": "Lavender - Dark",
+    "DMCNumber": 209,
+    "Hex": "#BA72C6",
+    "Color": {
+      "R": 186,
+      "G": 114,
+      "B": 198,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffba72c6"
+    }
+  },
+  "210": {
+    "Name": "Lavender - Medium",
+    "DMCNumber": 210,
+    "Hex": "#D49FE1",
+    "Color": {
+      "R": 212,
+      "G": 159,
+      "B": 225,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffd49fe1"
+    }
+  },
+  "211": {
+    "Name": "Lavender - Light",
+    "DMCNumber": 211,
+    "Hex": "#E5BDED",
+    "Color": {
+      "R": 229,
+      "G": 189,
+      "B": 237,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffe5bded"
+    }
+  },
+  "221": {
+    "Name": "Shell Pink - Very Dark",
+    "DMCNumber": 221,
+    "Hex": "#792631",
+    "Color": {
+      "R": 121,
+      "G": 38,
+      "B": 49,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff792631"
+    }
+  },
+  "223": {
+    "Name": "Shell Pink - Light",
+    "DMCNumber": 223,
+    "Hex": "#BB6864",
+    "Color": {
+      "R": 187,
+      "G": 104,
+      "B": 100,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffbb6864"
+    }
+  },
+  "224": {
+    "Name": "Shell Pink - Very Light",
+    "DMCNumber": 224,
+    "Hex": "#E2A598",
+    "Color": {
+      "R": 226,
+      "G": 165,
+      "B": 152,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffe2a598"
+    }
+  },
+  "225": {
+    "Name": "Shell Pink - Ultra Very Light",
+    "DMCNumber": 225,
+    "Hex": "#F8D9CD",
+    "Color": {
+      "R": 248,
+      "G": 217,
+      "B": 205,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff8d9cd"
+    }
+  },
+  "300": {
+    "Name": "Mahogany - Very Dark",
+    "DMCNumber": 300,
+    "Hex": "#6C3116",
+    "Color": {
+      "R": 108,
+      "G": 49,
+      "B": 22,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6c3116"
+    }
+  },
+  "301": {
+    "Name": "Mahogany - Medium",
+    "DMCNumber": 301,
+    "Hex": "#AA5237",
+    "Color": {
+      "R": 170,
+      "G": 82,
+      "B": 55,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffaa5237"
+    }
+  },
+  "304": {
+    "Name": "Red - Medium",
+    "DMCNumber": 304,
+    "Hex": "#A10C39",
+    "Color": {
+      "R": 161,
+      "G": 12,
+      "B": 57,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa10c39"
+    }
+  },
+  "307": {
+    "Name": "Lemon",
+    "DMCNumber": 307,
+    "Hex": "#FDE949",
+    "Color": {
+      "R": 253,
+      "G": 233,
+      "B": 73,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffde949"
+    }
+  },
+  "309": {
+    "Name": "Rose - Dark",
+    "DMCNumber": 309,
+    "Hex": "#BA2044",
+    "Color": {
+      "R": 186,
+      "G": 32,
+      "B": 68,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffba2044"
+    }
+  },
+  "310": {
+    "Name": "Black",
+    "DMCNumber": 310,
+    "Hex": "#000000",
+    "Color": {
+      "R": 0,
+      "G": 0,
+      "B": 0,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff000000"
+    }
+  },
+  "311": {
+    "Name": "Blue - Medium",
+    "DMCNumber": 311,
+    "Hex": "#002A64",
+    "Color": {
+      "R": 0,
+      "G": 42,
+      "B": 100,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff002a64"
+    }
+  },
+  "312": {
+    "Name": "Baby Blue - Very Dark",
+    "DMCNumber": 312,
+    "Hex": "#1F3279",
+    "Color": {
+      "R": 31,
+      "G": 50,
+      "B": 121,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff1f3279"
+    }
+  },
+  "315": {
+    "Name": "Antique Mauve - Medium Dark",
+    "DMCNumber": 315,
+    "Hex": "#7D4246",
+    "Color": {
+      "R": 125,
+      "G": 66,
+      "B": 70,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff7d4246"
+    }
+  },
+  "316": {
+    "Name": "Antique Mauve - Medium",
+    "DMCNumber": 316,
+    "Hex": "#BC757F",
+    "Color": {
+      "R": 188,
+      "G": 117,
+      "B": 127,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffbc757f"
+    }
+  },
+  "317": {
+    "Name": "Pewter Gray",
+    "DMCNumber": 317,
+    "Hex": "#6D6469",
+    "Color": {
+      "R": 109,
+      "G": 100,
+      "B": 105,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6d6469"
+    }
+  },
+  "318": {
+    "Name": "Steel Gray - Light",
+    "DMCNumber": 318,
+    "Hex": "#999B9D",
+    "Color": {
+      "R": 153,
+      "G": 155,
+      "B": 157,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff999b9d"
+    }
+  },
+  "319": {
+    "Name": "Pistachio Green - Very Dark",
+    "DMCNumber": 319,
+    "Hex": "#3A553B",
+    "Color": {
+      "R": 58,
+      "G": 85,
+      "B": 59,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff3a553b"
+    }
+  },
+  "320": {
+    "Name": "Pistachio Green - Medium",
+    "DMCNumber": 320,
+    "Hex": "#608C59",
+    "Color": {
+      "R": 96,
+      "G": 140,
+      "B": 89,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff608c59"
+    }
+  },
+  "321": {
+    "Name": "Red",
+    "DMCNumber": 321,
+    "Hex": "#BD1136",
+    "Color": {
+      "R": 189,
+      "G": 17,
+      "B": 54,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffbd1136"
+    }
+  },
+  "322": {
+    "Name": "Baby Blue",
+    "DMCNumber": 322,
+    "Hex": "#3A609D",
+    "Color": {
+      "R": 58,
+      "G": 96,
+      "B": 157,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff3a609d"
+    }
+  },
+  "326": {
+    "Name": "Rose - Very Dark",
+    "DMCNumber": 326,
+    "Hex": "#AC1C37",
+    "Color": {
+      "R": 172,
+      "G": 28,
+      "B": 55,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffac1c37"
+    }
+  },
+  "327": {
+    "Name": "Violet",
+    "DMCNumber": 327,
+    "Hex": "#5E0F77",
+    "Color": {
+      "R": 94,
+      "G": 15,
+      "B": 119,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff5e0f77"
+    }
+  },
+  "333": {
+    "Name": "Blue Violet - Very Dark",
+    "DMCNumber": 333,
+    "Hex": "#6E2E9B",
+    "Color": {
+      "R": 110,
+      "G": 46,
+      "B": 155,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6e2e9b"
+    }
+  },
+  "334": {
+    "Name": "Baby Blue - Medium",
+    "DMCNumber": 334,
+    "Hex": "#6085B8",
+    "Color": {
+      "R": 96,
+      "G": 133,
+      "B": 184,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6085b8"
+    }
+  },
+  "335": {
+    "Name": "Rose",
+    "DMCNumber": 335,
+    "Hex": "#D63D57",
+    "Color": {
+      "R": 214,
+      "G": 61,
+      "B": 87,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffd63d57"
+    }
+  },
+  "336": {
+    "Name": "Blue",
+    "DMCNumber": 336,
+    "Hex": "#0C275E",
+    "Color": {
+      "R": 12,
+      "G": 39,
+      "B": 94,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff0c275e"
+    }
+  },
+  "340": {
+    "Name": "Blue Violet - Medium",
+    "DMCNumber": 340,
+    "Hex": "#996DC3",
+    "Color": {
+      "R": 153,
+      "G": 109,
+      "B": 195,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff996dc3"
+    }
+  },
+  "341": {
+    "Name": "Blue Violet - Light",
+    "DMCNumber": 341,
+    "Hex": "#A39AD7",
+    "Color": {
+      "R": 163,
+      "G": 154,
+      "B": 215,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa39ad7"
+    }
+  },
+  "347": {
+    "Name": "Salmon - Very Dark",
+    "DMCNumber": 347,
+    "Hex": "#AB1B33",
+    "Color": {
+      "R": 171,
+      "G": 27,
+      "B": 51,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffab1b33"
+    }
+  },
+  "349": {
+    "Name": "Coral - Dark",
+    "DMCNumber": 349,
+    "Hex": "#C62C38",
+    "Color": {
+      "R": 198,
+      "G": 44,
+      "B": 56,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffc62c38"
+    }
+  },
+  "350": {
+    "Name": "Coral - Medium",
+    "DMCNumber": 350,
+    "Hex": "#DE3F40",
+    "Color": {
+      "R": 222,
+      "G": 63,
+      "B": 64,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffde3f40"
+    }
+  },
+  "351": {
+    "Name": "Coral",
+    "DMCNumber": 351,
+    "Hex": "#ED625B",
+    "Color": {
+      "R": 237,
+      "G": 98,
+      "B": 91,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffed625b"
+    }
+  },
+  "352": {
+    "Name": "Coral - Light",
+    "DMCNumber": 352,
+    "Hex": "#F78372",
+    "Color": {
+      "R": 247,
+      "G": 131,
+      "B": 114,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff78372"
+    }
+  },
+  "353": {
+    "Name": "Peach",
+    "DMCNumber": 353,
+    "Hex": "#FDB4A1",
+    "Color": {
+      "R": 253,
+      "G": 180,
+      "B": 161,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffdb4a1"
+    }
+  },
+  "355": {
+    "Name": "Terra Cotta - Dark",
+    "DMCNumber": 355,
+    "Hex": "#97382B",
+    "Color": {
+      "R": 151,
+      "G": 56,
+      "B": 43,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff97382b"
+    }
+  },
+  "356": {
+    "Name": "Terra Cotta - Medium",
+    "DMCNumber": 356,
+    "Hex": "#BE5C4B",
+    "Color": {
+      "R": 190,
+      "G": 92,
+      "B": 75,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffbe5c4b"
+    }
+  },
+  "367": {
+    "Name": "Pistachio Green - Dark",
+    "DMCNumber": 367,
+    "Hex": "#446B45",
+    "Color": {
+      "R": 68,
+      "G": 107,
+      "B": 69,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff446b45"
+    }
+  },
+  "368": {
+    "Name": "Pistachio Green - Light",
+    "DMCNumber": 368,
+    "Hex": "#7FC66D",
+    "Color": {
+      "R": 127,
+      "G": 198,
+      "B": 109,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff7fc66d"
+    }
+  },
+  "369": {
+    "Name": "Pistachio Green - Very Light",
+    "DMCNumber": 369,
+    "Hex": "#CDEFA6",
+    "Color": {
+      "R": 205,
+      "G": 239,
+      "B": 166,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffcdefa6"
+    }
+  },
+  "370": {
+    "Name": "Mustard - Medium",
+    "DMCNumber": 370,
+    "Hex": "#917245",
+    "Color": {
+      "R": 145,
+      "G": 114,
+      "B": 69,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff917245"
+    }
+  },
+  "371": {
+    "Name": "Mustard",
+    "DMCNumber": 371,
+    "Hex": "#9F8352",
+    "Color": {
+      "R": 159,
+      "G": 131,
+      "B": 82,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff9f8352"
+    }
+  },
+  "372": {
+    "Name": "Mustard - Light",
+    "DMCNumber": 372,
+    "Hex": "#AD9564",
+    "Color": {
+      "R": 173,
+      "G": 149,
+      "B": 100,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffad9564"
+    }
+  },
+  "400": {
+    "Name": "Mahogany - Dark",
+    "DMCNumber": 400,
+    "Hex": "#813718",
+    "Color": {
+      "R": 129,
+      "G": 55,
+      "B": 24,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff813718"
+    }
+  },
+  "402": {
+    "Name": "Mahogany - Very Light",
+    "DMCNumber": 402,
+    "Hex": "#EF9E74",
+    "Color": {
+      "R": 239,
+      "G": 158,
+      "B": 116,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffef9e74"
+    }
+  },
+  "407": {
+    "Name": "Desert Sand - Dark",
+    "DMCNumber": 407,
+    "Hex": "#B77159",
+    "Color": {
+      "R": 183,
+      "G": 113,
+      "B": 89,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffb77159"
+    }
+  },
+  "413": {
+    "Name": "Pewter Gray - Dark",
+    "DMCNumber": 413,
+    "Hex": "#4A4749",
+    "Color": {
+      "R": 74,
+      "G": 71,
+      "B": 73,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff4a4749"
+    }
+  },
+  "414": {
+    "Name": "Steel Gray - Dark",
+    "DMCNumber": 414,
+    "Hex": "#766E72",
+    "Color": {
+      "R": 118,
+      "G": 110,
+      "B": 114,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff766e72"
+    }
+  },
+  "415": {
+    "Name": "Pearl Gray",
+    "DMCNumber": 415,
+    "Hex": "#B8B9BD",
+    "Color": {
+      "R": 184,
+      "G": 185,
+      "B": 189,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffb8b9bd"
+    }
+  },
+  "420": {
+    "Name": "Hazelnut Brown - Dark",
+    "DMCNumber": 420,
+    "Hex": "#855A30",
+    "Color": {
+      "R": 133,
+      "G": 90,
+      "B": 48,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff855a30"
+    }
+  },
+  "422": {
+    "Name": "Hazelnut Brown - Light",
+    "DMCNumber": 422,
+    "Hex": "#C99A67",
+    "Color": {
+      "R": 201,
+      "G": 154,
+      "B": 103,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffc99a67"
+    }
+  },
+  "433": {
+    "Name": "Brown - Medium",
+    "DMCNumber": 433,
+    "Hex": "#73421E",
+    "Color": {
+      "R": 115,
+      "G": 66,
+      "B": 30,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff73421e"
+    }
+  },
+  "434": {
+    "Name": "Brown - Light",
+    "DMCNumber": 434,
+    "Hex": "#8F5332",
+    "Color": {
+      "R": 143,
+      "G": 83,
+      "B": 50,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff8f5332"
+    }
+  },
+  "435": {
+    "Name": "Brown - Very Light",
+    "DMCNumber": 435,
+    "Hex": "#A96538",
+    "Color": {
+      "R": 169,
+      "G": 101,
+      "B": 56,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa96538"
+    }
+  },
+  "436": {
+    "Name": "Tan",
+    "DMCNumber": 436,
+    "Hex": "#C78559",
+    "Color": {
+      "R": 199,
+      "G": 133,
+      "B": 89,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffc78559"
+    }
+  },
+  "437": {
+    "Name": "Tan - Light",
+    "DMCNumber": 437,
+    "Hex": "#DAA26F",
+    "Color": {
+      "R": 218,
+      "G": 162,
+      "B": 111,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffdaa26f"
+    }
+  },
+  "444": {
+    "Name": "Lemon - Dark",
+    "DMCNumber": 444,
+    "Hex": "#F5BC13",
+    "Color": {
+      "R": 245,
+      "G": 188,
+      "B": 19,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff5bc13"
+    }
+  },
+  "445": {
+    "Name": "Lemon - Light",
+    "DMCNumber": 445,
+    "Hex": "#FCF999",
+    "Color": {
+      "R": 252,
+      "G": 249,
+      "B": 153,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffcf999"
+    }
+  },
+  "451": {
+    "Name": "Shell Gray - Dark",
+    "DMCNumber": 451,
+    "Hex": "#887773",
+    "Color": {
+      "R": 136,
+      "G": 119,
+      "B": 115,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff887773"
+    }
+  },
+  "452": {
+    "Name": "Shell Gray - Medium",
+    "DMCNumber": 452,
+    "Hex": "#AD9994",
+    "Color": {
+      "R": 173,
+      "G": 153,
+      "B": 148,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffad9994"
+    }
+  },
+  "453": {
+    "Name": "Shell Gray - Light",
+    "DMCNumber": 453,
+    "Hex": "#CCB8AA",
+    "Color": {
+      "R": 204,
+      "G": 184,
+      "B": 170,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffccb8aa"
+    }
+  },
+  "469": {
+    "Name": "Avocado Green",
+    "DMCNumber": 469,
+    "Hex": "#5B6533",
+    "Color": {
+      "R": 91,
+      "G": 101,
+      "B": 51,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff5b6533"
+    }
+  },
+  "470": {
+    "Name": "Avocado Green - Light",
+    "DMCNumber": 470,
+    "Hex": "#72813E",
+    "Color": {
+      "R": 114,
+      "G": 129,
+      "B": 62,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff72813e"
+    }
+  },
+  "471": {
+    "Name": "Avocado Green - Very Light",
+    "DMCNumber": 471,
+    "Hex": "#9EB357",
+    "Color": {
+      "R": 158,
+      "G": 179,
+      "B": 87,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff9eb357"
+    }
+  },
+  "472": {
+    "Name": "Avocado Green - Ultra Light",
+    "DMCNumber": 472,
+    "Hex": "#D1DE75",
+    "Color": {
+      "R": 209,
+      "G": 222,
+      "B": 117,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffd1de75"
+    }
+  },
+  "498": {
+    "Name": "Red - Dark",
+    "DMCNumber": 498,
+    "Hex": "#970B2C",
+    "Color": {
+      "R": 151,
+      "G": 11,
+      "B": 44,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff970b2c"
+    }
+  },
+  "500": {
+    "Name": "Blue Green - Very Dark",
+    "DMCNumber": 500,
+    "Hex": "#1D362A",
+    "Color": {
+      "R": 29,
+      "G": 54,
+      "B": 42,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff1d362a"
+    }
+  },
+  "501": {
+    "Name": "Blue Green - Dark",
+    "DMCNumber": 501,
+    "Hex": "#2F5446",
+    "Color": {
+      "R": 47,
+      "G": 84,
+      "B": 70,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff2f5446"
+    }
+  },
+  "502": {
+    "Name": "Blue Green",
+    "DMCNumber": 502,
+    "Hex": "#57826E",
+    "Color": {
+      "R": 87,
+      "G": 130,
+      "B": 110,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff57826e"
+    }
+  },
+  "503": {
+    "Name": "Blue Green - Medium",
+    "DMCNumber": 503,
+    "Hex": "#89B89F",
+    "Color": {
+      "R": 137,
+      "G": 184,
+      "B": 159,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff89b89f"
+    }
+  },
+  "505": {
+    "Name": "Grass Green - Dark",
+    "DMCNumber": 505,
+    "Hex": "#338362",
+    "Color": {
+      "R": 51,
+      "G": 131,
+      "B": 98,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff338362"
+    }
+  },
+  "517": {
+    "Name": "Wedgewood - Dark",
+    "DMCNumber": 517,
+    "Hex": "#216285",
+    "Color": {
+      "R": 33,
+      "G": 98,
+      "B": 133,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff216285"
+    }
+  },
+  "518": {
+    "Name": "Wedgewood - Light",
+    "DMCNumber": 518,
+    "Hex": "#50819C",
+    "Color": {
+      "R": 80,
+      "G": 129,
+      "B": 156,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff50819c"
+    }
+  },
+  "519": {
+    "Name": "Sky Blue",
+    "DMCNumber": 519,
+    "Hex": "#94B7CB",
+    "Color": {
+      "R": 148,
+      "G": 183,
+      "B": 203,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff94b7cb"
+    }
+  },
+  "520": {
+    "Name": "Fern Green - Dark",
+    "DMCNumber": 520,
+    "Hex": "#384526",
+    "Color": {
+      "R": 56,
+      "G": 69,
+      "B": 38,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff384526"
+    }
+  },
+  "522": {
+    "Name": "Fern Green",
+    "DMCNumber": 522,
+    "Hex": "#808B6E",
+    "Color": {
+      "R": 128,
+      "G": 139,
+      "B": 110,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff808b6e"
+    }
+  },
+  "523": {
+    "Name": "Fern Green - Light",
+    "DMCNumber": 523,
+    "Hex": "#959F7A",
+    "Color": {
+      "R": 149,
+      "G": 159,
+      "B": 122,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff959f7a"
+    }
+  },
+  "524": {
+    "Name": "Fern Green - Very Light",
+    "DMCNumber": 524,
+    "Hex": "#AEA78E",
+    "Color": {
+      "R": 174,
+      "G": 167,
+      "B": 142,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffaea78e"
+    }
+  },
+  "535": {
+    "Name": "Ash Gray - Very Light",
+    "DMCNumber": 535,
+    "Hex": "#4B4B49",
+    "Color": {
+      "R": 75,
+      "G": 75,
+      "B": 73,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff4b4b49"
+    }
+  },
+  "543": {
+    "Name": "Beige Brown - Ultra Very Light",
+    "DMCNumber": 543,
+    "Hex": "#EAD0B5",
+    "Color": {
+      "R": 234,
+      "G": 208,
+      "B": 181,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffead0b5"
+    }
+  },
+  "550": {
+    "Name": "Violet - Very Dark",
+    "DMCNumber": 550,
+    "Hex": "#580E5C",
+    "Color": {
+      "R": 88,
+      "G": 14,
+      "B": 92,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff580e5c"
+    }
+  },
+  "552": {
+    "Name": "Violet - Medium",
+    "DMCNumber": 552,
+    "Hex": "#902F99",
+    "Color": {
+      "R": 144,
+      "G": 47,
+      "B": 153,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff902f99"
+    }
+  },
+  "553": {
+    "Name": "Violet",
+    "DMCNumber": 553,
+    "Hex": "#A449AC",
+    "Color": {
+      "R": 164,
+      "G": 73,
+      "B": 172,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa449ac"
+    }
+  },
+  "554": {
+    "Name": "Violet - Light",
+    "DMCNumber": 554,
+    "Hex": "#DC9CDE",
+    "Color": {
+      "R": 220,
+      "G": 156,
+      "B": 222,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffdc9cde"
+    }
+  },
+  "561": {
+    "Name": "Jade - Very Dark",
+    "DMCNumber": 561,
+    "Hex": "#285E48",
+    "Color": {
+      "R": 40,
+      "G": 94,
+      "B": 72,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff285e48"
+    }
+  },
+  "562": {
+    "Name": "Jade - Medium",
+    "DMCNumber": 562,
+    "Hex": "#3B8C5A",
+    "Color": {
+      "R": 59,
+      "G": 140,
+      "B": 90,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff3b8c5a"
+    }
+  },
+  "563": {
+    "Name": "Jade - Light",
+    "DMCNumber": 563,
+    "Hex": "#6ED39A",
+    "Color": {
+      "R": 110,
+      "G": 211,
+      "B": 154,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6ed39a"
+    }
+  },
+  "564": {
+    "Name": "Jade - Very Light",
+    "DMCNumber": 564,
+    "Hex": "#95E4AF",
+    "Color": {
+      "R": 149,
+      "G": 228,
+      "B": 175,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff95e4af"
+    }
+  },
+  "580": {
+    "Name": "Moss Green - Dark",
+    "DMCNumber": 580,
+    "Hex": "#355F0B",
+    "Color": {
+      "R": 53,
+      "G": 95,
+      "B": 11,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff355f0b"
+    }
+  },
+  "581": {
+    "Name": "Moss Green",
+    "DMCNumber": 581,
+    "Hex": "#838A29",
+    "Color": {
+      "R": 131,
+      "G": 138,
+      "B": 41,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff838a29"
+    }
+  },
+  "597": {
+    "Name": "Turquoise",
+    "DMCNumber": 597,
+    "Hex": "#52ADAB",
+    "Color": {
+      "R": 82,
+      "G": 173,
+      "B": 171,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff52adab"
+    }
+  },
+  "598": {
+    "Name": "Turquoise - Light",
+    "DMCNumber": 598,
+    "Hex": "#97D8D3",
+    "Color": {
+      "R": 151,
+      "G": 216,
+      "B": 211,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff97d8d3"
+    }
+  },
+  "600": {
+    "Name": "Cranberry - Very Dark",
+    "DMCNumber": 600,
+    "Hex": "#BF1C48",
+    "Color": {
+      "R": 191,
+      "G": 28,
+      "B": 72,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffbf1c48"
+    }
+  },
+  "601": {
+    "Name": "Cranberry - Dark",
+    "DMCNumber": 601,
+    "Hex": "#C62A53",
+    "Color": {
+      "R": 198,
+      "G": 42,
+      "B": 83,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffc62a53"
+    }
+  },
+  "602": {
+    "Name": "Cranberry - Medium",
+    "DMCNumber": 602,
+    "Hex": "#D63F68",
+    "Color": {
+      "R": 214,
+      "G": 63,
+      "B": 104,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffd63f68"
+    }
+  },
+  "603": {
+    "Name": "Cranberry - Light Medium",
+    "DMCNumber": 603,
+    "Hex": "#FB4B7C",
+    "Color": {
+      "R": 251,
+      "G": 75,
+      "B": 124,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffb4b7c"
+    }
+  },
+  "604": {
+    "Name": "Cranberry - Light",
+    "DMCNumber": 604,
+    "Hex": "#F793B2",
+    "Color": {
+      "R": 247,
+      "G": 147,
+      "B": 178,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff793b2"
+    }
+  },
+  "605": {
+    "Name": "Cranberry - Very Light",
+    "DMCNumber": 605,
+    "Hex": "#FBACC4",
+    "Color": {
+      "R": 251,
+      "G": 172,
+      "B": 196,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffbacc4"
+    }
+  },
+  "606": {
+    "Name": "Orange-red - Bright",
+    "DMCNumber": 606,
+    "Hex": "#F70F00",
+    "Color": {
+      "R": 247,
+      "G": 15,
+      "B": 0,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff70f00"
+    }
+  },
+  "608": {
+    "Name": "Orange - Bright",
+    "DMCNumber": 608,
+    "Hex": "#FD480C",
+    "Color": {
+      "R": 253,
+      "G": 72,
+      "B": 12,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffd480c"
+    }
+  },
+  "610": {
+    "Name": "Drab Brown - Dark",
+    "DMCNumber": 610,
+    "Hex": "#6B5039",
+    "Color": {
+      "R": 107,
+      "G": 80,
+      "B": 57,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6b5039"
+    }
+  },
+  "611": {
+    "Name": "Drab Brown",
+    "DMCNumber": 611,
+    "Hex": "#7C5F46",
+    "Color": {
+      "R": 124,
+      "G": 95,
+      "B": 70,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff7c5f46"
+    }
+  },
+  "612": {
+    "Name": "Drab Brown - Light",
+    "DMCNumber": 612,
+    "Hex": "#A6885E",
+    "Color": {
+      "R": 166,
+      "G": 136,
+      "B": 94,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa6885e"
+    }
+  },
+  "613": {
+    "Name": "Drab Brown - Very Light",
+    "DMCNumber": 613,
+    "Hex": "#B99F72",
+    "Color": {
+      "R": 185,
+      "G": 159,
+      "B": 114,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffb99f72"
+    }
+  },
+  "632": {
+    "Name": "Desert Sand - Ultra Very Dark",
+    "DMCNumber": 632,
+    "Hex": "#7F4232",
+    "Color": {
+      "R": 127,
+      "G": 66,
+      "B": 50,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff7f4232"
+    }
+  },
+  "640": {
+    "Name": "Beige Gray - Very Dark",
+    "DMCNumber": 640,
+    "Hex": "#817868",
+    "Color": {
+      "R": 129,
+      "G": 120,
+      "B": 104,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff817868"
+    }
+  },
+  "642": {
+    "Name": "Beige Gray - Dark",
+    "DMCNumber": 642,
+    "Hex": "#958D79",
+    "Color": {
+      "R": 149,
+      "G": 141,
+      "B": 121,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff958d79"
+    }
+  },
+  "644": {
+    "Name": "Beige Gray - Medium",
+    "DMCNumber": 644,
+    "Hex": "#C4BEA6",
+    "Color": {
+      "R": 196,
+      "G": 190,
+      "B": 166,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffc4bea6"
+    }
+  },
+  "645": {
+    "Name": "Beaver Gray - Very Dark",
+    "DMCNumber": 645,
+    "Hex": "#5D5D54",
+    "Color": {
+      "R": 93,
+      "G": 93,
+      "B": 84,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff5d5d54"
+    }
+  },
+  "646": {
+    "Name": "Beaver Gray - Dark",
+    "DMCNumber": 646,
+    "Hex": "#6B6860",
+    "Color": {
+      "R": 107,
+      "G": 104,
+      "B": 96,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6b6860"
+    }
+  },
+  "647": {
+    "Name": "Beaver Gray - Medium",
+    "DMCNumber": 647,
+    "Hex": "#908E85",
+    "Color": {
+      "R": 144,
+      "G": 142,
+      "B": 133,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff908e85"
+    }
+  },
+  "648": {
+    "Name": "Beaver Gray - Light",
+    "DMCNumber": 648,
+    "Hex": "#A7A69F",
+    "Color": {
+      "R": 167,
+      "G": 166,
+      "B": 159,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa7a69f"
+    }
+  },
+  "666": {
+    "Name": "Red - Bright",
+    "DMCNumber": 666,
+    "Hex": "#CE1B33",
+    "Color": {
+      "R": 206,
+      "G": 27,
+      "B": 51,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffce1b33"
+    }
+  },
+  "676": {
+    "Name": "Old Gold - Light",
+    "DMCNumber": 676,
+    "Hex": "#ECBF7D",
+    "Color": {
+      "R": 236,
+      "G": 191,
+      "B": 125,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffecbf7d"
+    }
+  },
+  "677": {
+    "Name": "Old Gold - Very Light",
+    "DMCNumber": 677,
+    "Hex": "#F2DC9F",
+    "Color": {
+      "R": 242,
+      "G": 220,
+      "B": 159,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff2dc9f"
+    }
+  },
+  "680": {
+    "Name": "Old Gold - Dark",
+    "DMCNumber": 680,
+    "Hex": "#B07B46",
+    "Color": {
+      "R": 176,
+      "G": 123,
+      "B": 70,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffb07b46"
+    }
+  },
+  "699": {
+    "Name": "Green",
+    "DMCNumber": 699,
+    "Hex": "#075B26",
+    "Color": {
+      "R": 7,
+      "G": 91,
+      "B": 38,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff075b26"
+    }
+  },
+  "700": {
+    "Name": "Green - Bright",
+    "DMCNumber": 700,
+    "Hex": "#076C34",
+    "Color": {
+      "R": 7,
+      "G": 108,
+      "B": 52,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff076c34"
+    }
+  },
+  "701": {
+    "Name": "Green - Light",
+    "DMCNumber": 701,
+    "Hex": "#217C36",
+    "Color": {
+      "R": 33,
+      "G": 124,
+      "B": 54,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff217c36"
+    }
+  },
+  "702": {
+    "Name": "Kelly Green",
+    "DMCNumber": 702,
+    "Hex": "#379130",
+    "Color": {
+      "R": 55,
+      "G": 145,
+      "B": 48,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff379130"
+    }
+  },
+  "703": {
+    "Name": "Chartreuse",
+    "DMCNumber": 703,
+    "Hex": "#63B330",
+    "Color": {
+      "R": 99,
+      "G": 179,
+      "B": 48,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff63b330"
+    }
+  },
+  "704": {
+    "Name": "Chartreuse - Bright",
+    "DMCNumber": 704,
+    "Hex": "#88C53A",
+    "Color": {
+      "R": 136,
+      "G": 197,
+      "B": 58,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff88c53a"
+    }
+  },
+  "712": {
+    "Name": "Cream",
+    "DMCNumber": 712,
+    "Hex": "#F6EFDA",
+    "Color": {
+      "R": 246,
+      "G": 239,
+      "B": 218,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff6efda"
+    }
+  },
+  "718": {
+    "Name": "Plum",
+    "DMCNumber": 718,
+    "Hex": "#CB2089",
+    "Color": {
+      "R": 203,
+      "G": 32,
+      "B": 137,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffcb2089"
+    }
+  },
+  "720": {
+    "Name": "Orange Spice - Dark",
+    "DMCNumber": 720,
+    "Hex": "#C83A24",
+    "Color": {
+      "R": 200,
+      "G": 58,
+      "B": 36,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffc83a24"
+    }
+  },
+  "721": {
+    "Name": "Orange Spice - Medium",
+    "DMCNumber": 721,
+    "Hex": "#F46440",
+    "Color": {
+      "R": 244,
+      "G": 100,
+      "B": 64,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff46440"
+    }
+  },
+  "722": {
+    "Name": "Orange Spice - Light",
+    "DMCNumber": 722,
+    "Hex": "#F98756",
+    "Color": {
+      "R": 249,
+      "G": 135,
+      "B": 86,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff98756"
+    }
+  },
+  "725": {
+    "Name": "Topaz",
+    "DMCNumber": 725,
+    "Hex": "#F9C15B",
+    "Color": {
+      "R": 249,
+      "G": 193,
+      "B": 91,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff9c15b"
+    }
+  },
+  "726": {
+    "Name": "Topaz - Light",
+    "DMCNumber": 726,
+    "Hex": "#FDDB63",
+    "Color": {
+      "R": 253,
+      "G": 219,
+      "B": 99,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffddb63"
+    }
+  },
+  "727": {
+    "Name": "Topaz - Very Light",
+    "DMCNumber": 727,
+    "Hex": "#FDE98B",
+    "Color": {
+      "R": 253,
+      "G": 233,
+      "B": 139,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffde98b"
+    }
+  },
+  "728": {
+    "Name": "Golden Yellow",
+    "DMCNumber": 728,
+    "Hex": "#F2AE3F",
+    "Color": {
+      "R": 242,
+      "G": 174,
+      "B": 63,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff2ae3f"
+    }
+  },
+  "729": {
+    "Name": "Old Gold - Medium",
+    "DMCNumber": 729,
+    "Hex": "#CE9657",
+    "Color": {
+      "R": 206,
+      "G": 150,
+      "B": 87,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffce9657"
+    }
+  },
+  "730": {
+    "Name": "Olive Green - Very Dark",
+    "DMCNumber": 730,
+    "Hex": "#63520B",
+    "Color": {
+      "R": 99,
+      "G": 82,
+      "B": 11,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff63520b"
+    }
+  },
+  "732": {
+    "Name": "Olive Green",
+    "DMCNumber": 732,
+    "Hex": "#725C0C",
+    "Color": {
+      "R": 114,
+      "G": 92,
+      "B": 12,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff725c0c"
+    }
+  },
+  "733": {
+    "Name": "Olive Green - Medium",
+    "DMCNumber": 733,
+    "Hex": "#A78A44",
+    "Color": {
+      "R": 167,
+      "G": 138,
+      "B": 68,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa78a44"
+    }
+  },
+  "734": {
+    "Name": "Olive Green - Light",
+    "DMCNumber": 734,
+    "Hex": "#BB9C54",
+    "Color": {
+      "R": 187,
+      "G": 156,
+      "B": 84,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffbb9c54"
+    }
+  },
+  "738": {
+    "Name": "Tan - Very Light",
+    "DMCNumber": 738,
+    "Hex": "#E2B783",
+    "Color": {
+      "R": 226,
+      "G": 183,
+      "B": 131,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffe2b783"
+    }
+  },
+  "739": {
+    "Name": "Tan - Ultra Very Light",
+    "DMCNumber": 739,
+    "Hex": "#F2DEB9",
+    "Color": {
+      "R": 242,
+      "G": 222,
+      "B": 185,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff2deb9"
+    }
+  },
+  "740": {
+    "Name": "Tangerine",
+    "DMCNumber": 740,
+    "Hex": "#FD6F1A",
+    "Color": {
+      "R": 253,
+      "G": 111,
+      "B": 26,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffd6f1a"
+    }
+  },
+  "741": {
+    "Name": "Tangerine - Medium",
+    "DMCNumber": 741,
+    "Hex": "#FC8B10",
+    "Color": {
+      "R": 252,
+      "G": 139,
+      "B": 16,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffc8b10"
+    }
+  },
+  "742": {
+    "Name": "Tangerine - Light",
+    "DMCNumber": 742,
+    "Hex": "#FDAE3C",
+    "Color": {
+      "R": 253,
+      "G": 174,
+      "B": 60,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffdae3c"
+    }
+  },
+  "743": {
+    "Name": "Yellow - Medium",
+    "DMCNumber": 743,
+    "Hex": "#FDD769",
+    "Color": {
+      "R": 253,
+      "G": 215,
+      "B": 105,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffdd769"
+    }
+  },
+  "744": {
+    "Name": "Yellow - Pale",
+    "DMCNumber": 744,
+    "Hex": "#FEE88D",
+    "Color": {
+      "R": 254,
+      "G": 232,
+      "B": 141,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffee88d"
+    }
+  },
+  "745": {
+    "Name": "Yellow - Light Pale",
+    "DMCNumber": 745,
+    "Hex": "#FEEBA5",
+    "Color": {
+      "R": 254,
+      "G": 235,
+      "B": 165,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffeeba5"
+    }
+  },
+  "746": {
+    "Name": "Off White",
+    "DMCNumber": 746,
+    "Hex": "#FAF2D5",
+    "Color": {
+      "R": 250,
+      "G": 242,
+      "B": 213,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffaf2d5"
+    }
+  },
+  "747": {
+    "Name": "Sky Blue - Very Light",
+    "DMCNumber": 747,
+    "Hex": "#CEE9EA",
+    "Color": {
+      "R": 206,
+      "G": 233,
+      "B": 234,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffcee9ea"
+    }
+  },
+  "754": {
+    "Name": "Peach - Light",
+    "DMCNumber": 754,
+    "Hex": "#F7C9B0",
+    "Color": {
+      "R": 247,
+      "G": 201,
+      "B": 176,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff7c9b0"
+    }
+  },
+  "758": {
+    "Name": "Terra Cotta - Very Light",
+    "DMCNumber": 758,
+    "Hex": "#E99F83",
+    "Color": {
+      "R": 233,
+      "G": 159,
+      "B": 131,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffe99f83"
+    }
+  },
+  "760": {
+    "Name": "Salmon",
+    "DMCNumber": 760,
+    "Hex": "#EC8880",
+    "Color": {
+      "R": 236,
+      "G": 136,
+      "B": 128,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffec8880"
+    }
+  },
+  "761": {
+    "Name": "Salmon - Light",
+    "DMCNumber": 761,
+    "Hex": "#F8B4AD",
+    "Color": {
+      "R": 248,
+      "G": 180,
+      "B": 173,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff8b4ad"
+    }
+  },
+  "762": {
+    "Name": "Pearl Gray - Very Light",
+    "DMCNumber": 762,
+    "Hex": "#ECECEC",
+    "Color": {
+      "R": 236,
+      "G": 236,
+      "B": 236,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffececec"
+    }
+  },
+  "772": {
+    "Name": "Yellow Green - Very Light",
+    "DMCNumber": 772,
+    "Hex": "#D7EFA7",
+    "Color": {
+      "R": 215,
+      "G": 239,
+      "B": 167,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffd7efa7"
+    }
+  },
+  "775": {
+    "Name": "Baby Blue - Very Light",
+    "DMCNumber": 775,
+    "Hex": "#D4E3EF",
+    "Color": {
+      "R": 212,
+      "G": 227,
+      "B": 239,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffd4e3ef"
+    }
+  },
+  "777": {
+    "Name": "Red - Deep",
+    "DMCNumber": 777,
+    "Hex": "#9B0042",
+    "Color": {
+      "R": 155,
+      "G": 0,
+      "B": 66,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff9b0042"
+    }
+  },
+  "778": {
+    "Name": "Antique Mauve - Very Light",
+    "DMCNumber": 778,
+    "Hex": "#DCA6A4",
+    "Color": {
+      "R": 220,
+      "G": 166,
+      "B": 164,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffdca6a4"
+    }
+  },
+  "779": {
+    "Name": "Brown",
+    "DMCNumber": 779,
+    "Hex": "#53332D",
+    "Color": {
+      "R": 83,
+      "G": 51,
+      "B": 45,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff53332d"
+    }
+  },
+  "780": {
+    "Name": "Topaz - Ultra Very Dark",
+    "DMCNumber": 780,
+    "Hex": "#945026",
+    "Color": {
+      "R": 148,
+      "G": 80,
+      "B": 38,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff945026"
+    }
+  },
+  "782": {
+    "Name": "Topaz - Dark",
+    "DMCNumber": 782,
+    "Hex": "#B26923",
+    "Color": {
+      "R": 178,
+      "G": 105,
+      "B": 35,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffb26923"
+    }
+  },
+  "783": {
+    "Name": "Topaz - Medium",
+    "DMCNumber": 783,
+    "Hex": "#D0883D",
+    "Color": {
+      "R": 208,
+      "G": 136,
+      "B": 61,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffd0883d"
+    }
+  },
+  "791": {
+    "Name": "Cornflower Blue - Very Dark",
+    "DMCNumber": 791,
+    "Hex": "#2D2068",
+    "Color": {
+      "R": 45,
+      "G": 32,
+      "B": 104,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff2d2068"
+    }
+  },
+  "792": {
+    "Name": "Cornflower Blue - Dark",
+    "DMCNumber": 792,
+    "Hex": "#454B8B",
+    "Color": {
+      "R": 69,
+      "G": 75,
+      "B": 139,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff454b8b"
+    }
+  },
+  "793": {
+    "Name": "Cornflower Blue - Medium",
+    "DMCNumber": 793,
+    "Hex": "#7C82B5",
+    "Color": {
+      "R": 124,
+      "G": 130,
+      "B": 181,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff7c82b5"
+    }
+  },
+  "794": {
+    "Name": "Cornflower Blue - Light",
+    "DMCNumber": 794,
+    "Hex": "#A0B2D7",
+    "Color": {
+      "R": 160,
+      "G": 178,
+      "B": 215,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa0b2d7"
+    }
+  },
+  "796": {
+    "Name": "Royal Blue - Dark",
+    "DMCNumber": 796,
+    "Hex": "#272276",
+    "Color": {
+      "R": 39,
+      "G": 34,
+      "B": 118,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff272276"
+    }
+  },
+  "797": {
+    "Name": "Royal Blue",
+    "DMCNumber": 797,
+    "Hex": "#2B3288",
+    "Color": {
+      "R": 43,
+      "G": 50,
+      "B": 136,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff2b3288"
+    }
+  },
+  "798": {
+    "Name": "Delft Blue - Dark",
+    "DMCNumber": 798,
+    "Hex": "#4E5CA7",
+    "Color": {
+      "R": 78,
+      "G": 92,
+      "B": 167,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff4e5ca7"
+    }
+  },
+  "799": {
+    "Name": "Delft Blue - Medium",
+    "DMCNumber": 799,
+    "Hex": "#6B7FC0",
+    "Color": {
+      "R": 107,
+      "G": 127,
+      "B": 192,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6b7fc0"
+    }
+  },
+  "800": {
+    "Name": "Delft Blue - Pale",
+    "DMCNumber": 800,
+    "Hex": "#B5C7E9",
+    "Color": {
+      "R": 181,
+      "G": 199,
+      "B": 233,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffb5c7e9"
+    }
+  },
+  "801": {
+    "Name": "Coffee Brown - Dark",
+    "DMCNumber": 801,
+    "Hex": "#60391D",
+    "Color": {
+      "R": 96,
+      "G": 57,
+      "B": 29,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff60391d"
+    }
+  },
+  "803": {
+    "Name": "Blue - Deep",
+    "DMCNumber": 803,
+    "Hex": "#202754",
+    "Color": {
+      "R": 32,
+      "G": 39,
+      "B": 84,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff202754"
+    }
+  },
+  "807": {
+    "Name": "Peacock Blue",
+    "DMCNumber": 807,
+    "Hex": "#558B9E",
+    "Color": {
+      "R": 85,
+      "G": 139,
+      "B": 158,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff558b9e"
+    }
+  },
+  "809": {
+    "Name": "Delft Blue",
+    "DMCNumber": 809,
+    "Hex": "#919FD5",
+    "Color": {
+      "R": 145,
+      "G": 159,
+      "B": 213,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff919fd5"
+    }
+  },
+  "813": {
+    "Name": "Blue - Light",
+    "DMCNumber": 813,
+    "Hex": "#7FA0C6",
+    "Color": {
+      "R": 127,
+      "G": 160,
+      "B": 198,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff7fa0c6"
+    }
+  },
+  "814": {
+    "Name": "Garnet - Dark",
+    "DMCNumber": 814,
+    "Hex": "#711033",
+    "Color": {
+      "R": 113,
+      "G": 16,
+      "B": 51,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff711033"
+    }
+  },
+  "815": {
+    "Name": "Garnet - Medium",
+    "DMCNumber": 815,
+    "Hex": "#800B34",
+    "Color": {
+      "R": 128,
+      "G": 11,
+      "B": 52,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff800b34"
+    }
+  },
+  "816": {
+    "Name": "Garnet",
+    "DMCNumber": 816,
+    "Hex": "#921238",
+    "Color": {
+      "R": 146,
+      "G": 18,
+      "B": 56,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff921238"
+    }
+  },
+  "817": {
+    "Name": "Coral Red - Very Dark",
+    "DMCNumber": 817,
+    "Hex": "#BB1630",
+    "Color": {
+      "R": 187,
+      "G": 22,
+      "B": 48,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffbb1630"
+    }
+  },
+  "818": {
+    "Name": "Baby Pink",
+    "DMCNumber": 818,
+    "Hex": "#FEDEDD",
+    "Color": {
+      "R": 254,
+      "G": 222,
+      "B": 221,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffededd"
+    }
+  },
+  "819": {
+    "Name": "Baby Pink - Light",
+    "DMCNumber": 819,
+    "Hex": "#FCEBDE",
+    "Color": {
+      "R": 252,
+      "G": 235,
+      "B": 222,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffcebde"
+    }
+  },
+  "820": {
+    "Name": "Royal Blue - Very Dark",
+    "DMCNumber": 820,
+    "Hex": "#151264",
+    "Color": {
+      "R": 21,
+      "G": 18,
+      "B": 100,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff151264"
+    }
+  },
+  "822": {
+    "Name": "Beige Gray - Light",
+    "DMCNumber": 822,
+    "Hex": "#E8DFC7",
+    "Color": {
+      "R": 232,
+      "G": 223,
+      "B": 199,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffe8dfc7"
+    }
+  },
+  "823": {
+    "Name": "Blue - Dark",
+    "DMCNumber": 823,
+    "Hex": "#000B44",
+    "Color": {
+      "R": 0,
+      "G": 11,
+      "B": 68,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff000b44"
+    }
+  },
+  "824": {
+    "Name": "Blue - Very Dark",
+    "DMCNumber": 824,
+    "Hex": "#284779",
+    "Color": {
+      "R": 40,
+      "G": 71,
+      "B": 121,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff284779"
+    }
+  },
+  "825": {
+    "Name": "Blue - Dark",
+    "DMCNumber": 825,
+    "Hex": "#34588F",
+    "Color": {
+      "R": 52,
+      "G": 88,
+      "B": 143,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff34588f"
+    }
+  },
+  "826": {
+    "Name": "Blue - Medium",
+    "DMCNumber": 826,
+    "Hex": "#5075A7",
+    "Color": {
+      "R": 80,
+      "G": 117,
+      "B": 167,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff5075a7"
+    }
+  },
+  "827": {
+    "Name": "Blue - Very Light",
+    "DMCNumber": 827,
+    "Hex": "#A4C1DE",
+    "Color": {
+      "R": 164,
+      "G": 193,
+      "B": 222,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa4c1de"
+    }
+  },
+  "828": {
+    "Name": "Blue - Ultra Very Light",
+    "DMCNumber": 828,
+    "Hex": "#C3D7E6",
+    "Color": {
+      "R": 195,
+      "G": 215,
+      "B": 230,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffc3d7e6"
+    }
+  },
+  "829": {
+    "Name": "Golden Olive - Very Dark",
+    "DMCNumber": 829,
+    "Hex": "#64480C",
+    "Color": {
+      "R": 100,
+      "G": 72,
+      "B": 12,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff64480c"
+    }
+  },
+  "830": {
+    "Name": "Golden Olive - Dark",
+    "DMCNumber": 830,
+    "Hex": "#6E501D",
+    "Color": {
+      "R": 110,
+      "G": 80,
+      "B": 29,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6e501d"
+    }
+  },
+  "831": {
+    "Name": "Golden Olive - Medium",
+    "DMCNumber": 831,
+    "Hex": "#7C5F20",
+    "Color": {
+      "R": 124,
+      "G": 95,
+      "B": 32,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff7c5f20"
+    }
+  },
+  "832": {
+    "Name": "Golden Olive",
+    "DMCNumber": 832,
+    "Hex": "#9C7230",
+    "Color": {
+      "R": 156,
+      "G": 114,
+      "B": 48,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff9c7230"
+    }
+  },
+  "833": {
+    "Name": "Golden Olive - Light",
+    "DMCNumber": 833,
+    "Hex": "#B99956",
+    "Color": {
+      "R": 185,
+      "G": 153,
+      "B": 86,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffb99956"
+    }
+  },
+  "834": {
+    "Name": "Golden Olive - Very Light",
+    "DMCNumber": 834,
+    "Hex": "#D2B468",
+    "Color": {
+      "R": 210,
+      "G": 180,
+      "B": 104,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffd2b468"
+    }
+  },
+  "838": {
+    "Name": "Beige Brown - Very Dark",
+    "DMCNumber": 838,
+    "Hex": "#4A3021",
+    "Color": {
+      "R": 74,
+      "G": 48,
+      "B": 33,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff4a3021"
+    }
+  },
+  "839": {
+    "Name": "Beige Brown - Dark",
+    "DMCNumber": 839,
+    "Hex": "#5A3C2D",
+    "Color": {
+      "R": 90,
+      "G": 60,
+      "B": 45,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff5a3c2d"
+    }
+  },
+  "840": {
+    "Name": "Beige Brown - Medium",
+    "DMCNumber": 840,
+    "Hex": "#7A5939",
+    "Color": {
+      "R": 122,
+      "G": 89,
+      "B": 57,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff7a5939"
+    }
+  },
+  "841": {
+    "Name": "Beige Brown - Light",
+    "DMCNumber": 841,
+    "Hex": "#A37D64",
+    "Color": {
+      "R": 163,
+      "G": 125,
+      "B": 100,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa37d64"
+    }
+  },
+  "842": {
+    "Name": "Beige Brown - Very Light",
+    "DMCNumber": 842,
+    "Hex": "#CBB094",
+    "Color": {
+      "R": 203,
+      "G": 176,
+      "B": 148,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffcbb094"
+    }
+  },
+  "844": {
+    "Name": "Beaver Gray - Ultra Dark",
+    "DMCNumber": 844,
+    "Hex": "#494842",
+    "Color": {
+      "R": 73,
+      "G": 72,
+      "B": 66,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff494842"
+    }
+  },
+  "869": {
+    "Name": "Hazelnut Brown - Very Dark",
+    "DMCNumber": 869,
+    "Hex": "#784C28",
+    "Color": {
+      "R": 120,
+      "G": 76,
+      "B": 40,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff784c28"
+    }
+  },
+  "890": {
+    "Name": "Pistachio Green - Ultra Dark",
+    "DMCNumber": 890,
+    "Hex": "#324233",
+    "Color": {
+      "R": 50,
+      "G": 66,
+      "B": 51,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff324233"
+    }
+  },
+  "891": {
+    "Name": "Carnation - Dark",
+    "DMCNumber": 891,
+    "Hex": "#EE3246",
+    "Color": {
+      "R": 238,
+      "G": 50,
+      "B": 70,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffee3246"
+    }
+  },
+  "892": {
+    "Name": "Carnation - Medium",
+    "DMCNumber": 892,
+    "Hex": "#F44753",
+    "Color": {
+      "R": 244,
+      "G": 71,
+      "B": 83,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff44753"
+    }
+  },
+  "893": {
+    "Name": "Carnation - Light",
+    "DMCNumber": 893,
+    "Hex": "#F66879",
+    "Color": {
+      "R": 246,
+      "G": 104,
+      "B": 121,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff66879"
+    }
+  },
+  "894": {
+    "Name": "Carnation - Very Light",
+    "DMCNumber": 894,
+    "Hex": "#FD95A3",
+    "Color": {
+      "R": 253,
+      "G": 149,
+      "B": 163,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffd95a3"
+    }
+  },
+  "895": {
+    "Name": "Hunter Green - Very Dark",
+    "DMCNumber": 895,
+    "Hex": "#344B2E",
+    "Color": {
+      "R": 52,
+      "G": 75,
+      "B": 46,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff344b2e"
+    }
+  },
+  "898": {
+    "Name": "Coffee Brown - Very Dark",
+    "DMCNumber": 898,
+    "Hex": "#532F1B",
+    "Color": {
+      "R": 83,
+      "G": 47,
+      "B": 27,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff532f1b"
+    }
+  },
+  "899": {
+    "Name": "Rose - Medium",
+    "DMCNumber": 899,
+    "Hex": "#EA6B78",
+    "Color": {
+      "R": 234,
+      "G": 107,
+      "B": 120,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffea6b78"
+    }
+  },
+  "900": {
+    "Name": "Burnt Orange - Dark",
+    "DMCNumber": 900,
+    "Hex": "#C63117",
+    "Color": {
+      "R": 198,
+      "G": 49,
+      "B": 23,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffc63117"
+    }
+  },
+  "902": {
+    "Name": "Garnet - Very Dark",
+    "DMCNumber": 902,
+    "Hex": "#651329",
+    "Color": {
+      "R": 101,
+      "G": 19,
+      "B": 41,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff651329"
+    }
+  },
+  "904": {
+    "Name": "Parrot Green - Very Dark",
+    "DMCNumber": 904,
+    "Hex": "#386324",
+    "Color": {
+      "R": 56,
+      "G": 99,
+      "B": 36,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff386324"
+    }
+  },
+  "905": {
+    "Name": "Parrot Green - Dark",
+    "DMCNumber": 905,
+    "Hex": "#467924",
+    "Color": {
+      "R": 70,
+      "G": 121,
+      "B": 36,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff467924"
+    }
+  },
+  "906": {
+    "Name": "Parrot Green - Medium",
+    "DMCNumber": 906,
+    "Hex": "#6C9E29",
+    "Color": {
+      "R": 108,
+      "G": 158,
+      "B": 41,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6c9e29"
+    }
+  },
+  "907": {
+    "Name": "Parrot Green - Light",
+    "DMCNumber": 907,
+    "Hex": "#9DC72D",
+    "Color": {
+      "R": 157,
+      "G": 199,
+      "B": 45,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff9dc72d"
+    }
+  },
+  "909": {
+    "Name": "Emerald Green - Very Dark",
+    "DMCNumber": 909,
+    "Hex": "#106B43",
+    "Color": {
+      "R": 16,
+      "G": 107,
+      "B": 67,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff106b43"
+    }
+  },
+  "910": {
+    "Name": "Emerald Green - Dark",
+    "DMCNumber": 910,
+    "Hex": "#10814E",
+    "Color": {
+      "R": 16,
+      "G": 129,
+      "B": 78,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff10814e"
+    }
+  },
+  "911": {
+    "Name": "Emerald Green - Medium",
+    "DMCNumber": 911,
+    "Hex": "#109256",
+    "Color": {
+      "R": 16,
+      "G": 146,
+      "B": 86,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff109256"
+    }
+  },
+  "912": {
+    "Name": "Emerald Green - Light",
+    "DMCNumber": 912,
+    "Hex": "#36B26B",
+    "Color": {
+      "R": 54,
+      "G": 178,
+      "B": 107,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff36b26b"
+    }
+  },
+  "913": {
+    "Name": "Nile Green - Medium",
+    "DMCNumber": 913,
+    "Hex": "#55CA7D",
+    "Color": {
+      "R": 85,
+      "G": 202,
+      "B": 125,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff55ca7d"
+    }
+  },
+  "915": {
+    "Name": "Plum - Dark",
+    "DMCNumber": 915,
+    "Hex": "#95085A",
+    "Color": {
+      "R": 149,
+      "G": 8,
+      "B": 90,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff95085a"
+    }
+  },
+  "917": {
+    "Name": "Plum - Medium",
+    "DMCNumber": 917,
+    "Hex": "#AC1071",
+    "Color": {
+      "R": 172,
+      "G": 16,
+      "B": 113,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffac1071"
+    }
+  },
+  "918": {
+    "Name": "Red Copper - Dark",
+    "DMCNumber": 918,
+    "Hex": "#883630",
+    "Color": {
+      "R": 136,
+      "G": 54,
+      "B": 48,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff883630"
+    }
+  },
+  "919": {
+    "Name": "Red Copper",
+    "DMCNumber": 919,
+    "Hex": "#9B371B",
+    "Color": {
+      "R": 155,
+      "G": 55,
+      "B": 27,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff9b371b"
+    }
+  },
+  "920": {
+    "Name": "Copper - Medium",
+    "DMCNumber": 920,
+    "Hex": "#AB4836",
+    "Color": {
+      "R": 171,
+      "G": 72,
+      "B": 54,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffab4836"
+    }
+  },
+  "921": {
+    "Name": "Copper",
+    "DMCNumber": 921,
+    "Hex": "#C0573D",
+    "Color": {
+      "R": 192,
+      "G": 87,
+      "B": 61,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffc0573d"
+    }
+  },
+  "922": {
+    "Name": "Copper - Light",
+    "DMCNumber": 922,
+    "Hex": "#DD6E4C",
+    "Color": {
+      "R": 221,
+      "G": 110,
+      "B": 76,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffdd6e4c"
+    }
+  },
+  "924": {
+    "Name": "Gray Green - Very Dark",
+    "DMCNumber": 924,
+    "Hex": "#384A4A",
+    "Color": {
+      "R": 56,
+      "G": 74,
+      "B": 74,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff384a4a"
+    }
+  },
+  "926": {
+    "Name": "Gray Green - Medium",
+    "DMCNumber": 926,
+    "Hex": "#617674",
+    "Color": {
+      "R": 97,
+      "G": 118,
+      "B": 116,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff617674"
+    }
+  },
+  "927": {
+    "Name": "Gray Green - Light",
+    "DMCNumber": 927,
+    "Hex": "#9FA8A5",
+    "Color": {
+      "R": 159,
+      "G": 168,
+      "B": 165,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff9fa8a5"
+    }
+  },
+  "928": {
+    "Name": "Gray Green - Very Light",
+    "DMCNumber": 928,
+    "Hex": "#C0C6C0",
+    "Color": {
+      "R": 192,
+      "G": 198,
+      "B": 192,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffc0c6c0"
+    }
+  },
+  "930": {
+    "Name": "Antique Blue - Dark",
+    "DMCNumber": 930,
+    "Hex": "#495C6B",
+    "Color": {
+      "R": 73,
+      "G": 92,
+      "B": 107,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff495c6b"
+    }
+  },
+  "931": {
+    "Name": "Antique Blue - Medium",
+    "DMCNumber": 931,
+    "Hex": "#667684",
+    "Color": {
+      "R": 102,
+      "G": 118,
+      "B": 132,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff667684"
+    }
+  },
+  "932": {
+    "Name": "Antique Blue - Light",
+    "DMCNumber": 932,
+    "Hex": "#93A0AF",
+    "Color": {
+      "R": 147,
+      "G": 160,
+      "B": 175,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff93a0af"
+    }
+  },
+  "934": {
+    "Name": "Avocado Green - BLACK",
+    "DMCNumber": 934,
+    "Hex": "#323324",
+    "Color": {
+      "R": 50,
+      "G": 51,
+      "B": 36,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff323324"
+    }
+  },
+  "935": {
+    "Name": "Avocado Green - Dark",
+    "DMCNumber": 935,
+    "Hex": "#383A2A",
+    "Color": {
+      "R": 56,
+      "G": 58,
+      "B": 42,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff383a2a"
+    }
+  },
+  "936": {
+    "Name": "Avocado Green - Very Dark",
+    "DMCNumber": 936,
+    "Hex": "#3F4227",
+    "Color": {
+      "R": 63,
+      "G": 66,
+      "B": 39,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff3f4227"
+    }
+  },
+  "937": {
+    "Name": "Avocado Green - Medium",
+    "DMCNumber": 937,
+    "Hex": "#434F2C",
+    "Color": {
+      "R": 67,
+      "G": 79,
+      "B": 44,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff434f2c"
+    }
+  },
+  "938": {
+    "Name": "Coffee Brown - Ultra Dark",
+    "DMCNumber": 938,
+    "Hex": "#45271A",
+    "Color": {
+      "R": 69,
+      "G": 39,
+      "B": 26,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff45271a"
+    }
+  },
+  "939": {
+    "Name": "Blue - Very Dark",
+    "DMCNumber": 939,
+    "Hex": "#09092F",
+    "Color": {
+      "R": 9,
+      "G": 9,
+      "B": 47,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff09092f"
+    }
+  },
+  "943": {
+    "Name": "Aquamarine - Medium",
+    "DMCNumber": 943,
+    "Hex": "#009A77",
+    "Color": {
+      "R": 0,
+      "G": 154,
+      "B": 119,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff009a77"
+    }
+  },
+  "945": {
+    "Name": "Tawny",
+    "DMCNumber": 945,
+    "Hex": "#F6C19A",
+    "Color": {
+      "R": 246,
+      "G": 193,
+      "B": 154,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff6c19a"
+    }
+  },
+  "946": {
+    "Name": "Burnt Orange - Medium",
+    "DMCNumber": 946,
+    "Hex": "#ED4115",
+    "Color": {
+      "R": 237,
+      "G": 65,
+      "B": 21,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffed4115"
+    }
+  },
+  "947": {
+    "Name": "Burnt Orange",
+    "DMCNumber": 947,
+    "Hex": "#FC4F16",
+    "Color": {
+      "R": 252,
+      "G": 79,
+      "B": 22,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffc4f16"
+    }
+  },
+  "948": {
+    "Name": "Peach - Very Light",
+    "DMCNumber": 948,
+    "Hex": "#FDE6D3",
+    "Color": {
+      "R": 253,
+      "G": 230,
+      "B": 211,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffde6d3"
+    }
+  },
+  "950": {
+    "Name": "Desert Sand - Light",
+    "DMCNumber": 950,
+    "Hex": "#E5AC8D",
+    "Color": {
+      "R": 229,
+      "G": 172,
+      "B": 141,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffe5ac8d"
+    }
+  },
+  "951": {
+    "Name": "Tawny - Light",
+    "DMCNumber": 951,
+    "Hex": "#FADDB6",
+    "Color": {
+      "R": 250,
+      "G": 221,
+      "B": 182,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffaddb6"
+    }
+  },
+  "954": {
+    "Name": "Nile Green",
+    "DMCNumber": 954,
+    "Hex": "#6FDA8A",
+    "Color": {
+      "R": 111,
+      "G": 218,
+      "B": 138,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6fda8a"
+    }
+  },
+  "955": {
+    "Name": "Nile Green - Light",
+    "DMCNumber": 955,
+    "Hex": "#A8EBAD",
+    "Color": {
+      "R": 168,
+      "G": 235,
+      "B": 173,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa8ebad"
+    }
+  },
+  "956": {
+    "Name": "Geranium",
+    "DMCNumber": 956,
+    "Hex": "#F7566D",
+    "Color": {
+      "R": 247,
+      "G": 86,
+      "B": 109,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff7566d"
+    }
+  },
+  "957": {
+    "Name": "Geranium - Pale",
+    "DMCNumber": 957,
+    "Hex": "#FD99AF",
+    "Color": {
+      "R": 253,
+      "G": 153,
+      "B": 175,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffd99af"
+    }
+  },
+  "958": {
+    "Name": "Seagreen - Dark",
+    "DMCNumber": 958,
+    "Hex": "#0DB294",
+    "Color": {
+      "R": 13,
+      "G": 178,
+      "B": 148,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff0db294"
+    }
+  },
+  "959": {
+    "Name": "Seagreen - Medium",
+    "DMCNumber": 959,
+    "Hex": "#72D0B7",
+    "Color": {
+      "R": 114,
+      "G": 208,
+      "B": 183,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff72d0b7"
+    }
+  },
+  "961": {
+    "Name": "Dusty Rose - Dark",
+    "DMCNumber": 961,
+    "Hex": "#DE586C",
+    "Color": {
+      "R": 222,
+      "G": 88,
+      "B": 108,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffde586c"
+    }
+  },
+  "962": {
+    "Name": "Dusty Rose - Medium",
+    "DMCNumber": 962,
+    "Hex": "#EB7183",
+    "Color": {
+      "R": 235,
+      "G": 113,
+      "B": 131,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffeb7183"
+    }
+  },
+  "963": {
+    "Name": "Dusty Rose - Ultra Very Light",
+    "DMCNumber": 963,
+    "Hex": "#FDCCD1",
+    "Color": {
+      "R": 253,
+      "G": 204,
+      "B": 209,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffdccd1"
+    }
+  },
+  "964": {
+    "Name": "Seagreen - Light",
+    "DMCNumber": 964,
+    "Hex": "#A5E4D4",
+    "Color": {
+      "R": 165,
+      "G": 228,
+      "B": 212,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa5e4d4"
+    }
+  },
+  "966": {
+    "Name": "Baby Green - Medium",
+    "DMCNumber": 966,
+    "Hex": "#94D28A",
+    "Color": {
+      "R": 148,
+      "G": 210,
+      "B": 138,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff94d28a"
+    }
+  },
+  "967": {
+    "Name": "Peach - Light",
+    "DMCNumber": 967,
+    "Hex": "#FFC2AC",
+    "Color": {
+      "R": 255,
+      "G": 194,
+      "B": 172,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffffc2ac"
+    }
+  },
+  "970": {
+    "Name": "Pumpkin - Light",
+    "DMCNumber": 970,
+    "Hex": "#FB6721",
+    "Color": {
+      "R": 251,
+      "G": 103,
+      "B": 33,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffb6721"
+    }
+  },
+  "972": {
+    "Name": "Canary - Deep",
+    "DMCNumber": 972,
+    "Hex": "#FB9F11",
+    "Color": {
+      "R": 251,
+      "G": 159,
+      "B": 17,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffb9f11"
+    }
+  },
+  "973": {
+    "Name": "Canary - Bright",
+    "DMCNumber": 973,
+    "Hex": "#FCCD2D",
+    "Color": {
+      "R": 252,
+      "G": 205,
+      "B": 45,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffccd2d"
+    }
+  },
+  "975": {
+    "Name": "Golden Brown - Dark",
+    "DMCNumber": 975,
+    "Hex": "#813C11",
+    "Color": {
+      "R": 129,
+      "G": 60,
+      "B": 17,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff813c11"
+    }
+  },
+  "976": {
+    "Name": "Golden Brown - Medium",
+    "DMCNumber": 976,
+    "Hex": "#CF7532",
+    "Color": {
+      "R": 207,
+      "G": 117,
+      "B": 50,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffcf7532"
+    }
+  },
+  "977": {
+    "Name": "Golden Brown - Light",
+    "DMCNumber": 977,
+    "Hex": "#EC8F43",
+    "Color": {
+      "R": 236,
+      "G": 143,
+      "B": 67,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffec8f43"
+    }
+  },
+  "986": {
+    "Name": "Forest Green - Very Dark",
+    "DMCNumber": 986,
+    "Hex": "#2E5230",
+    "Color": {
+      "R": 46,
+      "G": 82,
+      "B": 48,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff2e5230"
+    }
+  },
+  "987": {
+    "Name": "Forest Green - Dark",
+    "DMCNumber": 987,
+    "Hex": "#436838",
+    "Color": {
+      "R": 67,
+      "G": 104,
+      "B": 56,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff436838"
+    }
+  },
+  "988": {
+    "Name": "Forest Green - Medium",
+    "DMCNumber": 988,
+    "Hex": "#66924A",
+    "Color": {
+      "R": 102,
+      "G": 146,
+      "B": 74,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff66924a"
+    }
+  },
+  "989": {
+    "Name": "Forest Green",
+    "DMCNumber": 989,
+    "Hex": "#71A74E",
+    "Color": {
+      "R": 113,
+      "G": 167,
+      "B": 78,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff71a74e"
+    }
+  },
+  "991": {
+    "Name": "Aquamarine - Dark",
+    "DMCNumber": 991,
+    "Hex": "#135F55",
+    "Color": {
+      "R": 19,
+      "G": 95,
+      "B": 85,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff135f55"
+    }
+  },
+  "992": {
+    "Name": "Aquamarine - Light",
+    "DMCNumber": 992,
+    "Hex": "#42B59E",
+    "Color": {
+      "R": 66,
+      "G": 181,
+      "B": 158,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff42b59e"
+    }
+  },
+  "993": {
+    "Name": "Aquamarine - Very Light",
+    "DMCNumber": 993,
+    "Hex": "#62D8B6",
+    "Color": {
+      "R": 98,
+      "G": 216,
+      "B": 182,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff62d8b6"
+    }
+  },
+  "995": {
+    "Name": "Electric Blue - Dark",
+    "DMCNumber": 995,
+    "Hex": "#0061B0",
+    "Color": {
+      "R": 0,
+      "G": 97,
+      "B": 176,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff0061b0"
+    }
+  },
+  "996": {
+    "Name": "Electric Blue - Medium",
+    "DMCNumber": 996,
+    "Hex": "#49A8EB",
+    "Color": {
+      "R": 73,
+      "G": 168,
+      "B": 235,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff49a8eb"
+    }
+  },
+  "3011": {
+    "Name": "Khaki Green - Dark",
+    "DMCNumber": 3011,
+    "Hex": "#655935",
+    "Color": {
+      "R": 101,
+      "G": 89,
+      "B": 53,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff655935"
+    }
+  },
+  "3012": {
+    "Name": "Khaki Green - Medium",
+    "DMCNumber": 3012,
+    "Hex": "#8B7B4E",
+    "Color": {
+      "R": 139,
+      "G": 123,
+      "B": 78,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff8b7b4e"
+    }
+  },
+  "3013": {
+    "Name": "Khaki Green - Light",
+    "DMCNumber": 3013,
+    "Hex": "#AFA97B",
+    "Color": {
+      "R": 175,
+      "G": 169,
+      "B": 123,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffafa97b"
+    }
+  },
+  "3021": {
+    "Name": "Brown Gray - Very Dark",
+    "DMCNumber": 3021,
+    "Hex": "#50403B",
+    "Color": {
+      "R": 80,
+      "G": 64,
+      "B": 59,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff50403b"
+    }
+  },
+  "3022": {
+    "Name": "Brown Gray - Medium",
+    "DMCNumber": 3022,
+    "Hex": "#848274",
+    "Color": {
+      "R": 132,
+      "G": 130,
+      "B": 116,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff848274"
+    }
+  },
+  "3023": {
+    "Name": "Brown Gray - Light",
+    "DMCNumber": 3023,
+    "Hex": "#A29B86",
+    "Color": {
+      "R": 162,
+      "G": 155,
+      "B": 134,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa29b86"
+    }
+  },
+  "3024": {
+    "Name": "Brown Gray - Very Light",
+    "DMCNumber": 3024,
+    "Hex": "#BEB8AC",
+    "Color": {
+      "R": 190,
+      "G": 184,
+      "B": 172,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffbeb8ac"
+    }
+  },
+  "3031": {
+    "Name": "Mocha Brown - Very Dark",
+    "DMCNumber": 3031,
+    "Hex": "#423014",
+    "Color": {
+      "R": 66,
+      "G": 48,
+      "B": 20,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff423014"
+    }
+  },
+  "3032": {
+    "Name": "Mocha Brown - Medium",
+    "DMCNumber": 3032,
+    "Hex": "#9D8868",
+    "Color": {
+      "R": 157,
+      "G": 136,
+      "B": 104,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff9d8868"
+    }
+  },
+  "3033": {
+    "Name": "Mocha Brown - Very Light",
+    "DMCNumber": 3033,
+    "Hex": "#DBC7AD",
+    "Color": {
+      "R": 219,
+      "G": 199,
+      "B": 173,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffdbc7ad"
+    }
+  },
+  "3041": {
+    "Name": "Antique Violet - Medium",
+    "DMCNumber": 3041,
+    "Hex": "#866A76",
+    "Color": {
+      "R": 134,
+      "G": 106,
+      "B": 118,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff866a76"
+    }
+  },
+  "3042": {
+    "Name": "Antique Violet - Light",
+    "DMCNumber": 3042,
+    "Hex": "#AF98A0",
+    "Color": {
+      "R": 175,
+      "G": 152,
+      "B": 160,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffaf98a0"
+    }
+  },
+  "3045": {
+    "Name": "Yellow Beige - Dark",
+    "DMCNumber": 3045,
+    "Hex": "#AF8152",
+    "Color": {
+      "R": 175,
+      "G": 129,
+      "B": 82,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffaf8152"
+    }
+  },
+  "3046": {
+    "Name": "Yellow Beige - Medium",
+    "DMCNumber": 3046,
+    "Hex": "#CEB074",
+    "Color": {
+      "R": 206,
+      "G": 176,
+      "B": 116,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffceb074"
+    }
+  },
+  "3047": {
+    "Name": "Yellow Beige - Light",
+    "DMCNumber": 3047,
+    "Hex": "#EAD8AB",
+    "Color": {
+      "R": 234,
+      "G": 216,
+      "B": 171,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffead8ab"
+    }
+  },
+  "3051": {
+    "Name": "Green Gray - Dark",
+    "DMCNumber": 3051,
+    "Hex": "#4C4C1E",
+    "Color": {
+      "R": 76,
+      "G": 76,
+      "B": 30,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff4c4c1e"
+    }
+  },
+  "3052": {
+    "Name": "Green Gray - Medium",
+    "DMCNumber": 3052,
+    "Hex": "#787E5C",
+    "Color": {
+      "R": 120,
+      "G": 126,
+      "B": 92,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff787e5c"
+    }
+  },
+  "3053": {
+    "Name": "Green Gray",
+    "DMCNumber": 3053,
+    "Hex": "#999D75",
+    "Color": {
+      "R": 153,
+      "G": 157,
+      "B": 117,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff999d75"
+    }
+  },
+  "3064": {
+    "Name": "Desert Sand",
+    "DMCNumber": 3064,
+    "Hex": "#BA7056",
+    "Color": {
+      "R": 186,
+      "G": 112,
+      "B": 86,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffba7056"
+    }
+  },
+  "3072": {
+    "Name": "Beaver Gray - Very Light",
+    "DMCNumber": 3072,
+    "Hex": "#D2D2CA",
+    "Color": {
+      "R": 210,
+      "G": 210,
+      "B": 202,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffd2d2ca"
+    }
+  },
+  "3078": {
+    "Name": "Golden Yellow - Very Light",
+    "DMCNumber": 3078,
+    "Hex": "#FCF6B6",
+    "Color": {
+      "R": 252,
+      "G": 246,
+      "B": 182,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffcf6b6"
+    }
+  },
+  "3325": {
+    "Name": "Baby Blue - Light",
+    "DMCNumber": 3325,
+    "Hex": "#ADCDE7",
+    "Color": {
+      "R": 173,
+      "G": 205,
+      "B": 231,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffadcde7"
+    }
+  },
+  "3326": {
+    "Name": "Rose - Light",
+    "DMCNumber": 3326,
+    "Hex": "#F9979C",
+    "Color": {
+      "R": 249,
+      "G": 151,
+      "B": 156,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff9979c"
+    }
+  },
+  "3328": {
+    "Name": "Salmon - Dark",
+    "DMCNumber": 3328,
+    "Hex": "#BE444A",
+    "Color": {
+      "R": 190,
+      "G": 68,
+      "B": 74,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffbe444a"
+    }
+  },
+  "3340": {
+    "Name": "Apricot - Medium",
+    "DMCNumber": 3340,
+    "Hex": "#FD6B4F",
+    "Color": {
+      "R": 253,
+      "G": 107,
+      "B": 79,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffd6b4f"
+    }
+  },
+  "3341": {
+    "Name": "Apricot",
+    "DMCNumber": 3341,
+    "Hex": "#FD8E78",
+    "Color": {
+      "R": 253,
+      "G": 142,
+      "B": 120,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffd8e78"
+    }
+  },
+  "3345": {
+    "Name": "Hunter Green - Dark",
+    "DMCNumber": 3345,
+    "Hex": "#40552E",
+    "Color": {
+      "R": 64,
+      "G": 85,
+      "B": 46,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff40552e"
+    }
+  },
+  "3346": {
+    "Name": "Hunter Green",
+    "DMCNumber": 3346,
+    "Hex": "#56743B",
+    "Color": {
+      "R": 86,
+      "G": 116,
+      "B": 59,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff56743b"
+    }
+  },
+  "3347": {
+    "Name": "Yellow Green - Medium",
+    "DMCNumber": 3347,
+    "Hex": "#6D9646",
+    "Color": {
+      "R": 109,
+      "G": 150,
+      "B": 70,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6d9646"
+    }
+  },
+  "3348": {
+    "Name": "Yellow Green - Light",
+    "DMCNumber": 3348,
+    "Hex": "#BEDF74",
+    "Color": {
+      "R": 190,
+      "G": 223,
+      "B": 116,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffbedf74"
+    }
+  },
+  "3350": {
+    "Name": "Dusty Rose - Ultra Dark",
+    "DMCNumber": 3350,
+    "Hex": "#AA3949",
+    "Color": {
+      "R": 170,
+      "G": 57,
+      "B": 73,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffaa3949"
+    }
+  },
+  "3354": {
+    "Name": "Dusty Rose - Light",
+    "DMCNumber": 3354,
+    "Hex": "#EFA5AC",
+    "Color": {
+      "R": 239,
+      "G": 165,
+      "B": 172,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffefa5ac"
+    }
+  },
+  "3362": {
+    "Name": "Pine Green - Dark",
+    "DMCNumber": 3362,
+    "Hex": "#49523C",
+    "Color": {
+      "R": 73,
+      "G": 82,
+      "B": 60,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff49523c"
+    }
+  },
+  "3363": {
+    "Name": "Pine Green - Medium",
+    "DMCNumber": 3363,
+    "Hex": "#617451",
+    "Color": {
+      "R": 97,
+      "G": 116,
+      "B": 81,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff617451"
+    }
+  },
+  "3364": {
+    "Name": "Pine Green",
+    "DMCNumber": 3364,
+    "Hex": "#8E9B6D",
+    "Color": {
+      "R": 142,
+      "G": 155,
+      "B": 109,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff8e9b6d"
+    }
+  },
+  "3371": {
+    "Name": "Black Brown",
+    "DMCNumber": 3371,
+    "Hex": "#36220E",
+    "Color": {
+      "R": 54,
+      "G": 34,
+      "B": 14,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff36220e"
+    }
+  },
+  "3607": {
+    "Name": "Plum - Light",
+    "DMCNumber": 3607,
+    "Hex": "#D94C9D",
+    "Color": {
+      "R": 217,
+      "G": 76,
+      "B": 157,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffd94c9d"
+    }
+  },
+  "3608": {
+    "Name": "Plum - Very Light",
+    "DMCNumber": 3608,
+    "Hex": "#EC81BE",
+    "Color": {
+      "R": 236,
+      "G": 129,
+      "B": 190,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffec81be"
+    }
+  },
+  "3609": {
+    "Name": "Plum - Ultra Light",
+    "DMCNumber": 3609,
+    "Hex": "#F6B0DF",
+    "Color": {
+      "R": 246,
+      "G": 176,
+      "B": 223,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff6b0df"
+    }
+  },
+  "3685": {
+    "Name": "Mauve - Very Dark",
+    "DMCNumber": 3685,
+    "Hex": "#79263B",
+    "Color": {
+      "R": 121,
+      "G": 38,
+      "B": 59,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff79263b"
+    }
+  },
+  "3687": {
+    "Name": "Mauve",
+    "DMCNumber": 3687,
+    "Hex": "#B5455D",
+    "Color": {
+      "R": 181,
+      "G": 69,
+      "B": 93,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffb5455d"
+    }
+  },
+  "3688": {
+    "Name": "Mauve - Medium",
+    "DMCNumber": 3688,
+    "Hex": "#DC7C86",
+    "Color": {
+      "R": 220,
+      "G": 124,
+      "B": 134,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffdc7c86"
+    }
+  },
+  "3689": {
+    "Name": "Mauve - Light",
+    "DMCNumber": 3689,
+    "Hex": "#F8BBC8",
+    "Color": {
+      "R": 248,
+      "G": 187,
+      "B": 200,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff8bbc8"
+    }
+  },
+  "3705": {
+    "Name": "Melon - Dark",
+    "DMCNumber": 3705,
+    "Hex": "#F2494F",
+    "Color": {
+      "R": 242,
+      "G": 73,
+      "B": 79,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff2494f"
+    }
+  },
+  "3706": {
+    "Name": "Melon - Medium",
+    "DMCNumber": 3706,
+    "Hex": "#FD6E70",
+    "Color": {
+      "R": 253,
+      "G": 110,
+      "B": 112,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffd6e70"
+    }
+  },
+  "3708": {
+    "Name": "Melon - Light",
+    "DMCNumber": 3708,
+    "Hex": "#FDA0AE",
+    "Color": {
+      "R": 253,
+      "G": 160,
+      "B": 174,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffda0ae"
+    }
+  },
+  "3712": {
+    "Name": "Salmon - Medium",
+    "DMCNumber": 3712,
+    "Hex": "#D95D5D",
+    "Color": {
+      "R": 217,
+      "G": 93,
+      "B": 93,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffd95d5d"
+    }
+  },
+  "3713": {
+    "Name": "Salmon - Very Light",
+    "DMCNumber": 3713,
+    "Hex": "#FDD5D0",
+    "Color": {
+      "R": 253,
+      "G": 213,
+      "B": 208,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffdd5d0"
+    }
+  },
+  "3716": {
+    "Name": "Dusty Rose - Very Light",
+    "DMCNumber": 3716,
+    "Hex": "#FCAFB9",
+    "Color": {
+      "R": 252,
+      "G": 175,
+      "B": 185,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffcafb9"
+    }
+  },
+  "3721": {
+    "Name": "Shell Pink - Dark",
+    "DMCNumber": 3721,
+    "Hex": "#933B3D",
+    "Color": {
+      "R": 147,
+      "G": 59,
+      "B": 61,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff933b3d"
+    }
+  },
+  "3722": {
+    "Name": "Shell Pink - Medium",
+    "DMCNumber": 3722,
+    "Hex": "#A04B4C",
+    "Color": {
+      "R": 160,
+      "G": 75,
+      "B": 76,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa04b4c"
+    }
+  },
+  "3726": {
+    "Name": "Antique Mauve - Dark",
+    "DMCNumber": 3726,
+    "Hex": "#95565C",
+    "Color": {
+      "R": 149,
+      "G": 86,
+      "B": 92,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff95565c"
+    }
+  },
+  "3727": {
+    "Name": "Antique Mauve - Light",
+    "DMCNumber": 3727,
+    "Hex": "#DA9EA6",
+    "Color": {
+      "R": 218,
+      "G": 158,
+      "B": 166,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffda9ea6"
+    }
+  },
+  "3731": {
+    "Name": "Dusty Rose - Very Dark",
+    "DMCNumber": 3731,
+    "Hex": "#C34C5C",
+    "Color": {
+      "R": 195,
+      "G": 76,
+      "B": 92,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffc34c5c"
+    }
+  },
+  "3733": {
+    "Name": "Dusty Rose",
+    "DMCNumber": 3733,
+    "Hex": "#EA7E86",
+    "Color": {
+      "R": 234,
+      "G": 126,
+      "B": 134,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffea7e86"
+    }
+  },
+  "3740": {
+    "Name": "Antique Violet - Dark",
+    "DMCNumber": 3740,
+    "Hex": "#71535D",
+    "Color": {
+      "R": 113,
+      "G": 83,
+      "B": 93,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff71535d"
+    }
+  },
+  "3743": {
+    "Name": "Antique Violet - Very Light",
+    "DMCNumber": 3743,
+    "Hex": "#CFC2C9",
+    "Color": {
+      "R": 207,
+      "G": 194,
+      "B": 201,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffcfc2c9"
+    }
+  },
+  "3746": {
+    "Name": "Blue Violet - Dark",
+    "DMCNumber": 3746,
+    "Hex": "#844AB5",
+    "Color": {
+      "R": 132,
+      "G": 74,
+      "B": 181,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff844ab5"
+    }
+  },
+  "3747": {
+    "Name": "Blue Violet - Very Light",
+    "DMCNumber": 3747,
+    "Hex": "#D0C5EC",
+    "Color": {
+      "R": 208,
+      "G": 197,
+      "B": 236,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffd0c5ec"
+    }
+  },
+  "3750": {
+    "Name": "Antique Blue - Very Dark",
+    "DMCNumber": 3750,
+    "Hex": "#1D4552",
+    "Color": {
+      "R": 29,
+      "G": 69,
+      "B": 82,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff1d4552"
+    }
+  },
+  "3752": {
+    "Name": "Antique Blue - Very Light",
+    "DMCNumber": 3752,
+    "Hex": "#BAC9CC",
+    "Color": {
+      "R": 186,
+      "G": 201,
+      "B": 204,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffbac9cc"
+    }
+  },
+  "3753": {
+    "Name": "Antique Blue - Ultra Very Light",
+    "DMCNumber": 3753,
+    "Hex": "#D9E6EC",
+    "Color": {
+      "R": 217,
+      "G": 230,
+      "B": 236,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffd9e6ec"
+    }
+  },
+  "3755": {
+    "Name": "Baby Blue",
+    "DMCNumber": 3755,
+    "Hex": "#81A5D8",
+    "Color": {
+      "R": 129,
+      "G": 165,
+      "B": 216,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff81a5d8"
+    }
+  },
+  "3756": {
+    "Name": "Baby Blue - Light",
+    "DMCNumber": 3756,
+    "Hex": "#E9F4FA",
+    "Color": {
+      "R": 233,
+      "G": 244,
+      "B": 250,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffe9f4fa"
+    }
+  },
+  "3760": {
+    "Name": "Wedgewood - Medium",
+    "DMCNumber": 3760,
+    "Hex": "#467293",
+    "Color": {
+      "R": 70,
+      "G": 114,
+      "B": 147,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff467293"
+    }
+  },
+  "3761": {
+    "Name": "Sky Blue - Light",
+    "DMCNumber": 3761,
+    "Hex": "#B1D0DF",
+    "Color": {
+      "R": 177,
+      "G": 208,
+      "B": 223,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffb1d0df"
+    }
+  },
+  "3765": {
+    "Name": "Peacock Blue - Very Dark",
+    "DMCNumber": 3765,
+    "Hex": "#175E78",
+    "Color": {
+      "R": 23,
+      "G": 94,
+      "B": 120,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff175e78"
+    }
+  },
+  "3766": {
+    "Name": "Peacock Blue - Light",
+    "DMCNumber": 3766,
+    "Hex": "#4B8AA1",
+    "Color": {
+      "R": 75,
+      "G": 138,
+      "B": 161,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff4b8aa1"
+    }
+  },
+  "3768": {
+    "Name": "Gray Green - Dark",
+    "DMCNumber": 3768,
+    "Hex": "#4C605F",
+    "Color": {
+      "R": 76,
+      "G": 96,
+      "B": 95,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff4c605f"
+    }
+  },
+  "3770": {
+    "Name": "Tawny - Very Light",
+    "DMCNumber": 3770,
+    "Hex": "#FEF1D8",
+    "Color": {
+      "R": 254,
+      "G": 241,
+      "B": 216,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffef1d8"
+    }
+  },
+  "3771": {
+    "Name": "Peach - Dark",
+    "DMCNumber": 3771,
+    "Hex": "#E8AC9B",
+    "Color": {
+      "R": 232,
+      "G": 172,
+      "B": 155,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffe8ac9b"
+    }
+  },
+  "3772": {
+    "Name": "Desert Sand - Very Dark",
+    "DMCNumber": 3772,
+    "Hex": "#995744",
+    "Color": {
+      "R": 153,
+      "G": 87,
+      "B": 68,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff995744"
+    }
+  },
+  "3774": {
+    "Name": "Desert Sand - Very Light",
+    "DMCNumber": 3774,
+    "Hex": "#F3CFB4",
+    "Color": {
+      "R": 243,
+      "G": 207,
+      "B": 180,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff3cfb4"
+    }
+  },
+  "3776": {
+    "Name": "Mahogany - Light",
+    "DMCNumber": 3776,
+    "Hex": "#C96444",
+    "Color": {
+      "R": 201,
+      "G": 100,
+      "B": 68,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffc96444"
+    }
+  },
+  "3777": {
+    "Name": "Terra Cotta - Very Dark",
+    "DMCNumber": 3777,
+    "Hex": "#922F25",
+    "Color": {
+      "R": 146,
+      "G": 47,
+      "B": 37,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff922f25"
+    }
+  },
+  "3778": {
+    "Name": "Terra Cotta - Light",
+    "DMCNumber": 3778,
+    "Hex": "#D2705C",
+    "Color": {
+      "R": 210,
+      "G": 112,
+      "B": 92,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffd2705c"
+    }
+  },
+  "3779": {
+    "Name": "Terra Cotta - Ultra Very Light",
+    "DMCNumber": 3779,
+    "Hex": "#F2AB95",
+    "Color": {
+      "R": 242,
+      "G": 171,
+      "B": 149,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff2ab95"
+    }
+  },
+  "3781": {
+    "Name": "Mocha Brown - Dark",
+    "DMCNumber": 3781,
+    "Hex": "#593F2B",
+    "Color": {
+      "R": 89,
+      "G": 63,
+      "B": 43,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff593f2b"
+    }
+  },
+  "3782": {
+    "Name": "Mocha Brown - Light",
+    "DMCNumber": 3782,
+    "Hex": "#B69D80",
+    "Color": {
+      "R": 182,
+      "G": 157,
+      "B": 128,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffb69d80"
+    }
+  },
+  "3787": {
+    "Name": "Brown Gray - Dark",
+    "DMCNumber": 3787,
+    "Hex": "#62524C",
+    "Color": {
+      "R": 98,
+      "G": 82,
+      "B": 76,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff62524c"
+    }
+  },
+  "3790": {
+    "Name": "Beige Gray - Ultra Dark",
+    "DMCNumber": 3790,
+    "Hex": "#6D5A4B",
+    "Color": {
+      "R": 109,
+      "G": 90,
+      "B": 75,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6d5a4b"
+    }
+  },
+  "3799": {
+    "Name": "Pewter Gray - Very Dark",
+    "DMCNumber": 3799,
+    "Hex": "#39393D",
+    "Color": {
+      "R": 57,
+      "G": 57,
+      "B": 61,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff39393d"
+    }
+  },
+  "3801": {
+    "Name": "Melon - Very Dark",
+    "DMCNumber": 3801,
+    "Hex": "#E4353D",
+    "Color": {
+      "R": 228,
+      "G": 53,
+      "B": 61,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffe4353d"
+    }
+  },
+  "3802": {
+    "Name": "Antique Mauve - Very Dark",
+    "DMCNumber": 3802,
+    "Hex": "#672A33",
+    "Color": {
+      "R": 103,
+      "G": 42,
+      "B": 51,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff672a33"
+    }
+  },
+  "3803": {
+    "Name": "Mauve - Dark",
+    "DMCNumber": 3803,
+    "Hex": "#872A43",
+    "Color": {
+      "R": 135,
+      "G": 42,
+      "B": 67,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff872a43"
+    }
+  },
+  "3804": {
+    "Name": "Cyclamen Pink - Dark",
+    "DMCNumber": 3804,
+    "Hex": "#CE2B63",
+    "Color": {
+      "R": 206,
+      "G": 43,
+      "B": 99,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffce2b63"
+    }
+  },
+  "3805": {
+    "Name": "Cyclamen Pink",
+    "DMCNumber": 3805,
+    "Hex": "#DF3C73",
+    "Color": {
+      "R": 223,
+      "G": 60,
+      "B": 115,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffdf3c73"
+    }
+  },
+  "3806": {
+    "Name": "Cyclamen Pink - Light",
+    "DMCNumber": 3806,
+    "Hex": "#F15A91",
+    "Color": {
+      "R": 241,
+      "G": 90,
+      "B": 145,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff15a91"
+    }
+  },
+  "3807": {
+    "Name": "Cornflower Blue",
+    "DMCNumber": 3807,
+    "Hex": "#4B599E",
+    "Color": {
+      "R": 75,
+      "G": 89,
+      "B": 158,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff4b599e"
+    }
+  },
+  "3808": {
+    "Name": "Turquoise - Ultra Very Dark",
+    "DMCNumber": 3808,
+    "Hex": "#03535C",
+    "Color": {
+      "R": 3,
+      "G": 83,
+      "B": 92,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff03535c"
+    }
+  },
+  "3809": {
+    "Name": "Turquoise - Very Dark",
+    "DMCNumber": 3809,
+    "Hex": "#136A75",
+    "Color": {
+      "R": 19,
+      "G": 106,
+      "B": 117,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff136a75"
+    }
+  },
+  "3810": {
+    "Name": "Turquoise - Dark",
+    "DMCNumber": 3810,
+    "Hex": "#2D8D98",
+    "Color": {
+      "R": 45,
+      "G": 141,
+      "B": 152,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff2d8d98"
+    }
+  },
+  "3811": {
+    "Name": "Turquoise - Very Light",
+    "DMCNumber": 3811,
+    "Hex": "#A8E2E5",
+    "Color": {
+      "R": 168,
+      "G": 226,
+      "B": 229,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa8e2e5"
+    }
+  },
+  "3812": {
+    "Name": "Seagreen - Very Dark",
+    "DMCNumber": 3812,
+    "Hex": "#07A184",
+    "Color": {
+      "R": 7,
+      "G": 161,
+      "B": 132,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff07a184"
+    }
+  },
+  "3813": {
+    "Name": "Blue Green - Light",
+    "DMCNumber": 3813,
+    "Hex": "#86C3AB",
+    "Color": {
+      "R": 134,
+      "G": 195,
+      "B": 171,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff86c3ab"
+    }
+  },
+  "3814": {
+    "Name": "Aquamarine",
+    "DMCNumber": 3814,
+    "Hex": "#0B8673",
+    "Color": {
+      "R": 11,
+      "G": 134,
+      "B": 115,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff0b8673"
+    }
+  },
+  "3815": {
+    "Name": "Celadon Green - Dark",
+    "DMCNumber": 3815,
+    "Hex": "#437259",
+    "Color": {
+      "R": 67,
+      "G": 114,
+      "B": 89,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff437259"
+    }
+  },
+  "3816": {
+    "Name": "Celadon Green",
+    "DMCNumber": 3816,
+    "Hex": "#60937A",
+    "Color": {
+      "R": 96,
+      "G": 147,
+      "B": 122,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff60937a"
+    }
+  },
+  "3817": {
+    "Name": "Celadon Green - Light",
+    "DMCNumber": 3817,
+    "Hex": "#81C6A4",
+    "Color": {
+      "R": 129,
+      "G": 198,
+      "B": 164,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff81c6a4"
+    }
+  },
+  "3818": {
+    "Name": "Emerald Green - Ultra Very Dark",
+    "DMCNumber": 3818,
+    "Hex": "#005D2E",
+    "Color": {
+      "R": 0,
+      "G": 93,
+      "B": 46,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff005d2e"
+    }
+  },
+  "3819": {
+    "Name": "Moss Green - Light",
+    "DMCNumber": 3819,
+    "Hex": "#CCC959",
+    "Color": {
+      "R": 204,
+      "G": 201,
+      "B": 89,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffccc959"
+    }
+  },
+  "3820": {
+    "Name": "Straw - Dark",
+    "DMCNumber": 3820,
+    "Hex": "#DBA53E",
+    "Color": {
+      "R": 219,
+      "G": 165,
+      "B": 62,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffdba53e"
+    }
+  },
+  "3821": {
+    "Name": "Straw",
+    "DMCNumber": 3821,
+    "Hex": "#EBBB52",
+    "Color": {
+      "R": 235,
+      "G": 187,
+      "B": 82,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffebbb52"
+    }
+  },
+  "3822": {
+    "Name": "Straw - Light",
+    "DMCNumber": 3822,
+    "Hex": "#F7D169",
+    "Color": {
+      "R": 247,
+      "G": 209,
+      "B": 105,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff7d169"
+    }
+  },
+  "3823": {
+    "Name": "Yellow - Ultra Pale",
+    "DMCNumber": 3823,
+    "Hex": "#FEF5CD",
+    "Color": {
+      "R": 254,
+      "G": 245,
+      "B": 205,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffef5cd"
+    }
+  },
+  "3824": {
+    "Name": "Apricot - Light",
+    "DMCNumber": 3824,
+    "Hex": "#FCAE99",
+    "Color": {
+      "R": 252,
+      "G": 174,
+      "B": 153,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffcae99"
+    }
+  },
+  "3825": {
+    "Name": "Pumpkin - Pale",
+    "DMCNumber": 3825,
+    "Hex": "#FEA370",
+    "Color": {
+      "R": 254,
+      "G": 163,
+      "B": 112,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffea370"
+    }
+  },
+  "3826": {
+    "Name": "Golden Brown",
+    "DMCNumber": 3826,
+    "Hex": "#B16633",
+    "Color": {
+      "R": 177,
+      "G": 102,
+      "B": 51,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffb16633"
+    }
+  },
+  "3827": {
+    "Name": "Golden Brown - Pale",
+    "DMCNumber": 3827,
+    "Hex": "#EAA664",
+    "Color": {
+      "R": 234,
+      "G": 166,
+      "B": 100,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffeaa664"
+    }
+  },
+  "3828": {
+    "Name": "Hazelnut Brown",
+    "DMCNumber": 3828,
+    "Hex": "#AA7C43",
+    "Color": {
+      "R": 170,
+      "G": 124,
+      "B": 67,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffaa7c43"
+    }
+  },
+  "3829": {
+    "Name": "Old Gold - Very Dark",
+    "DMCNumber": 3829,
+    "Hex": "#A7671D",
+    "Color": {
+      "R": 167,
+      "G": 103,
+      "B": 29,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa7671d"
+    }
+  },
+  "3830": {
+    "Name": "Terra Cotta",
+    "DMCNumber": 3830,
+    "Hex": "#A94138",
+    "Color": {
+      "R": 169,
+      "G": 65,
+      "B": 56,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffa94138"
+    }
+  },
+  "3831": {
+    "Name": "Raspberry - Dark",
+    "DMCNumber": 3831,
+    "Hex": "#C12B52",
+    "Color": {
+      "R": 193,
+      "G": 43,
+      "B": 82,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffc12b52"
+    }
+  },
+  "3832": {
+    "Name": "Raspberry - Medium",
+    "DMCNumber": 3832,
+    "Hex": "#E36370",
+    "Color": {
+      "R": 227,
+      "G": 99,
+      "B": 112,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffe36370"
+    }
+  },
+  "3833": {
+    "Name": "Raspberry - Light",
+    "DMCNumber": 3833,
+    "Hex": "#EA8B96",
+    "Color": {
+      "R": 234,
+      "G": 139,
+      "B": 150,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffea8b96"
+    }
+  },
+  "3834": {
+    "Name": "Grape - Dark",
+    "DMCNumber": 3834,
+    "Hex": "#6A2258",
+    "Color": {
+      "R": 106,
+      "G": 34,
+      "B": 88,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6a2258"
+    }
+  },
+  "3835": {
+    "Name": "Grape - Medium",
+    "DMCNumber": 3835,
+    "Hex": "#924D78",
+    "Color": {
+      "R": 146,
+      "G": 77,
+      "B": 120,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff924d78"
+    }
+  },
+  "3836": {
+    "Name": "Grape - Light",
+    "DMCNumber": 3836,
+    "Hex": "#C597B9",
+    "Color": {
+      "R": 197,
+      "G": 151,
+      "B": 185,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffc597b9"
+    }
+  },
+  "3837": {
+    "Name": "Lavender - Ultra Dark",
+    "DMCNumber": 3837,
+    "Hex": "#8A2A8F",
+    "Color": {
+      "R": 138,
+      "G": 42,
+      "B": 143,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff8a2a8f"
+    }
+  },
+  "3838": {
+    "Name": "Lavender Blue - Dark",
+    "DMCNumber": 3838,
+    "Hex": "#606BAD",
+    "Color": {
+      "R": 96,
+      "G": 107,
+      "B": 173,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff606bad"
+    }
+  },
+  "3839": {
+    "Name": "Lavender Blue - Medium",
+    "DMCNumber": 3839,
+    "Hex": "#7A7EC5",
+    "Color": {
+      "R": 122,
+      "G": 126,
+      "B": 197,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff7a7ec5"
+    }
+  },
+  "3840": {
+    "Name": "Lavender Blue - Light",
+    "DMCNumber": 3840,
+    "Hex": "#B2BDEA",
+    "Color": {
+      "R": 178,
+      "G": 189,
+      "B": 234,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffb2bdea"
+    }
+  },
+  "3841": {
+    "Name": "Baby Blue - Pale",
+    "DMCNumber": 3841,
+    "Hex": "#D9EAF2",
+    "Color": {
+      "R": 217,
+      "G": 234,
+      "B": 242,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffd9eaf2"
+    }
+  },
+  "3842": {
+    "Name": "Wedgewood - Dark",
+    "DMCNumber": 3842,
+    "Hex": "#06506A",
+    "Color": {
+      "R": 6,
+      "G": 80,
+      "B": 106,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff06506a"
+    }
+  },
+  "3843": {
+    "Name": "Electric Blue",
+    "DMCNumber": 3843,
+    "Hex": "#28A3DE",
+    "Color": {
+      "R": 40,
+      "G": 163,
+      "B": 222,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff28a3de"
+    }
+  },
+  "3844": {
+    "Name": "Bright Turquoise - Dark",
+    "DMCNumber": 3844,
+    "Hex": "#1F7FA0",
+    "Color": {
+      "R": 31,
+      "G": 127,
+      "B": 160,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff1f7fa0"
+    }
+  },
+  "3845": {
+    "Name": "Bright Turquoise - Medium",
+    "DMCNumber": 3845,
+    "Hex": "#2BADD1",
+    "Color": {
+      "R": 43,
+      "G": 173,
+      "B": 209,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff2badd1"
+    }
+  },
+  "3846": {
+    "Name": "Bright Turquoise - Light",
+    "DMCNumber": 3846,
+    "Hex": "#5ECCEC",
+    "Color": {
+      "R": 94,
+      "G": 204,
+      "B": 236,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff5eccec"
+    }
+  },
+  "3847": {
+    "Name": "Teal Green - Dark",
+    "DMCNumber": 3847,
+    "Hex": "#186358",
+    "Color": {
+      "R": 24,
+      "G": 99,
+      "B": 88,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff186358"
+    }
+  },
+  "3848": {
+    "Name": "Teal Green - Medium",
+    "DMCNumber": 3848,
+    "Hex": "#207E72",
+    "Color": {
+      "R": 32,
+      "G": 126,
+      "B": 114,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff207e72"
+    }
+  },
+  "3849": {
+    "Name": "Teal Green - Light",
+    "DMCNumber": 3849,
+    "Hex": "#35B193",
+    "Color": {
+      "R": 53,
+      "G": 177,
+      "B": 147,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff35b193"
+    }
+  },
+  "3850": {
+    "Name": "Bright Green - Dark",
+    "DMCNumber": 3850,
+    "Hex": "#208B46",
+    "Color": {
+      "R": 32,
+      "G": 139,
+      "B": 70,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff208b46"
+    }
+  },
+  "3851": {
+    "Name": "Bright Green - Light",
+    "DMCNumber": 3851,
+    "Hex": "#61BB84",
+    "Color": {
+      "R": 97,
+      "G": 187,
+      "B": 132,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff61bb84"
+    }
+  },
+  "3852": {
+    "Name": "Straw - Very Dark",
+    "DMCNumber": 3852,
+    "Hex": "#E3A730",
+    "Color": {
+      "R": 227,
+      "G": 167,
+      "B": 48,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffe3a730"
+    }
+  },
+  "3853": {
+    "Name": "Autumn Gold - Dark",
+    "DMCNumber": 3853,
+    "Hex": "#EF8125",
+    "Color": {
+      "R": 239,
+      "G": 129,
+      "B": 37,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffef8125"
+    }
+  },
+  "3854": {
+    "Name": "Autumn Gold - Medium",
+    "DMCNumber": 3854,
+    "Hex": "#FBAC56",
+    "Color": {
+      "R": 251,
+      "G": 172,
+      "B": 86,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffbac56"
+    }
+  },
+  "3855": {
+    "Name": "Autumn Gold - Light",
+    "DMCNumber": 3855,
+    "Hex": "#FDDFA0",
+    "Color": {
+      "R": 253,
+      "G": 223,
+      "B": 160,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffddfa0"
+    }
+  },
+  "3856": {
+    "Name": "Mahogany - Ultra Very Light",
+    "DMCNumber": 3856,
+    "Hex": "#FDBE8E",
+    "Color": {
+      "R": 253,
+      "G": 190,
+      "B": 142,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fffdbe8e"
+    }
+  },
+  "3857": {
+    "Name": "Rosewood - Dark",
+    "DMCNumber": 3857,
+    "Hex": "#6A2F26",
+    "Color": {
+      "R": 106,
+      "G": 47,
+      "B": 38,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6a2f26"
+    }
+  },
+  "3858": {
+    "Name": "Rosewood - Medium",
+    "DMCNumber": 3858,
+    "Hex": "#803A32",
+    "Color": {
+      "R": 128,
+      "G": 58,
+      "B": 50,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff803a32"
+    }
+  },
+  "3859": {
+    "Name": "Rosewood - Light",
+    "DMCNumber": 3859,
+    "Hex": "#BA7A6C",
+    "Color": {
+      "R": 186,
+      "G": 122,
+      "B": 108,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffba7a6c"
+    }
+  },
+  "3860": {
+    "Name": "Cocoa",
+    "DMCNumber": 3860,
+    "Hex": "#896362",
+    "Color": {
+      "R": 137,
+      "G": 99,
+      "B": 98,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff896362"
+    }
+  },
+  "3861": {
+    "Name": "Cocoa - Light",
+    "DMCNumber": 3861,
+    "Hex": "#AC8583",
+    "Color": {
+      "R": 172,
+      "G": 133,
+      "B": 131,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffac8583"
+    }
+  },
+  "3862": {
+    "Name": "Mocha Beige - Dark",
+    "DMCNumber": 3862,
+    "Hex": "#6E492A",
+    "Color": {
+      "R": 110,
+      "G": 73,
+      "B": 42,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff6e492a"
+    }
+  },
+  "3863": {
+    "Name": "Mocha Beige - Medium",
+    "DMCNumber": 3863,
+    "Hex": "#94725D",
+    "Color": {
+      "R": 148,
+      "G": 114,
+      "B": 93,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ff94725d"
+    }
+  },
+  "3864": {
+    "Name": "Mocha Beige - Light",
+    "DMCNumber": 3864,
+    "Hex": "#C9AA92",
+    "Color": {
+      "R": 201,
+      "G": 170,
+      "B": 146,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffc9aa92"
+    }
+  },
+  "3865": {
+    "Name": "Winter White",
+    "DMCNumber": 3865,
+    "Hex": "#F8F9F4",
+    "Color": {
+      "R": 248,
+      "G": 249,
+      "B": 244,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff8f9f4"
+    }
+  },
+  "3866": {
+    "Name": "Mocha Brown - Ultra Very Light",
+    "DMCNumber": 3866,
+    "Hex": "#F0E6D7",
+    "Color": {
+      "R": 240,
+      "G": 230,
+      "B": 215,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "fff0e6d7"
+    }
+  },
+  "5200": {
+    "Name": "Snow White",
+    "DMCNumber": 5200,
+    "Hex": "#FFFFFF",
+    "Color": {
+      "R": 255,
+      "G": 255,
+      "B": 255,
+      "A": 255,
+      "IsKnownColor": false,
+      "IsEmpty": false,
+      "IsNamedColor": false,
+      "IsSystemColor": false,
+      "Name": "ffffffff"
+    }
+  }
+}

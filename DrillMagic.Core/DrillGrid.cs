@@ -1,7 +1,8 @@
 ﻿
 
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Runtime.Versioning;
 
 namespace DrillMagic.Core
 {
@@ -13,6 +14,7 @@ namespace DrillMagic.Core
         public float NormalizedStaggerOffset { get; set; } = 0;
         public int Height => Grid.GetLength(0);
         public int Width => Grid.GetLength(1);
+
         public DrillGrid(int height, int width, 
             uint cellSize = 0, float rotation = 0, 
             float normalizedStaggerOffset = 0)
@@ -30,7 +32,8 @@ namespace DrillMagic.Core
             NormalizedStaggerOffset = normalizedStaggerOffset;
         }
 
-        public DrillGrid(Image<Rgba32> image, 
+        [SupportedOSPlatform("windows6.1")]
+        public DrillGrid(Bitmap image, 
             int height = 0, int width = 0, 
             uint cellSize = 0, float rotation = 0, 
             float normalizedStaggerOffset = 0)
@@ -42,16 +45,41 @@ namespace DrillMagic.Core
             if (width == 0)
                 width = image.Width;
             Grid = new Color[height, width];
+
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    Grid[i, j] = image[i,j];
+                    var imgColor = image.GetPixel(j, i);
+                    Color? dmcColor = imgColor != Color.FromArgb(0,0,0,0) ? GetClosestDMCColor(imgColor) : null;
+                    if (dmcColor is not null)
+                        Grid[i, j] = dmcColor.Value;
                 }
             }
             CellSize = cellSize;
             Rotation = rotation;
             NormalizedStaggerOffset = normalizedStaggerOffset;
+        }
+
+        private static Color GetClosestDMCColor(Color color)
+        {
+            // Initialize the closest color and the minimum distance
+            Color closestColor = Color.Empty;
+            float minDistance = float.MaxValue;
+            // Iterate through the list of DMC colors
+            foreach (var dmcColor in Types.ColorMap.DefaultColorMap.Values)
+            {
+                // Calculate the Euclidean distance between the input color and the DMC color
+                float distance = GetEuclideanDistance(color, ColorTranslator.FromHtml(dmcColor.Hex));
+                // If the distance is smaller than the minimum distance, update the closest color and the minimum distance
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    closestColor = ColorTranslator.FromHtml(dmcColor.Hex);
+                }
+            }
+            // Return the closest DMC color
+            return closestColor;
         }
 
         /// <summary>
