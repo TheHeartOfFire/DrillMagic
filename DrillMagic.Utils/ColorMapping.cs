@@ -16,8 +16,8 @@ internal static class ColorMapping
 {
     private static readonly string _rootPath = Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty)?.Parent?.Parent?.Parent?.FullName ?? string.Empty;
     
-    private static readonly string _imageFilePath = Path.Combine(_rootPath, "DrillMagic.Utils/Resources/charmanderHD.png"); 
-    private static readonly string _imageOutputFilePath = Path.Combine(_rootPath, "DrillMagic.Utils/Resources/DMC ImageHD.png");
+    private static readonly string _imageFilePath = Path.Combine(_rootPath, "DrillMagic.Utils/Resources/AlbumArt1.jpeg"); 
+    private static readonly string _imageOutputFilePath = Path.Combine(_rootPath, "DrillMagic.Utils/Resources/AlbumArt1(10) -HSL.png");
 
     private static readonly string _csvFilePath = Path.Combine(_rootPath, "DrillMagic.Utils/Resources/DMC Colors.csv");
     private static readonly string _outputFilePath = Path.Combine(_rootPath, "DrillMagic.Core/Resources/DefaultColorMap.json");
@@ -72,11 +72,12 @@ internal static class ColorMapping
     }
 
     [SupportedOSPlatform("windows6.1")]
-    internal static void GenerateDMCImage()
+    internal static void GenerateDMCImage(uint cellSize = 0)
     {
         var image = new Bitmap(_imageFilePath);
         ColorMap.Initialize();
-        var grid = new DrillGrid(image);
+
+        var grid = new DrillGrid(image,0,0,cellSize);
         var newImage = new Bitmap(grid.Width, grid.Height);
         for (int i = 0; i < grid.Height; i++)
         {
@@ -84,9 +85,24 @@ internal static class ColorMapping
             {
                 var color = grid.Grid[i, j];
                 if (color != Color.FromArgb(0,0,0,0))
-                    newImage.SetPixel(j, i, color);
+                    FillCellColor(newImage, j, i, cellSize, color);
             }
         }
         newImage.Save(_imageOutputFilePath, System.Drawing.Imaging.ImageFormat.Png);
+    }
+
+    [SupportedOSPlatform("windows6.1")]
+    private static void FillCellColor(Bitmap image, int x, int y, uint cellSize, Color color)
+    {
+        x = (int)(x * cellSize);
+        y = (int)(y * cellSize);
+        for (int i = 0; i < cellSize; i++)
+        {
+            for (int j = 0; j < cellSize; j++)
+            {
+                if (x + i < image.Width && y + j < image.Height)
+                    image.SetPixel(x + i, y + j, color);
+            }
+        }
     }
 }

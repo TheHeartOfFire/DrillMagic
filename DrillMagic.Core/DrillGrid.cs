@@ -14,6 +14,7 @@ namespace DrillMagic.Core
         public float NormalizedStaggerOffset { get; set; } = 0;
         public int Height => Grid.GetLength(0);
         public int Width => Grid.GetLength(1);
+        private Dictionary<Color, Color> _buffer = [];
 
         public DrillGrid(int height, int width, 
             uint cellSize = 0, float rotation = 0, 
@@ -46,12 +47,12 @@ namespace DrillMagic.Core
                 width = image.Width;
             Grid = new Color[height, width];
 
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < height / cellSize; i++)
             {
-                for (int j = 0; j < width; j++)
+                for (int j = 0; j < width / cellSize; j++)
                 {
-                    var imgColor = image.GetPixel(j, i);
-                    Color? dmcColor = imgColor != Color.FromArgb(0,0,0,0) ? GetClosestDMCColor(imgColor) : null;
+                    var imgColor = ExtractCellColors(image, cellSize, new Point(j * (int)cellSize, i * (int)cellSize)).HSLAverage();//.ChannelWiseAverage();
+                    Color? dmcColor = imgColor != Color.FromArgb(0,0,0,0) ? GetClosestDMCColor(imgColor, _buffer) : null;
                     if (dmcColor is not null)
                         Grid[i, j] = dmcColor.Value;
                 }
@@ -61,8 +62,10 @@ namespace DrillMagic.Core
             NormalizedStaggerOffset = normalizedStaggerOffset;
         }
 
-        private static Color GetClosestDMCColor(Color color)
+        private static Color GetClosestDMCColor(Color color, Dictionary<Color,Color> buffer)
         {
+            if(buffer.TryGetValue(color, out Color value))
+                return value;
             // Initialize the closest color and the minimum distance
             Color closestColor = Color.Empty;
             float minDistance = float.MaxValue;
@@ -78,6 +81,7 @@ namespace DrillMagic.Core
                     closestColor = ColorTranslator.FromHtml(dmcColor.Hex);
                 }
             }
+            buffer[color] = closestColor;
             // Return the closest DMC color
             return closestColor;
         }
@@ -109,5 +113,20 @@ namespace DrillMagic.Core
             return (float)Math.Sqrt(sqSum);
         }
 
+        [SupportedOSPlatform("windows6.1")]
+        private static Color[] ExtractCellColors(Bitmap image, uint cellSize = 0, Point cell = new())
+        {
+            var colors = new List<Color>();
+            for (int i = 0; i < cellSize; i++)
+            {
+                for (int j = 0; j < cellSize; j++)
+                {
+                    var pixelColor = image.GetPixel(cell.X + j, cell.Y + i);
+                    if (pixelColor.A != 0)
+                        colors.Add(pixelColor);
+                }
+            }
+            return [.. colors];
+        }
     }
 }
