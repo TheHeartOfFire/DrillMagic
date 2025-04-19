@@ -16,8 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Labs.WinUI.Ribbon" Version="0.1.250319-build.2093" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250401001" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.250410001-experimental1" />
+    <PackageReference Include="WinUIEx" Version="2.5.1" />
   </ItemGroup>
 
     <!-- Publish Properties -->
