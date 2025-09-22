@@ -1,17 +1,17 @@
 ﻿using DrillMagic.Core;
 using DrillMagic.Core.Types;
-using Microsoft.CodeAnalysis;
 using Microsoft.VisualBasic.FileIO;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Drawing.Processing;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
 using System.Reflection;
 using System.Runtime.Versioning;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
+using Color = System.Drawing.Color;
 
 namespace DrillMagic.Utils;
+
 internal static class ColorMapping
 {
     private static readonly string _rootPath = Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty)?.Parent?.Parent?.Parent?.FullName ?? string.Empty;
@@ -71,38 +71,30 @@ internal static class ColorMapping
         File.WriteAllText(_outputFilePath, System.Text.Json.JsonSerializer.Serialize(ColorMap.DefaultColorMap, _jsonOptions));
     }
 
-    [SupportedOSPlatform("windows6.1")]
     internal static void GenerateDMCImage(uint cellSize = 0)
     {
-        var image = new Bitmap(_imageFilePath);
-        ColorMap.Initialize();
+        var grid = new DrillGrid(_imageFilePath, 0, 0, cellSize);
+        using var newImage = new Image<Rgba32>(grid.Width, grid.Height);
 
-        var grid = new DrillGrid(image,0,0,cellSize);
-        var newImage = new Bitmap(grid.Width, grid.Height);
         for (int i = 0; i < grid.Height; i++)
         {
             for (int j = 0; j < grid.Width; j++)
             {
                 var color = grid.Grid[i, j];
-                if (color != Color.FromArgb(0,0,0,0))
+                if (color != Color.FromArgb(0, 0, 0, 0))
                     FillCellColor(newImage, j, i, cellSize, color);
             }
         }
-        newImage.Save(_imageOutputFilePath, System.Drawing.Imaging.ImageFormat.Png);
+        newImage.Save(_imageOutputFilePath);
     }
 
-    [SupportedOSPlatform("windows6.1")]
-    private static void FillCellColor(Bitmap image, int x, int y, uint cellSize, Color color)
+    private static void FillCellColor(Image<Rgba32> image, int x, int y, uint cellSize, Color color)
     {
-        x = (int)(x * cellSize);
-        y = (int)(y * cellSize);
-        for (int i = 0; i < cellSize; i++)
-        {
-            for (int j = 0; j < cellSize; j++)
-            {
-                if (x + i < image.Width && y + j < image.Height)
-                    image.SetPixel(x + i, y + j, color);
-            }
-        }
+        var cellX = (int)(x * cellSize);
+        var cellY = (int)(y * cellSize);
+        var rectangle = new Rectangle(cellX, cellY, (int)cellSize, (int)cellSize);
+        var imageSharpColor = SixLabors.ImageSharp.Color.FromRgba(color.R, color.G, color.B, color.A);
+
+        image.Mutate(ctx => ctx.Fill(imageSharpColor, rectangle));
     }
 }

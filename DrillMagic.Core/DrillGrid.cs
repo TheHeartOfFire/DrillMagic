@@ -1,8 +1,13 @@
-﻿
-
+﻿using DrillMagic.Core.Types;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Runtime.Versioning;
+using Color = System.Drawing.Color;
+// Note: System.Drawing.Common is still used for Color, but not for image processing.
+// This maintains compatibility with the UI project.
 
 namespace DrillMagic.Core
 {
@@ -16,10 +21,11 @@ namespace DrillMagic.Core
         public int Width => Grid.GetLength(1);
         private Dictionary<Color, Color> _buffer = [];
 
-        public DrillGrid(int height, int width, 
-            uint cellSize = 0, float rotation = 0, 
+        public DrillGrid(int height, int width,
+            uint cellSize = 0, float rotation = 0,
             float normalizedStaggerOffset = 0)
         {
+            if (ColorMap.DefaultColorMap.Count == 0) ColorMap.Initialize();
             Grid = new Color[height, width];
             for (int i = 0; i < height; i++)
             {
@@ -33,26 +39,28 @@ namespace DrillMagic.Core
             NormalizedStaggerOffset = normalizedStaggerOffset;
         }
 
-        [SupportedOSPlatform("windows6.1")]
-        public DrillGrid(Bitmap image, 
-            int height = 0, int width = 0, 
-            uint cellSize = 0, float rotation = 0, 
+        // Replaced Bitmap with a file path and uses ImageSharp for processing.
+        public DrillGrid(string imagePath,
+            uint cellSize = 0, float rotation = 0,
             float normalizedStaggerOffset = 0)
         {
-            ArgumentNullException.ThrowIfNull(image);
+            ArgumentNullException.ThrowIfNull(imagePath);
+            if (cellSize == 0)
+                throw new ArgumentException("Cell size cannot be zero.", nameof(cellSize));
+            if (ColorMap.DefaultColorMap.Count == 0) ColorMap.Initialize();
 
-            if (height == 0)
-                height = image.Height;
-            if (width == 0)
-                width = image.Width;
-            Grid = new Color[height, width];
+            using var image = SixLabors.ImageSharp.Image.Load<Rgba32>(imagePath);
 
-            for (int i = 0; i < height / cellSize; i++)
+            int gridHeight = image.Height / (int)cellSize;
+            int gridWidth = image.Width / (int)cellSize;
+            Grid = new Color[gridHeight, gridWidth];
+
+            for (int i = 0; i < gridHeight; i++)
             {
-                for (int j = 0; j < width / cellSize; j++)
+                for (int j = 0; j < gridWidth; j++)
                 {
-                    var imgColor = ExtractCellColors(image, cellSize, new Point(j * (int)cellSize, i * (int)cellSize)).HSLAverage();//.ChannelWiseAverage();
-                    Color? dmcColor = imgColor != Color.FromArgb(0,0,0,0) ? GetClosestDMCColor(imgColor, _buffer) : null;
+                    var imgColor = ExtractCellColors(image, cellSize, new SixLabors.ImageSharp.Point(j * (int)cellSize, i * (int)cellSize)).SquaredChannelWiseAverage();
+                    Color? dmcColor = imgColor != Color.FromArgb(0, 0, 0, 0) ? GetClosestDMCColor(imgColor, _buffer) : null;
                     if (dmcColor is not null)
                         Grid[i, j] = dmcColor.Value;
                 }
@@ -62,9 +70,9 @@ namespace DrillMagic.Core
             NormalizedStaggerOffset = normalizedStaggerOffset;
         }
 
-        private static Color GetClosestDMCColor(Color color, Dictionary<Color,Color> buffer)
+        private static Color GetClosestDMCColor(Color color, Dictionary<Color, Color> buffer)
         {
-            if(buffer.TryGetValue(color, out Color value))
+            if (buffer.TryGetValue(color, out Color value))
                 return value;
             // Initialize the closest color and the minimum distance
             Color closestColor = Color.Empty;
@@ -113,17 +121,20 @@ namespace DrillMagic.Core
             return (float)Math.Sqrt(sqSum);
         }
 
-        [SupportedOSPlatform("windows6.1")]
-        private static Color[] ExtractCellColors(Bitmap image, uint cellSize = 0, Point cell = new())
+        // Updated to use ImageSharp's Image<Rgba32> and Point types.
+        private static Color[] ExtractCellColors(Image<Rgba32> image, uint cellSize = 0, SixLabors.ImageSharp.Point cell = new())
         {
             var colors = new List<Color>();
             for (int i = 0; i < cellSize; i++)
             {
                 for (int j = 0; j < cellSize; j++)
                 {
-                    var pixelColor = image.GetPixel(cell.X + j, cell.Y + i);
-                    if (pixelColor.A != 0)
-                        colors.Add(pixelColor);
+                    Rgba32 pixel = image[cell.X + j, cell.Y + i];
+                    if (pixel.A != 0)
+                    {
+                        // Convert from ImageSharp's Rgba32 to System.Drawing.Color
+                        colors.Add(Color.FromArgb(pixel.A, pixel.R, pixel.G, pixel.B));
+                    }
                 }
             }
             return [.. colors];

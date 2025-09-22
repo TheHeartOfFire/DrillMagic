@@ -11,7 +11,7 @@ public class ColorMap
 {
     public static Dictionary<uint, DMCColor> DefaultColorMap { get; private set; } = [];
     public static List<Dictionary<uint, string>> CustomMappings { get; private set; } = [];
-    private static readonly string _rootPath = Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty)?.Parent?.Parent?.Parent?.FullName ?? string.Empty;
+    private static readonly string _rootPath = Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty)?.Parent?.Parent?.Parent?.Parent?.Parent?.Parent?.FullName ?? string.Empty;
     private static readonly string _jsonFilePath = Path.Combine(_rootPath, "DrillMagic.Core/Resources/DefaultColorMap.json");
     private static readonly string _customMappingsFilePath = Path.Combine(GetFolderPath(SpecialFolder.ApplicationData),
         "Drill Magic/Color Mapping/CustomMappings.json");

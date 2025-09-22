@@ -10,6 +10,9 @@ EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "DrillMagic.Windows (Package)", "DrillMagic.Windows\DrillMagic.Windows (Package)\DrillMagic.Windows (Package).wapproj", "{5C1601C4-391B-4DF6-A57D-F3A225758256}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrillMagic.Windows", "DrillMagic.Windows\DrillMagic.Windows\DrillMagic.Windows.csproj", "{CB2EDE91-FF22-46B6-AF27-3E7BE0D9206E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{177D7D78-0105-4F87-9009-0ADEA63085CF} = {177D7D78-0105-4F87-9009-0ADEA63085CF}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

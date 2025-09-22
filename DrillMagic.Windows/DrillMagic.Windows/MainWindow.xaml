@@ -64,18 +64,12 @@
                                 Grid.Column="2"  
                                 Icon="Admin" />
                 </Grid>
-            </controls:RibbonCollapsibleGroup>
+            </controls:RibbonCollapsibleGroup>  
 
             <!-- Other RibbonCollapsibleGroups omitted for brevity -->
 
         </controls:Ribbon>
-        <Canvas Grid.Row="1" Scale=".5,.5,0" x:Name="DisplayCanvas" TabIndex="1">
-            
-            <Image x:Name="BackgroundImage" Source="C:\Users\heart\source\repos\TheHeartOfFire\DrillMagic.Core\DrillMagic.Utils\Resources\AlbumArt1.jpeg" 
-                 ImageOpened="BackgroundImage_ImageOpened"/>
-            
-            <ItemsRepeater x:Name="CellRepeater" ItemTemplate="{StaticResource CellTemplate}" 
-                         Layout="{StaticResource GridLayout}" />
-        </Canvas>
+        
+        <local:DrillGridView x:Name="MyDrillGridView" Grid.Row="1" TabIndex="1"/>
     </Grid>
 </winex:WindowEx>
