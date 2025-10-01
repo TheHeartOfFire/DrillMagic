@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -32,11 +33,28 @@ public class ColorMap
         
 
     }
+
     public static void SaveCustomMappings()
     {
         // serialize the CustomMappings list into a json file
         var json = System.Text.Json.JsonSerializer.Serialize(CustomMappings);
         File.WriteAllText(_customMappingsFilePath, json);
+    }
+
+    public static DMCColor GetDMCColor(uint dmcNumber)
+    {
+        if (DefaultColorMap.TryGetValue(dmcNumber, out DMCColor? value))
+            return value;
+        return DMCColor.Empty;
+    }
+    public static DMCColor GetDMCColor(Color color)
+    {
+        foreach (var dmcColor in DefaultColorMap.Values)
+        {
+            if (dmcColor.Color.ToArgb() == color.ToArgb())
+                return dmcColor;
+        }
+        return DMCColor.Empty;
     }
 
     public ColorMap()

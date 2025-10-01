@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using DrillMagic.Windows.Services;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -25,6 +26,9 @@ namespace DrillMagic.Windows;
 /// </summary>
 public partial class App : Application
 {
+    public static Window? MainWindow => m_window;
+    public static SharedInteractionService InteractionService { get; } = new();
+
     /// <summary>
     /// Initializes the singleton application object.  This is the first line of authored code
     /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -44,5 +48,5 @@ public partial class App : Application
         m_window.Activate();
     }
 
-    private Window? m_window;
+    private static Window? m_window;
 }

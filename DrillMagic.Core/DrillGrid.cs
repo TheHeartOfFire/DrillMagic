@@ -3,7 +3,9 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Runtime.Versioning;
 using Color = System.Drawing.Color;
 // Note: System.Drawing.Common is still used for Color, but not for image processing.
@@ -11,14 +13,28 @@ using Color = System.Drawing.Color;
 
 namespace DrillMagic.Core
 {
-    public class DrillGrid
+    public class DrillGrid : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
+
         public Color[,] Grid { get; set; } = new Color[0, 0];
         public uint CellSize { get; set; } = 0;
         public float Rotation { get; set; } = 0;
         public float NormalizedStaggerOffset { get; set; } = 0;
         public int Height => Grid.GetLength(0);
         public int Width => Grid.GetLength(1);
+
+        private Dictionary<Color, int> _colorSummary = [];
+        public Dictionary<Color, int> ColorSummary
+        {
+            get => _colorSummary;
+            private set
+            {
+                _colorSummary = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Dictionary<Color, Color> _buffer = [];
 
         public DrillGrid(int height, int width,
@@ -37,6 +53,7 @@ namespace DrillMagic.Core
             CellSize = cellSize;
             Rotation = rotation;
             NormalizedStaggerOffset = normalizedStaggerOffset;
+            RecalculateColorSummary();
         }
 
         // Replaced Bitmap with a file path and uses ImageSharp for processing.
@@ -68,9 +85,33 @@ namespace DrillMagic.Core
             CellSize = cellSize;
             Rotation = rotation;
             NormalizedStaggerOffset = normalizedStaggerOffset;
+            RecalculateColorSummary();
         }
 
-        private static Color GetClosestDMCColor(Color color, Dictionary<Color, Color> buffer)
+        public void RecalculateColorSummary()
+        {
+            var newSummary = new Dictionary<Color, int>();
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    var color = Grid[y, x];
+                    if (color.A > 0) // Exclude transparent
+                    {
+                        newSummary.TryGetValue(color, out int count);
+                        newSummary[color] = count + 1;
+                    }
+                }
+            }
+            ColorSummary = newSummary;
+        }
+
+        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public static Color GetClosestDMCColor(Color color, Dictionary<Color, Color> buffer)
         {
             if (buffer.TryGetValue(color, out Color value))
                 return value;
