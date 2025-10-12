@@ -18,6 +18,7 @@ using Windows.Foundation;
 using Windows.UI;
 
 namespace DrillMagic.Windows.Controls;
+
 public sealed partial class DrillGridView : UserControl
 {
     public static readonly DependencyProperty GridProperty =
@@ -28,6 +29,8 @@ public sealed partial class DrillGridView : UserControl
         get => (DrillGrid?)GetValue(GridProperty);
         set => SetValue(GridProperty, value);
     }
+
+    public CanvasControl CanvasControl => Canvas;
 
     private Matrix3x2 _transform = Matrix3x2.Identity;
     private Point? _lastPointerPosition;
@@ -72,7 +75,7 @@ public sealed partial class DrillGridView : UserControl
     {
         if (e.PropertyName == nameof(DrillGrid.ColorSummary))
         {
-            ColorSummaryLegend.Summary = Grid?.ColorSummary;
+            ColorSummaryLegend.Summary = Grid?.ColorSummary ?? [];
             UpdateColorToSymbolMap();
             Canvas.Invalidate();
         }
@@ -219,6 +222,8 @@ public sealed partial class DrillGridView : UserControl
         Grid!.Grid[gridPosition.Value.y, gridPosition.Value.x] = App.InteractionService.SelectedColor;
         Grid.RecalculateColorSummary();
     }
+
+
 
     private void OnPointerMoved(object sender, PointerRoutedEventArgs e)
     {

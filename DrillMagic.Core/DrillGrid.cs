@@ -1,19 +1,14 @@
 ﻿using DrillMagic.Core.Types;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.CompilerServices;
-using System.Runtime.Versioning;
 using Color = System.Drawing.Color;
-// Note: System.Drawing.Common is still used for Color, but not for image processing.
-// This maintains compatibility with the UI project.
 
 namespace DrillMagic.Core
 {
-    public class DrillGrid : INotifyPropertyChanged
+    public partial class DrillGrid : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -35,7 +30,7 @@ namespace DrillMagic.Core
             }
         }
 
-        private Dictionary<Color, Color> _buffer = [];
+        private readonly Dictionary<Color, Color> _buffer = [];
 
         public DrillGrid(int height, int width,
             uint cellSize = 0, float rotation = 0,
@@ -136,12 +131,12 @@ namespace DrillMagic.Core
         }
 
         /// <summary>
-        /// returns the euclidean distance between two colors
+        /// Returns the Euclidean distance between two colors
         /// SQRT((R1-R2)^2 + (G1-G2)^2 + (B1-B2)^2)
         /// </summary>
         /// <param name="color1"></param>
         /// <param name="color2"></param>
-        /// <returns>euclidean distance between color1 and color2</returns>
+        /// <returns>Euclidean distance between color1 and color2</returns>
         private static float GetEuclideanDistance(Color color1, Color color2)
         {
             // Calculate the difference between the two colors

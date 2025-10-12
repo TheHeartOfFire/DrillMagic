@@ -103,8 +103,8 @@ public static class Utils
         float min = Math.Min(r, Math.Min(g, b));
 
         float l = (max + min) / 2;
-        float s = 0;
-        if(l <= 0.5)
+        float s;
+        if (l <= 0.5)
             s = (max - min) / (max + min);
         else
             s = (max - min) / (2 - max - min);

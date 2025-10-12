@@ -4,7 +4,7 @@ using System;
 
 namespace DrillMagic.Windows.Converters;
 
-public class ObjectToVisibilityConverter : IValueConverter
+public partial class ObjectToVisibilityConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {

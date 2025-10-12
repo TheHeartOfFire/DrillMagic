@@ -27,6 +27,7 @@
 
         <CommandBar Grid.Row="0" DefaultLabelPosition="Right">
             <AppBarButton Icon="OpenFile" Label="Open" Click="OpenFile_Click"/>
+            <AppBarButton Icon="Print" Label="Print" Click="PrintButton_Click"/>
             <AppBarButton Icon="ClosePane" Label="Exit" Click="Exit_Click"/>
             <AppBarSeparator/>
             <AppBarToggleButton x:Name="PointerButton" Label="Pointer" Click="PointerButton_Click"/>

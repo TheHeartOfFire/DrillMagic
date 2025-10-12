@@ -11,7 +11,7 @@ public enum InteractionMode
     ColorInspector
 }
 
-public class SharedInteractionService : INotifyPropertyChanged
+public partial class SharedInteractionService : INotifyPropertyChanged
 {
     private InteractionMode _currentMode = InteractionMode.Navigate;
     public InteractionMode CurrentMode

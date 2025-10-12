@@ -1,31 +1,26 @@
 using DrillMagic.Core;
 using DrillMagic.Core.Types;
 using DrillMagic.Windows.Services;
+using DrillMagic.Windows.Utils;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Windows.Storage.Pickers;
+using WinRT.Interop;
 using WinUIEx;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
 
 namespace DrillMagic.Windows;
-
-public sealed partial class MainWindow : WinUIEx.WindowEx, INotifyPropertyChanged
+public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
 {
-    public ObservableCollection<DMCColor> FilteredColors { get; } = new();
-    private List<DMCColor> _allColors;
-    private string _selectedColorName;
-    public string SelectedColorName
-    {
-        get => _selectedColorName;
-        set { _selectedColorName = value; OnPropertyChanged(nameof(SelectedColorName)); }
-    }
-
+    public event PropertyChangedEventHandler? PropertyChanged;
+    public ObservableCollection<DMCColor> FilteredColors { get; set; } = [];
+    
     private DrillGrid? _drillGrid;
     public DrillGrid? DrillGrid
     {
@@ -37,60 +32,15 @@ public sealed partial class MainWindow : WinUIEx.WindowEx, INotifyPropertyChange
         }
     }
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+    public string SelectedColorName { get; set; } = "None";
 
     public MainWindow()
     {
-        this.InitializeComponent();
-        this.TaskBarIcon = Icon.FromFile("Resources/Logo.ico");
-        if (ColorMap.DefaultColorMap.Count == 0)
-            ColorMap.Initialize();
-
-        ColorGridView.ItemsSource = ColorMap.DefaultColorMap.Values.ToList();
-        if (ColorGridView.Items.Count > 0)
-        {
-            ColorGridView.SelectedIndex = 0;
-        }
-        PointerButton.IsChecked = true;
-
-        LoadAndSortColors();
-        SelectedColorName = "";
-
+        InitializeComponent();
         App.InteractionService.PropertyChanged += InteractionServicePropertyChanged;
+        UpdateInteractionButtons();
+        FilteredColors = new(ColorMap.DefaultColorMap.Values);
     }
-
-    private void InteractionServicePropertyChanged(object? sender, PropertyChangedEventArgs e)
-    {
-        if(e.PropertyName == nameof(SharedInteractionService.InspectedColor) &&
-           sender is SharedInteractionService service)
-        {
-            SelectedColorName = App.InteractionService.InspectedColor.Name;
-            ColorGridView.SelectedItem = App.InteractionService.InspectedColor.Color;
-            ColorSearchBox.Text = SelectedColorName;
-        }
-    }
-
-    private void LoadAndSortColors()
-    {
-        // Assign a symbol to each color (A, B, C, ...)
-        _allColors = DrillMagic.Core.Types.ColorMap.DefaultColorMap.Values
-            .OrderBy(c => GetColorSortKey(c.Color))
-            .ToList();
-
-        FilteredColors.Clear();
-        foreach (var color in _allColors)
-            FilteredColors.Add(color);
-    }
-
-    private static (float Hue, float Sat, float Bright) GetColorSortKey(System.Drawing.Color color)
-    {
-        // Convert RGB to HSB for sorting
-        float hue = color.GetHue();
-        float sat = color.GetSaturation();
-        float bright = color.GetBrightness();
-        return (hue, sat, bright);
-    }
-
     private async void OpenFile_Click(object sender, RoutedEventArgs e)
     {
         if (App.MainWindow is null) return;
@@ -115,65 +65,114 @@ public sealed partial class MainWindow : WinUIEx.WindowEx, INotifyPropertyChange
         Application.Current.Exit();
     }
 
+    private async void PrintButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (MyDrillGridView.Grid is null) return;
+
+        var savePicker = new FileSavePicker
+        {
+            SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
+            SuggestedFileName = "DrillMagicGrid"
+        };
+        savePicker.FileTypeChoices.Add("PDF Document", new[] { ".pdf" });
+
+        var hwnd = WindowNative.GetWindowHandle(this);
+        InitializeWithWindow.Initialize(savePicker, hwnd);
+
+        var file = await savePicker.PickSaveFileAsync();
+        if (file is null) return;
+
+        try
+        {
+            var (pdfBytes, errorMessage) = await PdfGenerator.GenerateDrillGridPdf(MyDrillGridView.Grid);
+
+            if (pdfBytes is null || pdfBytes.Length == 0)
+            {
+                string errorContent = "The PDF generator failed to create a document.";
+                if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    errorContent += $"\n\nDetails:\n{errorMessage}";
+                }
+                await ShowErrorDialog("PDF Generation Failed", errorContent);
+                return;
+            }
+
+            await File.WriteAllBytesAsync(file.Path, pdfBytes);
+        }
+        catch (Exception ex)
+        {
+            await ShowErrorDialog("Failed to Save PDF", $"An error occurred while saving the file: {ex.Message}");
+        }
+    }
+
+    private async Task ShowErrorDialog(string title, string content)
+    {
+        // Use a TextBlock for robust multi-line display.
+        var textBlock = new TextBlock
+        {
+            Text = content,
+            IsTextSelectionEnabled = true, // Make the text copyable.
+            TextWrapping = TextWrapping.Wrap
+        };
+
+        var scrollViewer = new ScrollViewer
+        {
+            Content = textBlock,
+            MaxHeight = 250
+        };
+
+        var dialog = new ContentDialog
+        {
+            Title = title,
+            Content = scrollViewer,
+            CloseButtonText = "OK",
+            XamlRoot = this.Content.XamlRoot
+        };
+        await dialog.ShowAsync();
+    }
+
+    private void InteractionServicePropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(SharedInteractionService.CurrentMode))
+        {
+            UpdateInteractionButtons();
+        }
+        else if(e.PropertyName == nameof(SharedInteractionService.InspectedColor) &&
+           sender is SharedInteractionService service)
+        {
+            SelectedColorName = App.InteractionService.InspectedColor.Name;
+            ColorGridView.SelectedItem = App.InteractionService.InspectedColor.Color;
+            ColorSearchBox.Text = SelectedColorName;
+        }
+    }
+
+    private void UpdateInteractionButtons()
+    {
+        PointerButton.IsChecked = App.InteractionService.CurrentMode == InteractionMode.Navigate;
+        PaintBucketButton.IsChecked = App.InteractionService.CurrentMode == InteractionMode.Coloring;
+        ColorInspectorButton.IsChecked = App.InteractionService.CurrentMode == InteractionMode.ColorInspector;
+    }
+
     private void PointerButton_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is ToggleButton { IsChecked: true } clickedButton)
-        {
-            App.InteractionService.CurrentMode = InteractionMode.Navigate;
-            if (clickedButton == PointerButton)
-            {
-                PaintBucketButton.IsChecked = false;
-                ColorInspectorButton.IsChecked = false;
-            }
-        }
-        else
-        {
-            // Prevent unchecking
-            (sender as ToggleButton)!.IsChecked = true;
-        }
+        App.InteractionService.CurrentMode = InteractionMode.Navigate;
     }
 
     private void PaintBucketButton_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is ToggleButton { IsChecked: true } clickedButton)
-        {
-            App.InteractionService.CurrentMode = InteractionMode.Coloring;
-            if (clickedButton == PaintBucketButton)
-            {
-                PointerButton.IsChecked = false;
-                ColorInspectorButton.IsChecked = false;
-            }
-        }
-        else
-        {
-            // Prevent unchecking
-            (sender as ToggleButton)!.IsChecked = true;
-        }
+        App.InteractionService.CurrentMode = InteractionMode.Coloring;
     }
 
     private void ColorInspectorButton_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is ToggleButton { IsChecked: true } clickedButton)
-        {
-            App.InteractionService.CurrentMode = InteractionMode.ColorInspector;
-            if (clickedButton == ColorInspectorButton)
-            {
-                PointerButton.IsChecked = false;
-                PaintBucketButton.IsChecked = false;
-            }
-        }
-        else
-        {
-            // Prevent unchecking
-            (sender as ToggleButton)!.IsChecked = true;
-        }
+        App.InteractionService.CurrentMode = InteractionMode.ColorInspector;
     }
 
     private void ColorSearchBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         var query = ColorSearchBox.Text?.Trim().ToLower() ?? "";
         FilteredColors.Clear();
-        foreach (var color in _allColors.Where(c => c.Name.ToLower().Contains(query)))
+        foreach (var color in ColorMap.DefaultColorMap.Values.Where(c => c.Name.Contains(query, StringComparison.CurrentCultureIgnoreCase)))
             FilteredColors.Add(color);
     }
 
@@ -185,7 +184,10 @@ public sealed partial class MainWindow : WinUIEx.WindowEx, INotifyPropertyChange
             App.InteractionService.SelectedColor = selected.Color;
         }
         else
-            SelectedColorName = "";
+        {
+            SelectedColorName = "None";
+        }
+        OnPropertyChanged(nameof(SelectedColorName));
     }
 
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
