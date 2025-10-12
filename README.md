@@ -1,1 +1,1 @@
-# DrillMagic.Core
+# DrillMagic
