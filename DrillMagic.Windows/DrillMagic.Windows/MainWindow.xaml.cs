@@ -56,7 +56,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
         var file = await fileOpenPicker.PickSingleFileAsync();
         if (file != null)
         {
-            DrillGrid = new DrillGrid(file.Path, 10);
+            DrillGrid = new DrillGrid(file.Path, 4);
         }
     }
 
@@ -84,7 +84,8 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
 
         try
         {
-            var (pdfBytes, errorMessage) = await PdfGenerator.GenerateDrillGridPdf(MyDrillGridView.Grid);
+            // Call the new PDFsharp-based generator.
+            var (pdfBytes, errorMessage) = await PdfSharpGenerator.GenerateDrillGridPdf(MyDrillGridView.Grid);
 
             if (pdfBytes is null || pdfBytes.Length == 0)
             {
