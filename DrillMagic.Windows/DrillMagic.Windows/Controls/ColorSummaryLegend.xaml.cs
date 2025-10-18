@@ -1,24 +1,23 @@
 ﻿using DrillMagic.Core.Types;
 using DrillMagic.Windows.Models;
+using DrillMagic.Windows.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
-using Windows.Devices.Bluetooth.Advertisement;
 using Windows.UI;
-using Color = Windows.UI.Color;
+using Windows.UI.Xaml;
 
 namespace DrillMagic.Windows.Controls;
-
 public sealed partial class ColorSummaryLegend : UserControl, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
     public static readonly DependencyProperty SummaryProperty =
-        DependencyProperty.Register(nameof(Summary), typeof(Dictionary<Color, int>), typeof(ColorSummaryLegend), new PropertyMetadata(null, OnSummaryChanged));
+        DependencyProperty.Register(nameof(Summary), typeof(Dictionary<System.Drawing.Color, int>), typeof(ColorSummaryLegend), new PropertyMetadata(null, OnSummaryChanged));
 
     public Dictionary<System.Drawing.Color, int> Summary
     {
@@ -54,15 +53,31 @@ public sealed partial class ColorSummaryLegend : UserControl, INotifyPropertyCha
                 .Select(c2 => (char)c2), (c1, c2) => $"{c1}{c2}"),
     ]; // Total count 1,399
 
+    private readonly SharedInteractionService _sharedInteractionService;
+
     public ColorSummaryLegend()
     {
         this.InitializeComponent();
+        _sharedInteractionService = App.Current.Services.GetRequiredService<SharedInteractionService>();
         ColorSummary.CollectionChanged += (s, e) =>
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TotalDrills)));
             // Also need to notify for the count if you are not using x:Bind on the collection directly
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ColorSummary)));
         };
+    }
+
+    private void ColorSummaryGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.AddedItems.FirstOrDefault() is ColorSummaryItem selectedItem)
+        {
+            _sharedInteractionService.HighlightedColor = ColorMap.GetDMCColor(selectedItem.DMCNumber);
+        }
+        else if (e.RemovedItems.Any())
+        {
+            // If selection is cleared, clear the highlight
+            _sharedInteractionService.HighlightedColor = null;
+        }
     }
 
     private static void OnSummaryChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

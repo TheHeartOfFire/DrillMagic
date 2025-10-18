@@ -83,6 +83,70 @@ namespace DrillMagic.Core
             RecalculateColorSummary();
         }
 
+        /// <summary>
+        /// Reduces the number of colors in the grid to the specified target count.
+        /// </summary>
+        /// <param name="targetColorCount">The desired number of colors.</param>
+        public void ReduceColors(int targetColorCount)
+        {
+            if (targetColorCount <= 0)
+                throw new ArgumentException("Target color count must be greater than zero.", nameof(targetColorCount));
+
+            // Recalculate summary to ensure it's fresh before starting.
+            RecalculateColorSummary();
+            var currentSummary = new Dictionary<Color, int>(ColorSummary);
+
+            if (currentSummary.Count <= targetColorCount)
+                return;
+
+            while (currentSummary.Count > targetColorCount)
+            {
+                var uniqueColors = currentSummary.Keys.ToList();
+                if (uniqueColors.Count <= targetColorCount) break;
+
+                float minDistance = float.MaxValue;
+                Color color1 = Color.Empty, color2 = Color.Empty;
+
+                // Find the two closest colors in the current palette
+                for (int i = 0; i < uniqueColors.Count; i++)
+                {
+                    for (int j = i + 1; j < uniqueColors.Count; j++)
+                    {
+                        float distance = GetEuclideanDistance(uniqueColors[i], uniqueColors[j]);
+                        if (distance < minDistance)
+                        {
+                            minDistance = distance;
+                            color1 = uniqueColors[i];
+                            color2 = uniqueColors[j];
+                        }
+                    }
+                }
+
+                // Determine which color has fewer cells
+                Color colorToKeep = currentSummary[color1] >= currentSummary[color2] ? color1 : color2;
+                Color colorToReplace = colorToKeep == color1 ? color2 : color1;
+
+                // Replace the less frequent color with the more frequent color
+                for (int y = 0; y < Height; y++)
+                {
+                    for (int x = 0; x < Width; x++)
+                    {
+                        if (Grid[y, x] == colorToReplace)
+                        {
+                            Grid[y, x] = colorToKeep;
+                        }
+                    }
+                }
+
+                // Update the summary for the next iteration
+                currentSummary[colorToKeep] += currentSummary[colorToReplace];
+                currentSummary.Remove(colorToReplace);
+            }
+
+            // Final recalculation to update the public property and notify listeners
+            RecalculateColorSummary();
+        }
+
         public void RecalculateColorSummary()
         {
             var newSummary = new Dictionary<Color, int>();

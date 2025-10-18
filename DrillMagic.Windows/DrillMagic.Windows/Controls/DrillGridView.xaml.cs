@@ -1,3 +1,7 @@
+using DrillMagic.Core;
+using DrillMagic.Core.Types;
+using DrillMagic.Windows.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Graphics.Canvas.Text;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Microsoft.UI;
@@ -5,35 +9,29 @@ using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Numerics;
-using System;
-using DrillMagic.Core;
-using DrillMagic.Core.Types;
-using Microsoft.Extensions.DependencyInjection;
-using System.ComponentModel;
 using Windows.Foundation;
 using Windows.UI;
-using Microsoft.Graphics.Canvas;
-using Microsoft.Graphics.Canvas.UI;
-using DrillMagic.Windows.Services;
 
 namespace DrillMagic.Windows.Controls;
 
-public sealed partial class DrillGridView : UserControl
+public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
 {
     public static readonly DependencyProperty GridProperty =
         DependencyProperty.Register(nameof(Grid), typeof(DrillGrid), typeof(DrillGridView), new PropertyMetadata(null, OnGridChanged));
 
-    public static readonly DependencyProperty IsSymbolOverlayEnabledProperty =
-        DependencyProperty.Register(nameof(IsSymbolOverlayEnabled), typeof(bool), typeof(DrillGridView), new PropertyMetadata(true, OnIsSymbolOverlayEnabledChanged));
-
-    public DrillGrid? Grid
+    public DrillGrid Grid
     {
-        get => (DrillGrid?)GetValue(GridProperty);
+        get => (DrillGrid)GetValue(GridProperty);
         set => SetValue(GridProperty, value);
     }
+
+    public static readonly DependencyProperty IsSymbolOverlayEnabledProperty =
+        DependencyProperty.Register(nameof(IsSymbolOverlayEnabled), typeof(bool), typeof(DrillGridView), new PropertyMetadata(true, OnSymbolOverlayChanged));
 
     public bool IsSymbolOverlayEnabled
     {
@@ -41,22 +39,24 @@ public sealed partial class DrillGridView : UserControl
         set => SetValue(IsSymbolOverlayEnabledProperty, value);
     }
 
-    public CanvasControl CanvasControl => Canvas;
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    private readonly SharedInteractionService _sharedInteractionService;
+    private DMCColor? _highlightedColor;
 
     private Matrix3x2 _transform = Matrix3x2.Identity;
     private Point? _lastPointerPosition;
     private bool _isCentered = false;
     private const float MinZoom = 3f;
     private const float MaxZoom = 30f;
-    private const float SymbolVisibilityZoomThreshold = 7.5f;
+    private const float SymbolVisibilityZoomThreshold = 10f;
 
     private readonly Dictionary<System.Drawing.Color, string> _colorToSymbolMap = [];
-    private readonly SharedInteractionService _sharedInteractionService;
-
     public DrillGridView()
     {
-        _sharedInteractionService = App.Current.Services.GetRequiredService<SharedInteractionService>();
         InitializeComponent();
+        _sharedInteractionService = App.Current.Services.GetRequiredService<SharedInteractionService>();
+        _sharedInteractionService.PropertyChanged += OnInteractionServicePropertyChanged;
         // Pointer events
         PointerPressed += OnPointerPressed;
         PointerMoved += OnPointerMoved;
@@ -67,10 +67,20 @@ public sealed partial class DrillGridView : UserControl
         PointerWheelChanged += OnPointerWheelChanged;
     }
 
-    private static void OnIsSymbolOverlayEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private void OnInteractionServicePropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        var view = (DrillGridView)d;
-        view.Canvas.Invalidate();
+        if (e.PropertyName == nameof(SharedInteractionService.HighlightedColor))
+        {
+            _highlightedColor = _sharedInteractionService.HighlightedColor;
+            Canvas.Invalidate(); // Redraw the canvas to apply/remove highlight
+        }
+    }
+    public void ClearColorSummaryLegendSelection()
+    {
+        if (ColorSummaryLegend.FindName("ColorSummaryGrid") is GridView gridView)
+        {
+            gridView.SelectedItem = null;
+        }
     }
 
     private static void OnGridChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -90,14 +100,15 @@ public sealed partial class DrillGridView : UserControl
         view.Canvas.Invalidate();
     }
 
-    private void OnGridPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    private void OnGridPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == nameof(DrillGrid.ColorSummary))
         {
             ColorSummaryLegend.Summary = Grid?.ColorSummary ?? [];
             UpdateColorToSymbolMap();
-            Canvas.Invalidate();
         }
+        // Any property change on the grid should trigger a redraw
+        Canvas.Invalidate();
     }
 
     private void UpdateColorToSymbolMap()
@@ -108,12 +119,19 @@ public sealed partial class DrillGridView : UserControl
         int currentSymbolIndex = 0;
         foreach (var color in Grid.ColorSummary.OrderByDescending(kvp => kvp.Value))
         {
-            _colorToSymbolMap[color.Key] = ColorSummaryLegend.Symbols[currentSymbolIndex].ToString();
-            currentSymbolIndex++;
+            if (currentSymbolIndex < ColorSummaryLegend.Symbols.Length)
+            {
+                _colorToSymbolMap[color.Key] = ColorSummaryLegend.Symbols[currentSymbolIndex].ToString();
+                currentSymbolIndex++;
+            }
         }
     }
 
-    private void Canvas_CreateResources(CanvasControl sender, CanvasCreateResourcesEventArgs args) { }
+    private static void OnSymbolOverlayChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var control = (DrillGridView)d;
+        control.Canvas.Invalidate();
+    }
 
     private void Canvas_Draw(CanvasControl sender, CanvasDrawEventArgs args)
     {
@@ -168,20 +186,34 @@ public sealed partial class DrillGridView : UserControl
         {
             for (int x = startX; x < endX; x++)
             {
-                // Use System.Drawing.Color directly from the grid
                 var cellColor = Grid.Grid[y, x];
-                if (cellColor.A > 0)
-                {
-                    // Convert System.Drawing.Color to Windows.UI.Color for drawing
-                    var uiColor = Color.FromArgb(cellColor.A, cellColor.R, cellColor.G, cellColor.B);
-                    ds.FillRectangle(x, y, 1, 1, uiColor);
+                if (cellColor.A == 0) continue;
 
-                    if (shouldDrawSymbols && textFormat is not null && _colorToSymbolMap.TryGetValue(cellColor, out var symbol))
+                var uiColor = Color.FromArgb(cellColor.A, cellColor.R, cellColor.G, cellColor.B);
+                ds.FillRectangle(x, y, 1, 1, uiColor);
+
+                if (_highlightedColor is not null)
+                {
+                    if (uiColor == Color.FromArgb(
+                        _highlightedColor.Color.A, 
+                        _highlightedColor.Color.R, 
+                        _highlightedColor.Color.G,
+                        _highlightedColor.Color.B))
                     {
-                        var brightness = (0.299 * cellColor.R + 0.587 * cellColor.G + 0.114 * cellColor.B) / 255;
-                        var symbolColor = brightness > 0.5 ? Colors.Black : Colors.White;
-                        ds.DrawText(symbol, x + 0.5f, y + 0.5f, symbolColor, textFormat);
+                        // Use a semi-transparent yellow border for highlighting
+                        ds.DrawRectangle(x, y, 1, 1, Color.FromArgb(180, 255, 255, 0), 0.1f);
                     }
+                    else
+                    {
+                        // De-emphasize non-matching cells with a dark overlay
+                        ds.FillRectangle(x, y, 1, 1, Color.FromArgb(128, 0, 0, 0));
+                    }
+                }
+                if (shouldDrawSymbols && textFormat is not null && _colorToSymbolMap.TryGetValue(cellColor, out var symbol))
+                {
+                    var brightness = (0.299 * cellColor.R + 0.587 * cellColor.G + 0.114 * cellColor.B) / 255;
+                    var symbolColor = brightness > 0.5 ? Colors.Black : Colors.White;
+                    ds.DrawText(symbol, x + 0.5f, y + 0.5f, symbolColor, textFormat);
                 }
             }
         }
@@ -190,17 +222,19 @@ public sealed partial class DrillGridView : UserControl
     private void OnPointerPressed(object sender, PointerRoutedEventArgs e)
     {
         var properties = e.GetCurrentPoint(this);
-        if (e.Pointer.PointerDeviceType != PointerDeviceType.Mouse || !properties.Properties.IsLeftButtonPressed)
+        var isLeftButtonPressed = properties.Properties.IsLeftButtonPressed;
+        var isMiddleButtonPressed = properties.Properties.IsMiddleButtonPressed;
+
+        if (e.Pointer.PointerDeviceType == PointerDeviceType.Mouse && (isLeftButtonPressed || isMiddleButtonPressed))
         {
-            return;
+            _lastPointerPosition = properties.Position;
+            CapturePointer(e.Pointer);
         }
+
+        if (!isLeftButtonPressed) return;
 
         switch (_sharedInteractionService.CurrentMode)
         {
-            case InteractionMode.Navigate:
-                _lastPointerPosition = properties.Position;
-                CapturePointer(e.Pointer);
-                break;
             case InteractionMode.Coloring:
                 ApplyPaintBucket(properties.Position);
                 break;
@@ -246,7 +280,7 @@ public sealed partial class DrillGridView : UserControl
 
     private void OnPointerMoved(object sender, PointerRoutedEventArgs e)
     {
-        if (_lastPointerPosition.HasValue && Grid is not null && _sharedInteractionService.CurrentMode == InteractionMode.Navigate)
+        if (_lastPointerPosition.HasValue && Grid is not null)
         {
             var currentPosition = e.GetCurrentPoint(this).Position;
             var delta = new Vector2(
@@ -280,15 +314,12 @@ public sealed partial class DrillGridView : UserControl
 
         if (Math.Abs(scaleFactor - 1.0f) < 0.001f) return;
 
-        var gridCenterWorld = new Vector2(Grid.Width / 2.0f, Grid.Height / 2.0f);
+        var pointerPosition = e.GetCurrentPoint(Canvas).Position.ToVector2();
+        var worldPosition = Vector2.Transform(pointerPosition, Matrix3x2.Invert(_transform, out var inv) ? inv : Matrix3x2.Identity);
 
-        var centerPosBefore = Vector2.Transform(gridCenterWorld, _transform);
-        _transform.M11 = newZoom;
-        _transform.M22 = newZoom;
-        var centerPosAfter = Vector2.Transform(gridCenterWorld, _transform);
-
-        var error = centerPosBefore - centerPosAfter;
-        _transform.Translation += error;
+        _transform = _transform * Matrix3x2.CreateScale(scaleFactor, pointerPosition);
+        _transform.M11 = Math.Clamp(_transform.M11, MinZoom, MaxZoom);
+        _transform.M22 = Math.Clamp(_transform.M22, MinZoom, MaxZoom);
         _transform.Translation = ClampTranslation(_transform.Translation);
 
         Canvas.Invalidate();
