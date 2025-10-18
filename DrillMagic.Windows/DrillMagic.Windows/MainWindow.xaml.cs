@@ -1,13 +1,12 @@
 using DrillMagic.Core;
 using DrillMagic.Core.Types;
 using DrillMagic.Windows.Services;
-using DrillMagic.Windows.Utils;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -16,183 +15,125 @@ using WinRT.Interop;
 using WinUIEx;
 
 namespace DrillMagic.Windows;
+
 public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
+
+    public IDrillGridManager DrillGridManager { get; }
+
     public ObservableCollection<DMCColor> FilteredColors { get; set; } = [];
-    
-    private DrillGrid? _drillGrid;
-    public DrillGrid? DrillGrid
+    private string _selectedColorName = "None";
+    public string SelectedColorName
     {
-        get => _drillGrid;
+        get => _selectedColorName;
         set
         {
-            _drillGrid = value;
+            _selectedColorName = value;
             OnPropertyChanged();
         }
     }
 
-    public string SelectedColorName { get; set; } = "None";
-
     public MainWindow()
     {
         InitializeComponent();
-        App.InteractionService.PropertyChanged += InteractionServicePropertyChanged;
-        UpdateInteractionButtons();
-        FilteredColors = new(ColorMap.DefaultColorMap.Values);
+        DrillGridManager = App.Current.Services.GetRequiredService<IDrillGridManager>();
+        if (ColorMap.DefaultColorMap.Count == 0)
+        {
+            ColorMap.Initialize();
+        }
+        UpdateFilteredColors();
     }
+
+    public string FormatCellSize(double value) => $"Cell Size: {(int)value}";
+
     private async void OpenFile_Click(object sender, RoutedEventArgs e)
     {
-        if (App.MainWindow is null) return;
-
-        var fileOpenPicker = new FileOpenPicker();
-        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
-        WinRT.Interop.InitializeWithWindow.Initialize(fileOpenPicker, hwnd);
-
-        fileOpenPicker.FileTypeFilter.Add(".png");
+        var fileOpenPicker = new FileOpenPicker
+        {
+            ViewMode = PickerViewMode.Thumbnail,
+            SuggestedStartLocation = PickerLocationId.PicturesLibrary
+        };
         fileOpenPicker.FileTypeFilter.Add(".jpg");
+        fileOpenPicker.FileTypeFilter.Add(".jpeg");
+        fileOpenPicker.FileTypeFilter.Add(".png");
         fileOpenPicker.FileTypeFilter.Add(".bmp");
+
+        InitializeWithWindow.Initialize(fileOpenPicker, WindowNative.GetWindowHandle(this));
 
         var file = await fileOpenPicker.PickSingleFileAsync();
         if (file != null)
         {
-            DrillGrid = new DrillGrid(file.Path, 4);
-        }
-    }
-
-    private void Exit_Click(object sender, RoutedEventArgs e)
-    {
-        Application.Current.Exit();
-    }
-
-    private async void PrintButton_Click(object sender, RoutedEventArgs e)
-    {
-        if (MyDrillGridView.Grid is null) return;
-
-        var savePicker = new FileSavePicker
-        {
-            SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
-            SuggestedFileName = "DrillMagicGrid"
-        };
-        savePicker.FileTypeChoices.Add("PDF Document", new[] { ".pdf" });
-
-        var hwnd = WindowNative.GetWindowHandle(this);
-        InitializeWithWindow.Initialize(savePicker, hwnd);
-
-        var file = await savePicker.PickSaveFileAsync();
-        if (file is null) return;
-
-        try
-        {
-            // Call the new PDFsharp-based generator.
-            var (pdfBytes, errorMessage) = await PdfSharpGenerator.GenerateDrillGridPdf(MyDrillGridView.Grid);
-
-            if (pdfBytes is null || pdfBytes.Length == 0)
+            await DrillGridManager.LoadImageAsync(file.Path);
+            if (DrillGridManager.AvailableCellSizes.Any())
             {
-                string errorContent = "The PDF generator failed to create a document.";
-                if (!string.IsNullOrEmpty(errorMessage))
-                {
-                    errorContent += $"\n\nDetails:\n{errorMessage}";
-                }
-                await ShowErrorDialog("PDF Generation Failed", errorContent);
-                return;
+                CellSizeSlider.Minimum = DrillGridManager.AvailableCellSizes.Min();
+                CellSizeSlider.Maximum = DrillGridManager.AvailableCellSizes.Max();
+                CellSizeSlider.Value = DrillGridManager.AvailableCellSizes.First();
+                CellSizePanel.Visibility = Visibility.Visible;
+                CellSizeSeparator.Visibility = Visibility.Visible;
             }
-
-            await File.WriteAllBytesAsync(file.Path, pdfBytes);
-        }
-        catch (Exception ex)
-        {
-            await ShowErrorDialog("Failed to Save PDF", $"An error occurred while saving the file: {ex.Message}");
-        }
-    }
-
-    private async Task ShowErrorDialog(string title, string content)
-    {
-        // Use a TextBlock for robust multi-line display.
-        var textBlock = new TextBlock
-        {
-            Text = content,
-            IsTextSelectionEnabled = true, // Make the text copyable.
-            TextWrapping = TextWrapping.Wrap
-        };
-
-        var scrollViewer = new ScrollViewer
-        {
-            Content = textBlock,
-            MaxHeight = 250
-        };
-
-        var dialog = new ContentDialog
-        {
-            Title = title,
-            Content = scrollViewer,
-            CloseButtonText = "OK",
-            XamlRoot = this.Content.XamlRoot
-        };
-        await dialog.ShowAsync();
-    }
-
-    private void InteractionServicePropertyChanged(object? sender, PropertyChangedEventArgs e)
-    {
-        if (e.PropertyName == nameof(SharedInteractionService.CurrentMode))
-        {
-            UpdateInteractionButtons();
-        }
-        else if(e.PropertyName == nameof(SharedInteractionService.InspectedColor) &&
-           sender is SharedInteractionService service)
-        {
-            SelectedColorName = App.InteractionService.InspectedColor.Name;
-            ColorGridView.SelectedItem = App.InteractionService.InspectedColor.Color;
-            ColorSearchBox.Text = SelectedColorName;
+            else
+            {
+                CellSizePanel.Visibility = Visibility.Collapsed;
+                CellSizeSeparator.Visibility = Visibility.Collapsed;
+            }
         }
     }
 
-    private void UpdateInteractionButtons()
-    {
-        PointerButton.IsChecked = App.InteractionService.CurrentMode == InteractionMode.Navigate;
-        PaintBucketButton.IsChecked = App.InteractionService.CurrentMode == InteractionMode.Coloring;
-        ColorInspectorButton.IsChecked = App.InteractionService.CurrentMode == InteractionMode.ColorInspector;
-    }
-
-    private void PointerButton_Click(object sender, RoutedEventArgs e)
-    {
-        App.InteractionService.CurrentMode = InteractionMode.Navigate;
-    }
-
-    private void PaintBucketButton_Click(object sender, RoutedEventArgs e)
-    {
-        App.InteractionService.CurrentMode = InteractionMode.Coloring;
-    }
-
-    private void ColorInspectorButton_Click(object sender, RoutedEventArgs e)
-    {
-        App.InteractionService.CurrentMode = InteractionMode.ColorInspector;
-    }
+    private void PrintButton_Click(object sender, RoutedEventArgs e) { }
+    private void PointerButton_Click(object sender, RoutedEventArgs e) { }
+    private void PaintBucketButton_Click(object sender, RoutedEventArgs e) { }
+    private void ColorInspectorButton_Click(object sender, RoutedEventArgs e) { }
+    private void Exit_Click(object sender, RoutedEventArgs e) => Close();
 
     private void ColorSearchBox_TextChanged(object sender, TextChangedEventArgs e)
     {
-        var query = ColorSearchBox.Text?.Trim().ToLower() ?? "";
+        UpdateFilteredColors();
+    }
+
+    private void UpdateFilteredColors()
+    {
+        var searchText = ColorSearchBox.Text.ToLower();
+        var allColors = ColorMap.DefaultColorMap.Values;
+        var filtered = string.IsNullOrWhiteSpace(searchText)
+            ? allColors
+            : allColors.Where(c => c.Name.ToLower().Contains(searchText) || c.DMCNumber.ToString().Contains(searchText));
+
         FilteredColors.Clear();
-        foreach (var color in ColorMap.DefaultColorMap.Values.Where(c => c.Name.Contains(query, StringComparison.CurrentCultureIgnoreCase)))
+        foreach (var color in filtered)
+        {
             FilteredColors.Add(color);
+        }
     }
 
     private void ColorGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (ColorGridView.SelectedItem is DMCColor selected)
+        if (e.AddedItems.FirstOrDefault() is DMCColor selected)
         {
             SelectedColorName = selected.Name;
-            App.InteractionService.SelectedColor = selected.Color;
         }
-        else
-        {
-            SelectedColorName = "None";
-        }
-        OnPropertyChanged(nameof(SelectedColorName));
     }
 
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    private async void CellSizeSlider_ValueChanged(object sender, Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
+    {
+        if (DrillGridManager is not null)
+        {
+            uint newSize = (uint)e.NewValue;
+            await DrillGridManager.SelectGridAsync(newSize);
+        }
+    }
+
+    private void SymbolOverlayButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        if (MyDrillGridView != null)
+        {
+            MyDrillGridView.IsSymbolOverlayEnabled = SymbolOverlayButton.IsChecked ?? false;
+        }
     }
 }

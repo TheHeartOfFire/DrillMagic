@@ -1,80 +1,65 @@
-<winex:WindowEx
+<ex:WindowEx
     x:Class="DrillMagic.Windows.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ex="using:WinUIEx"
+    xmlns:local="using:DrillMagic.Windows"
+    xmlns:controls="using:DrillMagic.Windows.Controls"
     xmlns:core="using:DrillMagic.Core.Types"
     xmlns:winex="using:WinUIEx"
-    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
-    xmlns:localcontrols="using:DrillMagic.Windows.Controls"
-    xmlns:converters="using:DrillMagic.Windows.Converters"
     mc:Ignorable="d">
 
     <winex:WindowEx.SystemBackdrop>
         <MicaBackdrop/>
     </winex:WindowEx.SystemBackdrop>
 
-    <Grid x:Name="RootGrid">
-        <Grid.Resources>
-            <converters:DrawingToUiColorConverter x:Key="DrawingToUiColorConverter" />
-        </Grid.Resources>
-
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <CommandBar Grid.Row="0" DefaultLabelPosition="Right">
-            <AppBarButton Icon="OpenFile" Label="Open" Click="OpenFile_Click"/>
-            <AppBarButton Icon="Print" Label="Print" Click="PrintButton_Click"/>
-            <AppBarButton Icon="ClosePane" Label="Exit" Click="Exit_Click"/>
-            <AppBarSeparator/>
-            <AppBarToggleButton x:Name="PointerButton" Label="Pointer" Click="PointerButton_Click"/>
-            <AppBarToggleButton x:Name="PaintBucketButton" Label="Paint Bucket" Click="PaintBucketButton_Click"/>
-            <AppBarToggleButton x:Name="ColorInspectorButton" Label="Color Inspector" Click="ColorInspectorButton_Click"/>
-            <AppBarSeparator/>
-            <AppBarElementContainer>
-                <StackPanel>
-                    <!-- Search Box -->
-                    <TextBox x:Name="ColorSearchBox"
-                             Width="250"
-                             PlaceholderText="Search colors..."
-                             TextChanged="ColorSearchBox_TextChanged"/>
-                    <!-- Color Grid -->
-                    <GridView x:Name="ColorGridView"
-                              SelectionMode="Single"
-                              SelectionChanged="ColorGridView_SelectionChanged"
-                              ScrollViewer.VerticalScrollBarVisibility="Auto"
-                              MaxHeight="100"
-                              Width="250"
-                              ItemsSource="{x:Bind FilteredColors, Mode=OneWay}">
+        <CommandBar Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <CommandBar.Content>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <AppBarButton Icon="OpenFile" Label="Open" Click="OpenFile_Click"/>
+                    <AppBarButton Icon="Print" Label="Print" Click="PrintButton_Click" x:Name="PrintButton"/>
+                    <AppBarSeparator/>
+                    <AppBarToggleButton x:Name="PointerButton" Icon="TouchPointer" Label="Navigate" Click="PointerButton_Click"/>
+                    <AppBarToggleButton x:Name="PaintBucketButton" Icon="Highlight" Label="Coloring" Click="PaintBucketButton_Click"/>
+                    <AppBarToggleButton x:Name="ColorInspectorButton" Icon="FontColor" Label="Inspect" Click="ColorInspectorButton_Click"/>
+                    <AppBarToggleButton x:Name="SymbolOverlayButton" Icon="Character" Label="Symbols" Click="SymbolOverlayButton_Click"/>
+                    <AppBarSeparator/>
+                    <StackPanel x:Name="CellSizePanel" Orientation="Vertical" Margin="8,0,0,0" Visibility="Collapsed">
+                        <TextBlock Text="{x:Bind FormatCellSize(CellSizeSlider.Value), Mode=OneWay}" FontSize="12" Margin="0,0,0,2"/>
+                        <Slider x:Name="CellSizeSlider" Width="100" Minimum="1" Maximum="20" StepFrequency="1" ValueChanged="CellSizeSlider_ValueChanged"/>
+                    </StackPanel>
+                    <AppBarSeparator x:Name="CellSizeSeparator" Visibility="Collapsed"/>
+                    <StackPanel Orientation="Vertical" Margin="8,0,0,0">
+                        <TextBlock Text="{x:Bind SelectedColorName, Mode=OneWay}" FontSize="12" Margin="0,0,0,2"/>
+                        <TextBox x:Name="ColorSearchBox" PlaceholderText="Search Color" Width="150" TextChanged="ColorSearchBox_TextChanged"/>
+                    </StackPanel>
+                    <GridView x:Name="ColorGridView" ItemsSource="{x:Bind FilteredColors, Mode=OneWay}" SelectionChanged="ColorGridView_SelectionChanged" MaxHeight="50" ScrollViewer.HorizontalScrollMode="Enabled">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="core:DMCColor">
-                                <Rectangle Width="20" Height="20">
+                                <Rectangle Width="24" Height="24" ToolTipService.ToolTip="{x:Bind Name}">
                                     <Rectangle.Fill>
                                         <SolidColorBrush Color="{x:Bind UiColor}"/>
                                     </Rectangle.Fill>
-                                    <ToolTipService.ToolTip>
-                                        <TextBlock>
-                                            <Run Text="{x:Bind Name}"/>
-                                        </TextBlock>
-                                    </ToolTipService.ToolTip>
                                 </Rectangle>
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
-                    <!-- Selected Color Name -->
-                    <TextBlock x:Name="SelectedColorNameText"
-                               Margin="0,4,0,0"
-                               FontWeight="Bold"
-                               Text="{x:Bind SelectedColorName, Mode=OneWay}"/>
                 </StackPanel>
-            </AppBarElementContainer>
+            </CommandBar.Content>
+
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Exit" Click="Exit_Click"/>
+            </CommandBar.SecondaryCommands>
         </CommandBar>
 
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <localcontrols:DrillGridView Grid.Row="1" x:Name="MyDrillGridView" Grid="{x:Bind DrillGrid, Mode=OneWay}"/>
-        </ScrollViewer>
+        <controls:DrillGridView Grid.Row="1" x:Name="MyDrillGridView" Grid="{x:Bind DrillGridManager.SelectedGrid, Mode=OneWay}" />
     </Grid>
-</winex:WindowEx>
+</ex:WindowEx>

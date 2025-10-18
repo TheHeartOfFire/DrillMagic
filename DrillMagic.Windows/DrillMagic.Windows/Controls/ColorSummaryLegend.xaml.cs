@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using Windows.Devices.Bluetooth.Advertisement;
@@ -12,8 +13,10 @@ using Color = Windows.UI.Color;
 
 namespace DrillMagic.Windows.Controls;
 
-public sealed partial class ColorSummaryLegend : UserControl
+public sealed partial class ColorSummaryLegend : UserControl, INotifyPropertyChanged
 {
+    public event PropertyChangedEventHandler? PropertyChanged;
+
     public static readonly DependencyProperty SummaryProperty =
         DependencyProperty.Register(nameof(Summary), typeof(Dictionary<Color, int>), typeof(ColorSummaryLegend), new PropertyMetadata(null, OnSummaryChanged));
 
@@ -23,7 +26,9 @@ public sealed partial class ColorSummaryLegend : UserControl
         set => SetValue(SummaryProperty, value);
     }
 
-    public ObservableCollection<ColorSummaryItem> ColorSummary { get; } = [];
+    public ObservableCollection<ColorSummaryItem> ColorSummary { get; } = new();
+
+    public int TotalDrills => ColorSummary.Sum(c => c.Quantity);
 
     public static readonly string[] Symbols =
     [
@@ -51,7 +56,13 @@ public sealed partial class ColorSummaryLegend : UserControl
 
     public ColorSummaryLegend()
     {
-        InitializeComponent();
+        this.InitializeComponent();
+        ColorSummary.CollectionChanged += (s, e) =>
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TotalDrills)));
+            // Also need to notify for the count if you are not using x:Bind on the collection directly
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ColorSummary)));
+        };
     }
 
     private static void OnSummaryChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

@@ -1,21 +1,23 @@
-using DrillMagic.Core;
-using DrillMagic.Core.Types;
-using DrillMagic.Windows.Models;
-using DrillMagic.Windows.Services;
 using Microsoft.Graphics.Canvas.Text;
-using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Microsoft.UI;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System;
+using DrillMagic.Core;
+using DrillMagic.Core.Types;
+using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel;
 using Windows.Foundation;
 using Windows.UI;
+using Microsoft.Graphics.Canvas;
+using Microsoft.Graphics.Canvas.UI;
+using DrillMagic.Windows.Services;
 
 namespace DrillMagic.Windows.Controls;
 
@@ -24,10 +26,19 @@ public sealed partial class DrillGridView : UserControl
     public static readonly DependencyProperty GridProperty =
         DependencyProperty.Register(nameof(Grid), typeof(DrillGrid), typeof(DrillGridView), new PropertyMetadata(null, OnGridChanged));
 
+    public static readonly DependencyProperty IsSymbolOverlayEnabledProperty =
+        DependencyProperty.Register(nameof(IsSymbolOverlayEnabled), typeof(bool), typeof(DrillGridView), new PropertyMetadata(false, OnIsSymbolOverlayEnabledChanged));
+
     public DrillGrid? Grid
     {
         get => (DrillGrid?)GetValue(GridProperty);
         set => SetValue(GridProperty, value);
+    }
+
+    public bool IsSymbolOverlayEnabled
+    {
+        get => (bool)GetValue(IsSymbolOverlayEnabledProperty);
+        set => SetValue(IsSymbolOverlayEnabledProperty, value);
     }
 
     public CanvasControl CanvasControl => Canvas;
@@ -40,9 +51,11 @@ public sealed partial class DrillGridView : UserControl
     private const float SymbolVisibilityZoomThreshold = 7.5f;
 
     private readonly Dictionary<System.Drawing.Color, string> _colorToSymbolMap = [];
+    private readonly SharedInteractionService _sharedInteractionService;
 
     public DrillGridView()
     {
+        _sharedInteractionService = App.Current.Services.GetRequiredService<SharedInteractionService>();
         InitializeComponent();
         // Pointer events
         PointerPressed += OnPointerPressed;
@@ -52,6 +65,12 @@ public sealed partial class DrillGridView : UserControl
 
         // Mouse wheel for zooming
         PointerWheelChanged += OnPointerWheelChanged;
+    }
+
+    private static void OnIsSymbolOverlayEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var view = (DrillGridView)d;
+        view.Canvas.Invalidate();
     }
 
     private static void OnGridChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -135,7 +154,7 @@ public sealed partial class DrillGridView : UserControl
         int endX = (int)Math.Min(Grid.Width, Math.Ceiling(bottomRight.X));
         int endY = (int)Math.Min(Grid.Height, Math.Ceiling(bottomRight.Y));
 
-        bool shouldDrawSymbols = _transform.M11 >= SymbolVisibilityZoomThreshold;
+        bool shouldDrawSymbols = IsSymbolOverlayEnabled && _transform.M11 >= SymbolVisibilityZoomThreshold;
         using var textFormat = shouldDrawSymbols ? new CanvasTextFormat
         {
             FontFamily = "Segoe UI",
@@ -176,7 +195,7 @@ public sealed partial class DrillGridView : UserControl
             return;
         }
 
-        switch (App.InteractionService.CurrentMode)
+        switch (_sharedInteractionService.CurrentMode)
         {
             case InteractionMode.Navigate:
                 _lastPointerPosition = properties.Position;
@@ -210,7 +229,7 @@ public sealed partial class DrillGridView : UserControl
 
         if (!gridPosition.HasValue) return;
 
-        App.InteractionService.InspectedColor = ColorMap.GetDMCColor(Grid!.Grid[gridPosition.Value.y, gridPosition.Value.x]);
+        _sharedInteractionService.InspectedColor = ColorMap.GetDMCColor(Grid!.Grid[gridPosition.Value.y, gridPosition.Value.x]);
     }
 
     private void ApplyPaintBucket(Point position)
@@ -219,7 +238,7 @@ public sealed partial class DrillGridView : UserControl
 
         if (!gridPosition.HasValue) return;
 
-        Grid!.Grid[gridPosition.Value.y, gridPosition.Value.x] = App.InteractionService.SelectedColor;
+        Grid!.Grid[gridPosition.Value.y, gridPosition.Value.x] = _sharedInteractionService.SelectedColor;
         Grid.RecalculateColorSummary();
     }
 
@@ -227,7 +246,7 @@ public sealed partial class DrillGridView : UserControl
 
     private void OnPointerMoved(object sender, PointerRoutedEventArgs e)
     {
-        if (_lastPointerPosition.HasValue && Grid is not null && App.InteractionService.CurrentMode == InteractionMode.Navigate)
+        if (_lastPointerPosition.HasValue && Grid is not null && _sharedInteractionService.CurrentMode == InteractionMode.Navigate)
         {
             var currentPosition = e.GetCurrentPoint(this).Position;
             var delta = new Vector2(
