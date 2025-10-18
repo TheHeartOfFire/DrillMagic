@@ -45,7 +45,7 @@
         </Grid>
 
         <!-- Scrollable List -->
-        <ListView Grid.Row="2" ItemsSource="{x:Bind ColorSummary, Mode=OneWay}" IsItemClickEnabled="False" SelectionMode="None" Padding="0,0,0,8">
+        <ListView Grid.Row="2" ItemsSource="{x:Bind ColorSummary, Mode=OneWay}" IsItemClickEnabled="True" SelectionMode="Single" Padding="0,0,0,8" SelectionChanged="ColorSummaryGrid_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:ColorSummaryItem">
                     <Grid>

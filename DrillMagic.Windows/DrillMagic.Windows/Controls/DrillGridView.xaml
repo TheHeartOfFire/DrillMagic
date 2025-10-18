@@ -9,7 +9,7 @@
     mc:Ignorable="d">
 
     <Grid>
-        <canvas:CanvasControl x:Name="Canvas" CreateResources="Canvas_CreateResources" Draw="Canvas_Draw" ClearColor="Transparent"/>
+        <canvas:CanvasControl x:Name="Canvas" Draw="Canvas_Draw" ClearColor="Transparent"/>
         <local:ColorSummaryLegend x:Name="ColorSummaryLegend"
                                   Summary="{x:Bind Grid.ColorSummary, Mode=OneWay}"
                                   HorizontalAlignment="Left"

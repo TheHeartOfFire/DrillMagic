@@ -27,10 +27,12 @@
                     <AppBarButton Icon="OpenFile" Label="Open" Click="OpenFile_Click"/>
                     <AppBarButton Icon="Print" Label="Print" Click="PrintButton_Click" x:Name="PrintButton"/>
                     <AppBarSeparator/>
-                    <AppBarToggleButton x:Name="PointerButton" Icon="TouchPointer" Label="Navigate" Click="PointerButton_Click"/>
+                    <AppBarToggleButton x:Name="PointerButton" Icon="TouchPointer" Label="Navigate" Click="PointerButton_Click" IsChecked="true"/>
                     <AppBarToggleButton x:Name="PaintBucketButton" Icon="Highlight" Label="Coloring" Click="PaintBucketButton_Click"/>
                     <AppBarToggleButton x:Name="ColorInspectorButton" Icon="FontColor" Label="Inspect" Click="ColorInspectorButton_Click"/>
                     <AppBarToggleButton x:Name="SymbolOverlayButton" Icon="Character" Label="Symbols" Click="SymbolOverlayButton_Click" IsChecked="true"/>
+                    <AppBarButton Icon="Filter" Label="Reduce Colors" Click="ReduceColors_Click"/>
+                    <AppBarButton x:Name="ClearHighlightButton" Icon="Clear" Label="Clear Highlight" Click="ClearHighlight_Click" Visibility="Collapsed"/>
                     <AppBarSeparator/>
                     <StackPanel x:Name="CellSizePanel" Orientation="Vertical" Margin="8,0,0,0" Visibility="Collapsed">
                         <TextBlock Text="{x:Bind FormatCellSize(CellSizeSlider.Value), Mode=OneWay}" FontSize="12" Margin="0,0,0,2"/>
@@ -41,7 +43,7 @@
                         <TextBlock Text="{x:Bind SelectedColorName, Mode=OneWay}" FontSize="12" Margin="0,0,0,2"/>
                         <TextBox x:Name="ColorSearchBox" PlaceholderText="Search Color" Width="150" TextChanged="ColorSearchBox_TextChanged"/>
                     </StackPanel>
-                    <GridView x:Name="ColorGridView" ItemsSource="{x:Bind FilteredColors, Mode=OneWay}" SelectionChanged="ColorGridView_SelectionChanged" MaxHeight="50" ScrollViewer.HorizontalScrollMode="Enabled">
+                    <GridView x:Name="ColorGridView" ItemsSource="{x:Bind FilteredColors, Mode=OneWay}" SelectionChanged="ColorGridView_SelectionChanged" MaxHeight="50" ScrollViewer.HorizontalScrollMode="Enabled" MaxWidth="300">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="core:DMCColor">
                                 <Rectangle Width="24" Height="24" ToolTipService.ToolTip="{x:Bind Name}">
