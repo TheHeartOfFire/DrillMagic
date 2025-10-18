@@ -27,7 +27,7 @@ public sealed partial class DrillGridView : UserControl
         DependencyProperty.Register(nameof(Grid), typeof(DrillGrid), typeof(DrillGridView), new PropertyMetadata(null, OnGridChanged));
 
     public static readonly DependencyProperty IsSymbolOverlayEnabledProperty =
-        DependencyProperty.Register(nameof(IsSymbolOverlayEnabled), typeof(bool), typeof(DrillGridView), new PropertyMetadata(false, OnIsSymbolOverlayEnabledChanged));
+        DependencyProperty.Register(nameof(IsSymbolOverlayEnabled), typeof(bool), typeof(DrillGridView), new PropertyMetadata(true, OnIsSymbolOverlayEnabledChanged));
 
     public DrillGrid? Grid
     {

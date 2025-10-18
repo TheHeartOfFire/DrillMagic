@@ -12,6 +12,9 @@ namespace DrillMagic.Windows.Services;
 public partial class DrillGridManager : ObservableObject, IDrillGridManager
 {
     [ObservableProperty]
+    private bool _isBusy;
+
+    [ObservableProperty]
     private DrillGrid? _selectedGrid;
 
     [ObservableProperty]
@@ -22,33 +25,41 @@ public partial class DrillGridManager : ObservableObject, IDrillGridManager
 
     public async Task LoadImageAsync(string imagePath, CancellationToken cancellationToken = default)
     {
-        _imagePath = imagePath;
-        _grids.Clear();
-        AvailableCellSizes.Clear();
-
-        List<uint> sizes = [];
-        using (var image = await SixLabors.ImageSharp.Image.LoadAsync(imagePath, cancellationToken))
+        IsBusy = true;
+        try
         {
-            var minDimension = Math.Min(image.Width, image.Height);
-            for (uint size = 10; size <= 30; size += 2)
+            _imagePath = imagePath;
+            _grids.Clear();
+            AvailableCellSizes.Clear();
+
+            List<uint> sizes = [];
+            using (var image = await SixLabors.ImageSharp.Image.LoadAsync(imagePath, cancellationToken))
             {
-                if (size > minDimension) break;
-                sizes.Add(size);
+                var minDimension = Math.Min(image.Width, image.Height);
+                for (uint size = 1; size <= 20; size += 1)
+                {
+                    if (size > minDimension) break;
+                    sizes.Add(size);
+                }
+            }
+
+            foreach (var size in sizes)
+            {
+                AvailableCellSizes.Add(size);
+            }
+
+            if (AvailableCellSizes.Count > 0)
+            {
+                await SelectGridAsync(AvailableCellSizes[9]);
+            }
+            else
+            {
+                SelectedGrid = null;
             }
         }
-
-        foreach (var size in sizes)
+        finally
         {
-            AvailableCellSizes.Add(size);
-        }
-
-        if (AvailableCellSizes.Count > 0)
-        {
-            await SelectGridAsync(AvailableCellSizes[0]);
-        }
-        else
-        {
-            SelectedGrid = null;
+            IsBusy = false;
         }
     }
 

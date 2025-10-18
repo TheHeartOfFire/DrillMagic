@@ -30,11 +30,11 @@
                     <AppBarToggleButton x:Name="PointerButton" Icon="TouchPointer" Label="Navigate" Click="PointerButton_Click"/>
                     <AppBarToggleButton x:Name="PaintBucketButton" Icon="Highlight" Label="Coloring" Click="PaintBucketButton_Click"/>
                     <AppBarToggleButton x:Name="ColorInspectorButton" Icon="FontColor" Label="Inspect" Click="ColorInspectorButton_Click"/>
-                    <AppBarToggleButton x:Name="SymbolOverlayButton" Icon="Character" Label="Symbols" Click="SymbolOverlayButton_Click"/>
+                    <AppBarToggleButton x:Name="SymbolOverlayButton" Icon="Character" Label="Symbols" Click="SymbolOverlayButton_Click" IsChecked="true"/>
                     <AppBarSeparator/>
                     <StackPanel x:Name="CellSizePanel" Orientation="Vertical" Margin="8,0,0,0" Visibility="Collapsed">
                         <TextBlock Text="{x:Bind FormatCellSize(CellSizeSlider.Value), Mode=OneWay}" FontSize="12" Margin="0,0,0,2"/>
-                        <Slider x:Name="CellSizeSlider" Width="100" Minimum="1" Maximum="20" StepFrequency="1" ValueChanged="CellSizeSlider_ValueChanged"/>
+                        <Slider x:Name="CellSizeSlider" Value="10" Width="100" Minimum="1" Maximum="20" StepFrequency="1" ValueChanged="CellSizeSlider_ValueChanged"/>
                     </StackPanel>
                     <AppBarSeparator x:Name="CellSizeSeparator" Visibility="Collapsed"/>
                     <StackPanel Orientation="Vertical" Margin="8,0,0,0">

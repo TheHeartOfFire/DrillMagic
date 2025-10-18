@@ -69,7 +69,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
             {
                 CellSizeSlider.Minimum = DrillGridManager.AvailableCellSizes.Min();
                 CellSizeSlider.Maximum = DrillGridManager.AvailableCellSizes.Max();
-                CellSizeSlider.Value = DrillGridManager.AvailableCellSizes.First();
+                CellSizeSlider.Value = DrillGridManager.AvailableCellSizes[9];
                 CellSizePanel.Visibility = Visibility.Visible;
                 CellSizeSeparator.Visibility = Visibility.Visible;
             }
@@ -98,7 +98,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
         var allColors = ColorMap.DefaultColorMap.Values;
         var filtered = string.IsNullOrWhiteSpace(searchText)
             ? allColors
-            : allColors.Where(c => c.Name.ToLower().Contains(searchText) || c.DMCNumber.ToString().Contains(searchText));
+            : allColors.Where(c => c.Name.Contains(searchText, StringComparison.CurrentCultureIgnoreCase) || c.DMCNumber.ToString().Contains(searchText));
 
         FilteredColors.Clear();
         foreach (var color in filtered)
@@ -129,7 +129,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
         }
     }
 
-    private void SymbolOverlayButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    private void SymbolOverlayButton_Click(object sender, RoutedEventArgs e)
     {
         if (MyDrillGridView != null)
         {
