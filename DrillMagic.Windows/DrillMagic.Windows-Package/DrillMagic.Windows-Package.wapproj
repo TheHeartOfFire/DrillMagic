@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '15.0'">
     <VisualStudioVersion>15.0</VisualStudioVersion>
   </PropertyGroup>
@@ -41,8 +40,8 @@
     <AssetTargetFallback>net8.0-windows$(TargetPlatformVersion);$(AssetTargetFallback)</AssetTargetFallback>
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <PackageCertificateThumbprint>8E74351D0817EFFFA9FA7F2EB3CA85D8BB1EA562</PackageCertificateThumbprint>
     <EntryPointProjectUniqueName>..\DrillMagic.Windows\DrillMagic.Windows.csproj</EntryPointProjectUniqueName>
-    <PackageCertificateThumbprint>A911AC4616524241067DB0CCECA0FB806B8401A8</PackageCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -50,6 +49,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DrillMagic.Windows-Package_TemporaryKey.pfx" />
     <Content Include="Images\Wide310x150Logo.scale-400.png" />
     <None Include="DrillMagic.Windows %28Package%29_TemporaryKey.pfx" />
     <Content Include="Images\LargeTile.scale-100.png" />
@@ -104,14 +104,11 @@
     <Content Include="Images\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DrillMagic.Windows\DrillMagic.Windows.csproj">
-      <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
-      <PublishProfile>Properties\PublishProfiles\win-$(Platform).pubxml</PublishProfile>
-    </ProjectReference>
+    <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4948" />
+    <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.8.250916003" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250401001" />
+    <ProjectReference Include="..\DrillMagic.Windows\DrillMagic.Windows.csproj" />
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>

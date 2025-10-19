@@ -8,21 +8,22 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="524bf237-49eb-4ca0-80c0-988f06608e73"
-    Publisher="CN=Mystic Fire Productions"
+    Name="MysticFire.DrillMagic"
+    Publisher="CN=926DA4AC-9657-48AD-AAB8-A5F2C0D973E3"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="524bf237-49eb-4ca0-80c0-988f06608e73" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Drill Magic</DisplayName>
-    <PublisherDisplayName>HeartFire</PublisherDisplayName>
+    <PublisherDisplayName>MysticFire</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
     <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+    <PackageDependency Name="Microsoft.WindowsAppRuntime.1.5" MinVersion="5001.607.2111.0" Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" />
   </Dependencies>
 
   <Resources>
@@ -39,7 +40,8 @@
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png"/>
+        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  Square71x71Logo="Images\SmallTile.png" >
+        </uap:DefaultTile >
         <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
