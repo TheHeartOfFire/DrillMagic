@@ -8,18 +8,25 @@ namespace DrillMagic.Windows;
 public partial class App : Application
 {
     public static new App Current => (App)Application.Current;
-    public IServiceProvider Services { get; }
+    public IServiceProvider? Services { get; private set; }
     public static Window? MainWindow { get; private set; }
+
 
     public App()
     {
-        Services = ConfigureServices();
         this.InitializeComponent();
     }
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
-        MainWindow = Services.GetRequiredService<MainWindow>();
+        // We revert to a standard, clean startup sequence.
+        // 1. Configure services.
+        Services = ConfigureServices();
+
+        // 2. Create the main window.
+        MainWindow = new MainWindow();
+
+        // 3. Activate the window. The MainWindow's Loaded event will handle the rest.
         MainWindow.Activate();
     }
 
@@ -31,8 +38,6 @@ public partial class App : Application
         services.AddSingleton<IDrillGridManager, DrillGridManager>();
         services.AddSingleton<SharedInteractionService>();
 
-        // Views
-        services.AddSingleton<MainWindow>();
 
         return services.BuildServiceProvider();
     }

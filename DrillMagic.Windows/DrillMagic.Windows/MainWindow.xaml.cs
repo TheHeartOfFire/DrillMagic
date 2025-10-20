@@ -22,7 +22,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    public IDrillGridManager DrillGridManager { get; }
+    public IDrillGridManager? DrillGridManager { get; private set; }
 
     public ObservableCollection<DMCColor> FilteredColors { get; set; } = [];
     private string _selectedColorName = "None";
@@ -35,21 +35,39 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    private SharedInteractionService _sharedInteractionService;
+    private SharedInteractionService? _sharedInteractionService;
 
     public MainWindow()
     {
-        InitializeComponent();
-        DrillGridManager = App.Current.Services.GetRequiredService<IDrillGridManager>();
-        _sharedInteractionService = App.Current.Services.GetRequiredService<SharedInteractionService>();
-        _sharedInteractionService.PropertyChanged += InteractionServicePropertyChanged;
-        if (ColorMap.DefaultColorMap.Count == 0)
+        InitializeComponent(); 
+        
+        if (this.Content is FrameworkElement rootElement)
         {
-            ColorMap.Initialize();
+            rootElement.Loaded += MainWindow_Loaded;
         }
-        UpdateFilteredColors();
     }
 
+    private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+        DrillGridManager = App.Current.Services!.GetRequiredService<IDrillGridManager>();
+        _sharedInteractionService = App.Current.Services!.GetRequiredService<SharedInteractionService>();
+        _sharedInteractionService.PropertyChanged += InteractionServicePropertyChanged;
+        await InitializeDataAsync();
+    }
+
+
+    private async Task InitializeDataAsync()
+    {
+        if (ColorMap.DefaultColorMap.Count == 0)
+        {
+            await Task.Run(() => ColorMap.Initialize());
+        }
+
+        DispatcherQueue.TryEnqueue(() =>
+        {
+            UpdateFilteredColors();
+        });
+    }
     public string FormatCellSize(double value) => $"Cell Size: {(int)value}";
 
     private async void OpenFile_Click(object sender, RoutedEventArgs e)

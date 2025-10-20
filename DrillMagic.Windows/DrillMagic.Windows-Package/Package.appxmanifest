@@ -13,8 +13,6 @@
     Publisher="CN=926DA4AC-9657-48AD-AAB8-A5F2C0D973E3"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="524bf237-49eb-4ca0-80c0-988f06608e73" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
-
   <Properties>
     <DisplayName>Drill Magic</DisplayName>
     <PublisherDisplayName>MysticFire</PublisherDisplayName>
@@ -22,9 +20,8 @@
   </Properties>
 
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
-    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
-    <PackageDependency Name="Microsoft.WindowsAppRuntime.1.5" MinVersion="5001.607.2111.0" Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" />
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.22000.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.22000.0" />
   </Dependencies>
 
   <Resources>
@@ -34,7 +31,7 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="$targetentrypoint$" uap18:TrustLevel="appContainer" uap18:RuntimeBehavior="windowsApp">
+      EntryPoint="$targetentrypoint$" uap18:TrustLevel="mediumIL" uap18:RuntimeBehavior="win32App">
       <uap:VisualElements
         DisplayName="Drill Magic"
         Description="Drill Magic"

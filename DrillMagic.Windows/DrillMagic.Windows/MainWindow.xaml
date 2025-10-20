@@ -1,18 +1,18 @@
-<ex:WindowEx
+<winex:WindowEx
     x:Class="DrillMagic.Windows.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ex="using:WinUIEx"
     xmlns:local="using:DrillMagic.Windows"
     xmlns:controls="using:DrillMagic.Windows.Controls"
     xmlns:core="using:DrillMagic.Core.Types"
     xmlns:winex="using:WinUIEx"
+    xmlns:media="using:Microsoft.UI.Xaml.Media"
     mc:Ignorable="d">
 
     <winex:WindowEx.SystemBackdrop>
-        <MicaBackdrop/>
+        <media:MicaBackdrop/>
     </winex:WindowEx.SystemBackdrop>
 
     <Grid>
@@ -64,4 +64,4 @@
 
         <controls:DrillGridView Grid.Row="1" x:Name="MyDrillGridView" Grid="{x:Bind DrillGridManager.SelectedGrid, Mode=OneWay}" />
     </Grid>
-</ex:WindowEx>
+</winex:WindowEx>

@@ -37,10 +37,10 @@
     <ProjectGuid>5c1601c4-391b-4df6-a57d-f3a225758256</ProjectGuid>
     <TargetPlatformVersion>10.0.22621.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-    <AssetTargetFallback>net8.0-windows$(TargetPlatformVersion);$(AssetTargetFallback)</AssetTargetFallback>
+    <AssetTargetFallback>net9.0-windows10.0.22621.0</AssetTargetFallback>
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <PackageCertificateThumbprint>8E74351D0817EFFFA9FA7F2EB3CA85D8BB1EA562</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>B991DB70A1DD5389C98520DA9366119FDF64C593</PackageCertificateThumbprint>
     <EntryPointProjectUniqueName>..\DrillMagic.Windows\DrillMagic.Windows.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <ItemGroup>
@@ -48,10 +48,12 @@
       <SubType>Designer</SubType>
     </AppxManifest>
   </ItemGroup>
+	<PropertyGroup>
+		<WindowsAppSDKSelfContained>false</WindowsAppSDKSelfContained>
+	</PropertyGroup>
   <ItemGroup>
     <None Include="DrillMagic.Windows-Package_TemporaryKey.pfx" />
     <Content Include="Images\Wide310x150Logo.scale-400.png" />
-    <None Include="DrillMagic.Windows %28Package%29_TemporaryKey.pfx" />
     <Content Include="Images\LargeTile.scale-100.png" />
     <Content Include="Images\LargeTile.scale-125.png" />
     <Content Include="Images\LargeTile.scale-150.png" />
@@ -104,11 +106,14 @@
     <Content Include="Images\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4948" />
-    <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.8.250916003" />
+	  <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4948" />
+	  <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.250916003" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DrillMagic.Windows\DrillMagic.Windows.csproj" />
+    <ProjectReference Include="..\DrillMagic.Windows\DrillMagic.Windows.csproj">
+      <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
+      <PublishProfile>Properties\PublishProfiles\win-$(Platform).pubxml</PublishProfile>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>
