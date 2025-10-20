@@ -50,11 +50,19 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
     private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
         DrillGridManager = App.Current.Services!.GetRequiredService<IDrillGridManager>();
+        DrillGridManager.PropertyChanged += DrillGridManager_PropertyChanged;
         _sharedInteractionService = App.Current.Services!.GetRequiredService<SharedInteractionService>();
         _sharedInteractionService.PropertyChanged += InteractionServicePropertyChanged;
         await InitializeDataAsync();
     }
 
+    private void DrillGridManager_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(IDrillGridManager.SelectedGrid))
+        {
+            MyDrillGridView.Grid = DrillGridManager?.SelectedGrid;
+        }
+    }
 
     private async Task InitializeDataAsync()
     {
