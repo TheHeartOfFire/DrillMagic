@@ -3,9 +3,11 @@ using DrillMagic.Core;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Graphics.Imaging;
 
 namespace DrillMagic.Windows.Services;
 
@@ -21,19 +23,19 @@ public partial class DrillGridManager : ObservableObject, IDrillGridManager
     private ObservableCollection<uint> _availableCellSizes = [];
 
     private readonly Dictionary<uint, DrillGrid> _grids = [];
-    private string? _imagePath;
+    private MemoryStream? _imageStream;
 
-    public async Task LoadImageAsync(string imagePath, CancellationToken cancellationToken = default)
+    public async Task LoadImageAsync(MemoryStream imageStream, CancellationToken cancellationToken = default)
     {
         IsBusy = true;
         try
         {
-            _imagePath = imagePath;
+            _imageStream = imageStream;
             _grids.Clear();
             AvailableCellSizes.Clear();
 
             List<uint> sizes = [];
-            using (var image = await SixLabors.ImageSharp.Image.LoadAsync(imagePath, cancellationToken))
+            using (var image = await SixLabors.ImageSharp.Image.LoadAsync(imageStream, cancellationToken))
             {
                 var minDimension = Math.Min(image.Width, image.Height);
                 for (uint size = 1; size <= 20; size += 1)
@@ -71,11 +73,12 @@ public partial class DrillGridManager : ObservableObject, IDrillGridManager
             return;
         }
 
-        if (_imagePath is not null)
+        if (_imageStream is not null)
         {
-            var newGrid = await Task.Run(() => new DrillGrid(_imagePath, cellSize));
+            var newGrid = await Task.Run(() => new DrillGrid(_imageStream, cellSize, 0,0));
             _grids[cellSize] = newGrid;
             SelectedGrid = newGrid;
+               
         }
     }
 }

@@ -52,16 +52,17 @@ namespace DrillMagic.Core
         }
 
         // Replaced Bitmap with a file path and uses ImageSharp for processing.
-        public DrillGrid(string imagePath,
+        public DrillGrid(MemoryStream imageStream,
             uint cellSize = 0, float rotation = 0,
             float normalizedStaggerOffset = 0)
         {
-            ArgumentNullException.ThrowIfNull(imagePath);
+            ArgumentNullException.ThrowIfNull(imageStream);
             if (cellSize == 0)
                 throw new ArgumentException("Cell size cannot be zero.", nameof(cellSize));
             if (ColorMap.DefaultColorMap.Count == 0) ColorMap.Initialize();
 
-            using var image = SixLabors.ImageSharp.Image.Load<Rgba32>(imagePath);
+            imageStream.Position = 0; 
+            using var image = SixLabors.ImageSharp.Image.Load<Rgba32>(imageStream);
 
             int gridHeight = image.Height / (int)cellSize;
             int gridWidth = image.Width / (int)cellSize;

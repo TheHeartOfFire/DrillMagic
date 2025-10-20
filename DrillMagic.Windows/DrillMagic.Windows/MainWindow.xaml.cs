@@ -1,6 +1,7 @@
 using DrillMagic.Core;
 using DrillMagic.Core.Types;
 using DrillMagic.Windows.Services;
+using DrillMagic.Windows.Utils;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -12,10 +13,10 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using WinRT.Interop;
+using Windows.Storage;
 using Windows.Storage.Pickers;
+using WinRT.Interop;
 using WinUIEx;
-using DrillMagic.Windows.Utils;
 
 namespace DrillMagic.Windows;
 public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
@@ -95,7 +96,10 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
         var file = await fileOpenPicker.PickSingleFileAsync();
         if (file != null)
         {
-            await DrillGridManager.LoadImageAsync(file.Path);
+            var imageStream = await GetStreamFromFileAsync(file);
+            if (imageStream is null) return;
+
+            await DrillGridManager.LoadImageAsync(imageStream);
             if (DrillGridManager.AvailableCellSizes.Any())
             {
                 CellSizeSlider.Minimum = DrillGridManager.AvailableCellSizes.Min();
@@ -109,6 +113,22 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
                 CellSizePanel.Visibility = Visibility.Collapsed;
                 CellSizeSeparator.Visibility = Visibility.Collapsed;
             }
+        }
+    }
+    private async Task<MemoryStream?> GetStreamFromFileAsync(StorageFile file)
+    {
+        try
+        {
+            var stream = await file.OpenReadAsync();
+            var memoryStream = new MemoryStream();
+            await stream.AsStreamForRead().CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
+            return memoryStream;
+        }
+        catch (Exception ex)
+        {
+            await ShowErrorDialog("Error Reading File", $"Could not read the selected file. Please ensure it is accessible and not corrupted.\n\nDetails: {ex.Message}");
+            return null;
         }
     }
 
