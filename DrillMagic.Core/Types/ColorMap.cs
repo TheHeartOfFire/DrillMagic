@@ -21,17 +21,44 @@ public class ColorMap
 
     public static void Initialize()
     {
-        // deserialize the json file into the DefaultColorMap dictionary
-        var json = File.ReadAllText(_jsonFilePath);
+        string? json = null;
+        var asm = Assembly.GetExecutingAssembly();
+
+        // Try to find embedded resource (recommended approach)
+        var resourceName = asm.GetManifestResourceNames()
+            .FirstOrDefault(n => n.EndsWith("DefaultColorMap.json", StringComparison.OrdinalIgnoreCase));
+        if (resourceName is not null)
+        {
+            using var stream = asm.GetManifestResourceStream(resourceName);
+            if (stream is not null)
+            {
+                using var reader = new System.IO.StreamReader(stream);
+                json = reader.ReadToEnd();
+            }
+        }
+
+        // Fallback: try the file on disk (keeps compatibility with Content+Copy deployments)
+        if (string.IsNullOrWhiteSpace(json) && System.IO.File.Exists(_jsonFilePath))
+        {
+            json = System.IO.File.ReadAllText(_jsonFilePath);
+        }
+
+        if (string.IsNullOrWhiteSpace(json))
+            throw new InvalidOperationException("DefaultColorMap.json not found as embedded resource or content file. Ensure the JSON is deployed and accessible.");
+
         DefaultColorMap = System.Text.Json.JsonSerializer.Deserialize<Dictionary<uint, DMCColor>>(json) ?? [];
+
         // deserialize the custom mappings json file into the CustomMappings list
-        Directory.CreateDirectory(_customMappingsFilePath[.._customMappingsFilePath.LastIndexOf('/')]);
-        if (!File.Exists(_customMappingsFilePath)) return;
+        var customDir = System.IO.Path.GetDirectoryName(_customMappingsFilePath) ?? string.Empty;
+        System.IO.Directory.CreateDirectory(customDir);
+        if (!System.IO.File.Exists(_customMappingsFilePath))
+        {
+            CustomMappings = new List<Dictionary<uint, string>>();
+            return;
+        }
 
-        var customJson = File.ReadAllText(_customMappingsFilePath);
-        CustomMappings = System.Text.Json.JsonSerializer.Deserialize<List<Dictionary<uint, string>>>(customJson) ?? [];
-        
-
+        var customJson = System.IO.File.ReadAllText(_customMappingsFilePath);
+        CustomMappings = System.Text.Json.JsonSerializer.Deserialize<List<Dictionary<uint, string>>>(customJson) ?? new List<Dictionary<uint, string>>();
     }
 
     public static void SaveCustomMappings()

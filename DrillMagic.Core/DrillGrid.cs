@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using Color = System.Drawing.Color;
+using System.IO;
 
 namespace DrillMagic.Core
 {
@@ -61,7 +62,11 @@ namespace DrillMagic.Core
                 throw new ArgumentException("Cell size cannot be zero.", nameof(cellSize));
             if (ColorMap.DefaultColorMap.Count == 0) ColorMap.Initialize();
 
-            imageStream.Position = 0; 
+            // If the color map still isn't loaded, fail fast so this is visible in logs
+            if (ColorMap.DefaultColorMap.Count == 0)
+                throw new InvalidOperationException("DMC color map not initialized. Ensure embedded resources or files are present on the target machine.");
+
+            imageStream.Position = 0;
             using var image = SixLabors.ImageSharp.Image.Load<Rgba32>(imageStream);
 
             int gridHeight = image.Height / (int)cellSize;
@@ -175,6 +180,14 @@ namespace DrillMagic.Core
         {
             if (buffer.TryGetValue(color, out Color value))
                 return value;
+
+            // If DMC map is not available, return the original color so UI isn't left transparent.
+            if (Types.ColorMap.DefaultColorMap == null || Types.ColorMap.DefaultColorMap.Count == 0)
+            {
+                buffer[color] = color;
+                return color;
+            }
+
             // Initialize the closest color and the minimum distance
             Color closestColor = Color.Empty;
             float minDistance = float.MaxValue;
@@ -190,6 +203,11 @@ namespace DrillMagic.Core
                     closestColor = ColorTranslator.FromHtml(dmcColor.Hex);
                 }
             }
+
+            // If for some reason no closest color was found, fall back to the original color
+            if (closestColor == Color.Empty)
+                closestColor = color;
+
             buffer[color] = closestColor;
             // Return the closest DMC color
             return closestColor;
@@ -226,11 +244,16 @@ namespace DrillMagic.Core
         private static Color[] ExtractCellColors(Image<Rgba32> image, uint cellSize = 0, SixLabors.ImageSharp.Point cell = new())
         {
             var colors = new List<Color>();
-            for (int i = 0; i < cellSize; i++)
+            for (int i = 0; i < (int)cellSize; i++)
             {
-                for (int j = 0; j < cellSize; j++)
+                for (int j = 0; j < (int)cellSize; j++)
                 {
-                    Rgba32 pixel = image[cell.X + j, cell.Y + i];
+                    int px = cell.X + j;
+                    int py = cell.Y + i;
+                    if (px < 0 || py < 0 || px >= image.Width || py >= image.Height)
+                        continue;
+
+                    Rgba32 pixel = image[px, py];
                     if (pixel.A != 0)
                     {
                         // Convert from ImageSharp's Rgba32 to System.Drawing.Color
@@ -238,7 +261,7 @@ namespace DrillMagic.Core
                     }
                 }
             }
-            return [.. colors];
+            return colors.ToArray();
         }
     }
 }

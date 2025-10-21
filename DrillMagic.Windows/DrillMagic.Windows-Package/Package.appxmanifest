@@ -11,7 +11,7 @@
   <Identity
     Name="MysticFire.DrillMagic"
     Publisher="CN=926DA4AC-9657-48AD-AAB8-A5F2C0D973E3"
-    Version="1.0.3.0" />
+    Version="1.0.4.0" />
 
   <Properties>
     <DisplayName>Drill Magic</DisplayName>
