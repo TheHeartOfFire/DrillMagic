@@ -225,7 +225,8 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
         var isLeftButtonPressed = properties.Properties.IsLeftButtonPressed;
         var isMiddleButtonPressed = properties.Properties.IsMiddleButtonPressed;
 
-        if (e.Pointer.PointerDeviceType == PointerDeviceType.Mouse && (isLeftButtonPressed || isMiddleButtonPressed))
+        if (_sharedInteractionService.CurrentMode is InteractionMode.Navigate &&
+            e.Pointer.PointerDeviceType == PointerDeviceType.Mouse && (isLeftButtonPressed || isMiddleButtonPressed))
         {
             _lastPointerPosition = properties.Position;
             CapturePointer(e.Pointer);

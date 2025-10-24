@@ -74,6 +74,15 @@ public class ColorMap
             return value;
         return DMCColor.Empty;
     }
+    public static DMCColor GetDMCColor(string name)
+    {
+        foreach (var dmcColor in DefaultColorMap.Values)
+        {
+            if (string.Equals(dmcColor.Name, name, StringComparison.OrdinalIgnoreCase))
+                return dmcColor;
+        }
+        return DMCColor.Empty;
+    }
     public static DMCColor GetDMCColor(Color color)
     {
         foreach (var dmcColor in DefaultColorMap.Values)
@@ -83,6 +92,16 @@ public class ColorMap
         }
         return DMCColor.Empty;
     }
+    public static DMCColor GetDMCColor(Windows.UI.Color color)
+    {
+        foreach (var dmcColor in DefaultColorMap.Values)
+        {
+            if (dmcColor.Color.ToArgb() == color.ToDrawingColor().ToArgb())
+                return dmcColor;
+        }
+        return DMCColor.Empty;
+    }
+
 
     public ColorMap()
     {
