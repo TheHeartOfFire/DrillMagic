@@ -32,12 +32,15 @@ namespace DrillMagic.Core
         }
 
         private readonly Dictionary<Color, Color> _buffer = [];
+        private readonly IColorMapService _colorMapService;
 
-        public DrillGrid(int height, int width,
+        public DrillGrid(IColorMapService colorMapService, int height, int width,
             uint cellSize = 0, float rotation = 0,
             float normalizedStaggerOffset = 0)
         {
-            if (ColorMap.DefaultColorMap.Count == 0) ColorMap.Initialize();
+            ArgumentNullException.ThrowIfNull(colorMapService);
+            _colorMapService = colorMapService;
+
             Grid = new Color[height, width];
             for (int i = 0; i < height; i++)
             {
@@ -52,19 +55,16 @@ namespace DrillMagic.Core
             RecalculateColorSummary();
         }
 
-        // Replaced Bitmap with a file path and uses ImageSharp for processing.
-        public DrillGrid(MemoryStream imageStream,
+        public DrillGrid(IColorMapService colorMapService, MemoryStream imageStream,
             uint cellSize = 0, float rotation = 0,
             float normalizedStaggerOffset = 0)
         {
+            ArgumentNullException.ThrowIfNull(colorMapService);
             ArgumentNullException.ThrowIfNull(imageStream);
             if (cellSize == 0)
                 throw new ArgumentException("Cell size cannot be zero.", nameof(cellSize));
-            if (ColorMap.DefaultColorMap.Count == 0) ColorMap.Initialize();
 
-            // If the color map still isn't loaded, fail fast so this is visible in logs
-            if (ColorMap.DefaultColorMap.Count == 0)
-                throw new InvalidOperationException("DMC color map not initialized. Ensure embedded resources or files are present on the target machine.");
+            _colorMapService = colorMapService;
 
             imageStream.Position = 0;
             using var image = SixLabors.ImageSharp.Image.Load<Rgba32>(imageStream);
@@ -78,7 +78,7 @@ namespace DrillMagic.Core
                 for (int j = 0; j < gridWidth; j++)
                 {
                     var imgColor = ExtractCellColors(image, cellSize, new SixLabors.ImageSharp.Point(j * (int)cellSize, i * (int)cellSize)).SquaredChannelWiseAverage();
-                    Color? dmcColor = imgColor != Color.FromArgb(0, 0, 0, 0) ? GetClosestDMCColor(imgColor, _buffer) : null;
+                    Color? dmcColor = imgColor != Color.FromArgb(0, 0, 0, 0) ? GetClosestDMCColor(imgColor) : null;
                     if (dmcColor is not null)
                         Grid[i, j] = dmcColor.Value;
                 }
@@ -176,41 +176,19 @@ namespace DrillMagic.Core
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public static Color GetClosestDMCColor(Color color, Dictionary<Color, Color> buffer)
+        public Color GetClosestDMCColor(Color color)
         {
-            if (buffer.TryGetValue(color, out Color value))
+            if (_buffer.TryGetValue(color, out Color value))
                 return value;
 
-            // If DMC map is not available, return the original color so UI isn't left transparent.
-            if (Types.ColorMap.DefaultColorMap == null || Types.ColorMap.DefaultColorMap.Count == 0)
-            {
-                buffer[color] = color;
-                return color;
-            }
+            var dmcColor = _colorMapService.FindClosestDMCColor(color);
 
-            // Initialize the closest color and the minimum distance
-            Color closestColor = Color.Empty;
-            float minDistance = float.MaxValue;
-            // Iterate through the list of DMC colors
-            foreach (var dmcColor in Types.ColorMap.DefaultColorMap.Values)
-            {
-                // Calculate the Euclidean distance between the input color and the DMC color
-                float distance = GetEuclideanDistance(color, ColorTranslator.FromHtml(dmcColor.Hex));
-                // If the distance is smaller than the minimum distance, update the closest color and the minimum distance
-                if (distance < minDistance)
-                {
-                    minDistance = distance;
-                    closestColor = ColorTranslator.FromHtml(dmcColor.Hex);
-                }
-            }
+            // If for some reason no closest color was found (e.g. empty map), fall back to the original color
+            // Check for MaxValue (or "Invalid") as DMCColor.Empty uses it
+            Color result = (dmcColor != null && dmcColor.DMCNumber != uint.MaxValue) ? dmcColor.Color : color;
 
-            // If for some reason no closest color was found, fall back to the original color
-            if (closestColor == Color.Empty)
-                closestColor = color;
-
-            buffer[color] = closestColor;
-            // Return the closest DMC color
-            return closestColor;
+            _buffer[color] = result;
+            return result;
         }
 
         /// <summary>
