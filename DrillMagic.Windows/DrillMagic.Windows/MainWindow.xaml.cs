@@ -3,6 +3,7 @@ using DrillMagic.Core.Types;
 using DrillMagic.Windows.Services;
 using DrillMagic.Windows.Utils;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -38,6 +39,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
     // Services
     private readonly IColorMapService _colorMapService;
     private readonly IPdfGenerator _pdfGenerator;
+    private readonly ILogger<MainWindow> _logger;
 
     // Public properties
     public SolidColorBrush SelectedBrush 
@@ -72,8 +74,12 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
         InitializeComponent(); 
         
         // Resolve services from the App's service provider
-        _colorMapService = App.Current.Services!.GetRequiredService<IColorMapService>();
-        _pdfGenerator = App.Current.Services!.GetRequiredService<IPdfGenerator>();
+        var services = App.Current.Services!;
+        _colorMapService = services.GetRequiredService<IColorMapService>();
+        _pdfGenerator = services.GetRequiredService<IPdfGenerator>();
+        _logger = services.GetRequiredService<ILogger<MainWindow>>();
+
+        _logger.LogInformation("MainWindow initialized");
 
         if (this.Content is FrameworkElement rootElement)
         {
@@ -84,15 +90,23 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
     // Lifecycle / initialization
     private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
-        await PopulateToolkitPaletteAsync();
-        DrillGridManager = App.Current.Services!.GetRequiredService<IDrillGridManager>();
-        DrillGridManager.PropertyChanged += DrillGridManager_PropertyChanged;
-        _sharedInteractionService = App.Current.Services!.GetRequiredService<ISharedInteractionService>();
-        _sharedInteractionService.PropertyChanged += InteractionServicePropertyChanged;
-        
-        // Data initialization happens in the service constructor now, 
-        // so we just update the UI.
-        UpdateFilteredColors();
+        _logger.LogInformation("MainWindow loaded");
+        try 
+        {
+            await PopulateToolkitPaletteAsync();
+            DrillGridManager = App.Current.Services!.GetRequiredService<IDrillGridManager>();
+            DrillGridManager.PropertyChanged += DrillGridManager_PropertyChanged;
+            _sharedInteractionService = App.Current.Services!.GetRequiredService<ISharedInteractionService>();
+            _sharedInteractionService.PropertyChanged += InteractionServicePropertyChanged;
+            
+            // Data initialization happens in the service constructor now, 
+            // so we just update the UI.
+            UpdateFilteredColors();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogCritical(ex, "Critical error during MainWindow load");
+        }
     }
 
     // DrillGridManager property change handler
@@ -100,6 +114,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
     {
         if (e.PropertyName == nameof(IDrillGridManager.SelectedGrid))
         {
+            _logger.LogInformation("Grid selection changed");
             MyDrillGridView.Grid = DrillGridManager?.SelectedGrid;
         }
     }
@@ -188,6 +203,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
         if (_suppressColorChanged) return;
 
         var picked = e.NewColor;
+        _logger.LogTrace("ColorPicker changed to {Color}", picked);
 
         var exactMatches = _colorMapService.DefaultColorMap.Values
             .Where(d => d.UiColor.A == picked.A && d.UiColor.R == picked.R && d.UiColor.G == picked.G && d.UiColor.B == picked.B)
@@ -339,6 +355,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
     // File operations
     private async void OpenFile_Click(object sender, RoutedEventArgs e)
     {
+        _logger.LogInformation("OpenFile_Click invoked");
         var fileOpenPicker = new FileOpenPicker
         {
             ViewMode = PickerViewMode.Thumbnail,
@@ -354,23 +371,31 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
         var file = await fileOpenPicker.PickSingleFileAsync();
         if (file != null)
         {
+            _logger.LogInformation("File picked: {FilePath}", file.Path);
             var imageStream = await GetStreamFromFileAsync(file);
             if (imageStream is null) return;
 
-            await DrillGridManager.LoadImageAsync(imageStream);
-            if (DrillGridManager.AvailableCellSizes.Any())
+            if (DrillGridManager is not null)
             {
-                CellSizeSlider.Minimum = DrillGridManager.AvailableCellSizes.Min();
-                CellSizeSlider.Maximum = DrillGridManager.AvailableCellSizes.Max();
-                CellSizeSlider.Value = DrillGridManager.AvailableCellSizes[9];
-                CellSizePanel.Visibility = Visibility.Visible;
-                CellSizeSeparator.Visibility = Visibility.Visible;
+                await DrillGridManager.LoadImageAsync(imageStream);
+                if (DrillGridManager.AvailableCellSizes.Any())
+                {
+                    CellSizeSlider.Minimum = DrillGridManager.AvailableCellSizes.Min();
+                    CellSizeSlider.Maximum = DrillGridManager.AvailableCellSizes.Max();
+                    CellSizeSlider.Value = DrillGridManager.AvailableCellSizes[9];
+                    CellSizePanel.Visibility = Visibility.Visible;
+                    CellSizeSeparator.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    CellSizePanel.Visibility = Visibility.Collapsed;
+                    CellSizeSeparator.Visibility = Visibility.Collapsed;
+                }
             }
-            else
-            {
-                CellSizePanel.Visibility = Visibility.Collapsed;
-                CellSizeSeparator.Visibility = Visibility.Collapsed;
-            }
+        }
+        else
+        {
+            _logger.LogInformation("File picker cancelled");
         }
     }
 
@@ -386,6 +411,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Error reading file {FilePath}", file.Path);
             await ShowErrorDialog("Error Reading File", $"Could not read the selected file. Please ensure it is accessible and not corrupted.\n\nDetails: {ex.Message}");
             return null;
         }
@@ -393,7 +419,12 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
 
     private async void PrintButton_Click(object sender, RoutedEventArgs e)
     {
-        if (MyDrillGridView.Grid is null) return;
+        _logger.LogInformation("PrintButton_Click invoked");
+        if (MyDrillGridView.Grid is null)
+        {
+             _logger.LogWarning("Print attempted with no grid loaded");
+            return;
+        }
 
         var savePicker = new FileSavePicker
         {
@@ -420,23 +451,27 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
                 {
                     errorContent += $"\n\nDetails:\n{errorMessage}";
                 }
+                _logger.LogError("PDF generation failed: {ErrorMessage}", errorMessage);
                 await ShowErrorDialog("PDF Generation Failed", errorContent);
                 return;
             }
 
             await File.WriteAllBytesAsync(file.Path, pdfBytes);
+            _logger.LogInformation("PDF saved to {Path}", file.Path);
             
             // Optional: You could show a "Success" dialog or open the file automatically.
             // await ShowErrorDialog("Success", "PDF saved successfully.");
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Exception during PDF save");
             await ShowErrorDialog("Failed to Save PDF", $"An error occurred while saving the file: {ex.Message}");
         }
     }
 
     private async Task ShowErrorDialog(string title, string content)
     {
+        _logger.LogError("Showing error dialog: {Title} - {Content}", title, content);
         // Use a TextBlock for robust multi-line display.
         var textBlock = new TextBlock
         {

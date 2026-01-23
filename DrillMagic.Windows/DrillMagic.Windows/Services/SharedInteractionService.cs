@@ -1,4 +1,6 @@
 ﻿using DrillMagic.Core.Types;
+using Microsoft.Extensions.Logging;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.UI;
@@ -14,10 +16,18 @@ public enum InteractionMode
 
 public partial class SharedInteractionService : ISharedInteractionService
 {
+    private readonly ILogger<SharedInteractionService> _logger;
     private InteractionMode _currentMode = InteractionMode.Navigate;
     private DMCColor? _highlightedColor;
+    private DMCColor _inspectedColor = new("Invalid", uint.MaxValue, "Invalid");
+    private System.Drawing.Color _selectedColor = System.Drawing.Color.Black;
 
     public event PropertyChangedEventHandler? PropertyChanged;
+
+    public SharedInteractionService(ILogger<SharedInteractionService> logger)
+    {
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
 
     public InteractionMode CurrentMode
     {
@@ -26,13 +36,13 @@ public partial class SharedInteractionService : ISharedInteractionService
         {
             if (_currentMode != value)
             {
+                _logger.LogInformation("Changing InteractionMode from {OldMode} to {NewMode}", _currentMode, value);
                 _currentMode = value;
                 OnPropertyChanged();
             }
         }
     }
 
-    private DMCColor _inspectedColor = new("Invalid", uint.MaxValue, "Invalid");
     public DMCColor InspectedColor
     {
         get => _inspectedColor;
@@ -40,6 +50,7 @@ public partial class SharedInteractionService : ISharedInteractionService
         {
             if (_inspectedColor != value)
             {
+                _logger.LogDebug("InspectedColor changed to {ColorName} ({DMCNumber})", value.Name, value.DMCNumber);
                 _inspectedColor = value;
                 SelectedColor = value.Color;
                 OnPropertyChanged();
@@ -54,6 +65,7 @@ public partial class SharedInteractionService : ISharedInteractionService
         {
             if (_highlightedColor != value)
             {
+                _logger.LogDebug("HighlightedColor changed to {ColorName}", value?.Name ?? "null");
                 _highlightedColor = value;
                 if (value is not null)
                     SelectedColor = value.Color;
@@ -61,7 +73,7 @@ public partial class SharedInteractionService : ISharedInteractionService
             }
         }
     }
-    private System.Drawing.Color _selectedColor = System.Drawing.Color.Black;
+
     public System.Drawing.Color SelectedColor
     {
         get => _selectedColor;
@@ -69,6 +81,7 @@ public partial class SharedInteractionService : ISharedInteractionService
         {
             if (_selectedColor != value)
             {
+                _logger.LogTrace("SelectedColor changed to {Color}", value);
                 _selectedColor = value;
                 OnPropertyChanged();
             }
