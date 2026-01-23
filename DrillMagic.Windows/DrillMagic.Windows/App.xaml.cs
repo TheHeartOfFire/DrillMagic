@@ -1,4 +1,7 @@
-﻿using DrillMagic.Windows.Services;
+﻿using DrillMagic.Core;
+using DrillMagic.Core.Types;
+using DrillMagic.Windows.Services;
+using DrillMagic.Windows.Utils;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using System;
@@ -34,10 +37,18 @@ public partial class App : Application
     {
         var services = new ServiceCollection();
 
-        // Services
+        // Core Services
+        services.AddSingleton<IColorMapRepository, ColorMapRepository>();
+        services.AddSingleton<IColorMapService, ColorMapService>();
+        
+        // App Services
         services.AddSingleton<IDrillGridManager, DrillGridManager>();
         services.AddSingleton<SharedInteractionService>();
-
+        services.AddSingleton<ISharedInteractionService>(sp => sp.GetRequiredService<SharedInteractionService>());
+        
+        // Utils
+        services.AddSingleton<IPdfGenerator, PdfSharpGenerator>();
+        services.AddSingleton<IDrillGridFactory, DrillGridFactory>();
 
         return services.BuildServiceProvider();
     }

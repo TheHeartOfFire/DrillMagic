@@ -41,7 +41,9 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    private readonly SharedInteractionService _sharedInteractionService;
+    private readonly ISharedInteractionService _sharedInteractionService;
+    // Explicitly using the interface to avoid any confusion with the ColorMap class
+    private readonly IColorMapService _colorMapService; 
     private DMCColor? _highlightedColor;
 
     private Matrix3x2 _transform = Matrix3x2.Identity;
@@ -52,10 +54,13 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
     private const float SymbolVisibilityZoomThreshold = 10f;
 
     private readonly Dictionary<System.Drawing.Color, string> _colorToSymbolMap = [];
+    
     public DrillGridView()
     {
         InitializeComponent();
-        _sharedInteractionService = App.Current.Services.GetRequiredService<SharedInteractionService>();
+        _sharedInteractionService = App.Current.Services.GetRequiredService<ISharedInteractionService>();
+        _colorMapService = App.Current.Services.GetRequiredService<IColorMapService>();
+        
         _sharedInteractionService.PropertyChanged += OnInteractionServicePropertyChanged;
         // Pointer events
         PointerPressed += OnPointerPressed;
@@ -264,7 +269,8 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
 
         if (!gridPosition.HasValue) return;
 
-        _sharedInteractionService.InspectedColor = ColorMap.GetDMCColor(Grid!.Grid[gridPosition.Value.y, gridPosition.Value.x]);
+        // Ensuring we use the service instance to look up the color
+        _sharedInteractionService.InspectedColor = _colorMapService.GetDMCColor(Grid!.Grid[gridPosition.Value.y, gridPosition.Value.x]);
     }
 
     private void ApplyPaintBucket(Point position)

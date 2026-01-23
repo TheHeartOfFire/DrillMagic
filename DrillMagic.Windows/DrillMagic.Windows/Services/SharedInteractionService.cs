@@ -12,7 +12,7 @@ public enum InteractionMode
     ColorInspector
 }
 
-public partial class SharedInteractionService : INotifyPropertyChanged
+public partial class SharedInteractionService : ISharedInteractionService
 {
     private InteractionMode _currentMode = InteractionMode.Navigate;
     private DMCColor? _highlightedColor;

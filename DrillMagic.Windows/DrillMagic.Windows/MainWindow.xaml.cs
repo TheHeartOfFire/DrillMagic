@@ -32,8 +32,12 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
     // Private fields
     private SolidColorBrush _selectedBrush { get; set; } = new SolidColorBrush(Color.FromArgb(0,0,0,0));
     private string _selectedColorName = "None";
-    private SharedInteractionService? _sharedInteractionService; 
+    private ISharedInteractionService? _sharedInteractionService; 
     private volatile bool _suppressColorChanged = false;
+
+    // Services
+    private readonly IColorMapService _colorMapService;
+    private readonly IPdfGenerator _pdfGenerator;
 
     // Public properties
     public SolidColorBrush SelectedBrush 
@@ -67,6 +71,10 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
     {
         InitializeComponent(); 
         
+        // Resolve services from the App's service provider
+        _colorMapService = App.Current.Services!.GetRequiredService<IColorMapService>();
+        _pdfGenerator = App.Current.Services!.GetRequiredService<IPdfGenerator>();
+
         if (this.Content is FrameworkElement rootElement)
         {
             rootElement.Loaded += MainWindow_Loaded;
@@ -79,22 +87,12 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
         await PopulateToolkitPaletteAsync();
         DrillGridManager = App.Current.Services!.GetRequiredService<IDrillGridManager>();
         DrillGridManager.PropertyChanged += DrillGridManager_PropertyChanged;
-        _sharedInteractionService = App.Current.Services!.GetRequiredService<SharedInteractionService>();
+        _sharedInteractionService = App.Current.Services!.GetRequiredService<ISharedInteractionService>();
         _sharedInteractionService.PropertyChanged += InteractionServicePropertyChanged;
-        await InitializeDataAsync();
-    }
-
-    private async Task InitializeDataAsync()
-    {
-        if (ColorMap.DefaultColorMap.Count == 0)
-        {
-            await Task.Run(() => ColorMap.Initialize());
-        }
-
-        DispatcherQueue.TryEnqueue(() =>
-        {
-            UpdateFilteredColors();
-        });
+        
+        // Data initialization happens in the service constructor now, 
+        // so we just update the UI.
+        UpdateFilteredColors();
     }
 
     // DrillGridManager property change handler
@@ -161,7 +159,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
     private void UpdateFilteredColors()
     {
         var searchText = SelectedColorName ?? string.Empty;
-        var allColors = ColorMap.DefaultColorMap.Values;
+        var allColors = _colorMapService.DefaultColorMap.Values;
         var filtered = string.IsNullOrWhiteSpace(searchText)
             ? allColors
             : allColors.Where(c => c.Name.Contains(searchText, StringComparison.CurrentCultureIgnoreCase)
@@ -191,7 +189,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
 
         var picked = e.NewColor;
 
-        var exactMatches = ColorMap.DefaultColorMap.Values
+        var exactMatches = _colorMapService.DefaultColorMap.Values
             .Where(d => d.UiColor.A == picked.A && d.UiColor.R == picked.R && d.UiColor.G == picked.G && d.UiColor.B == picked.B)
             .ToList();
 
@@ -205,7 +203,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
         {
             var list = new ListView
             {
-                ItemsSource = exactMatches.Select(x => $"{x.DMCNumber} — {x.Name}"),
+                ItemsSource = exactMatches.Select(x => $"{x.DMCNumber}  {x.Name}"),
                 SelectionMode = ListViewSelectionMode.Single,
                 Height = 200
             };
@@ -225,7 +223,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
         }
         else
         {
-            chosen = ColorMap.DefaultColorMap.Values
+            chosen = _colorMapService.DefaultColorMap.Values
                 .OrderBy(d =>
                 {
                     var r = d.UiColor.R - picked.R;
@@ -251,7 +249,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
 
     private async void ToolkitSearchBox_TextChanged(object sender, TextChangedEventArgs e)
     {
-        UpdateSelectedColorName(ColorMap.GetDMCColor(ToolkitSearchBox.Text));
+        UpdateSelectedColorName(_colorMapService.GetDMCColor(ToolkitSearchBox.Text));
     }
 
     private async void ToolkitPickerButton_Click(object sender, RoutedEventArgs e)
@@ -303,9 +301,7 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
         // Build the list off the UI thread
         List<Color> colors = await Task.Run(() =>
         {
-            try { ColorMap.Initialize(); } catch { /* ignore */ }
-
-            var entries = ColorMap.DefaultColorMap.Values
+            var entries = _colorMapService.DefaultColorMap.Values
                 .Where(c => string.IsNullOrWhiteSpace(filter) ||
                             (c.Name ?? string.Empty).Contains(filter.Trim(), StringComparison.CurrentCultureIgnoreCase) ||
                             c.DMCNumber.ToString().Contains(filter?.Trim() ?? string.Empty))
@@ -413,10 +409,9 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
         if (file is null) return;
 
         try
-
         {
-            // Call the new PDFsharp-based generator.
-            var (pdfBytes, errorMessage) = await PdfSharpGenerator.GenerateDrillGridPdf(MyDrillGridView.Grid);
+            // Call the new service-based generator.
+            var (pdfBytes, errorMessage) = await _pdfGenerator.GenerateDrillGridPdf(MyDrillGridView.Grid);
 
             if (pdfBytes is null || pdfBytes.Length == 0)
             {
@@ -427,12 +422,12 @@ public sealed partial class MainWindow : WindowEx, INotifyPropertyChanged
                 }
                 await ShowErrorDialog("PDF Generation Failed", errorContent);
                 return;
-
-
-
             }
 
             await File.WriteAllBytesAsync(file.Path, pdfBytes);
+            
+            // Optional: You could show a "Success" dialog or open the file automatically.
+            // await ShowErrorDialog("Success", "PDF saved successfully.");
         }
         catch (Exception ex)
         {

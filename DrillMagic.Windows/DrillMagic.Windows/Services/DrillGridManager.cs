@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using DrillMagic.Core;
+using DrillMagic.Core.Types;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,6 +25,12 @@ public partial class DrillGridManager : ObservableObject, IDrillGridManager
 
     private readonly Dictionary<uint, DrillGrid> _grids = [];
     private MemoryStream? _imageStream;
+    private readonly IColorMapService _colorMapService;
+
+    public DrillGridManager(IColorMapService colorMapService)
+    {
+        _colorMapService = colorMapService ?? throw new ArgumentNullException(nameof(colorMapService));
+    }
 
     public async Task LoadImageAsync(MemoryStream imageStream, CancellationToken cancellationToken = default)
     {
@@ -75,10 +82,9 @@ public partial class DrillGridManager : ObservableObject, IDrillGridManager
 
         if (_imageStream is not null)
         {
-            var newGrid = await Task.Run(() => new DrillGrid(_imageStream, cellSize, 0,0));
+            var newGrid = await Task.Run(() => new DrillGrid(_colorMapService, _imageStream, cellSize, 0, 0));
             _grids[cellSize] = newGrid;
             SelectedGrid = newGrid;
-               
         }
     }
 }

@@ -12,10 +12,11 @@ using System.Threading.Tasks;
 
 namespace DrillMagic.Windows.Utils;
 
-public static class PdfSharpGenerator
+public class PdfSharpGenerator : IPdfGenerator
 {
     private const float DrillWidth = 0.11811f; // Approx 3mm
     private const float DrillWidthPoints = DrillWidth * 72; // 1 inch = 72 points
+    private readonly IColorMapService _colorMapService;
 
     /// <summary>
     /// Static constructor to register our custom font resolver with PDFsharp.
@@ -26,7 +27,12 @@ public static class PdfSharpGenerator
         GlobalFontSettings.FontResolver = new FontResolver();
     }
 
-    public static Task<(byte[]? PdfBytes, string? ErrorMessage)> GenerateDrillGridPdf(DrillGrid grid)
+    public PdfSharpGenerator(IColorMapService colorMapService)
+    {
+        _colorMapService = colorMapService ?? throw new ArgumentNullException(nameof(colorMapService));
+    }
+
+    public Task<(byte[]? PdfBytes, string? ErrorMessage)> GenerateDrillGridPdf(DrillGrid grid)
     {
         try
         {
@@ -79,7 +85,7 @@ public static class PdfSharpGenerator
         }
     }
 
-    private static void AddLegendPage(PdfDocument document, Dictionary<System.Drawing.Color, int> colorSummary, Dictionary<System.Drawing.Color, string> symbols)
+    private void AddLegendPage(PdfDocument document, Dictionary<System.Drawing.Color, int> colorSummary, Dictionary<System.Drawing.Color, string> symbols)
     {
         var page = document.AddPage();
         page.Width = XUnit.FromPoint(8.5 * 72);
@@ -154,7 +160,8 @@ public static class PdfSharpGenerator
                 yPos += rowHeight;
             }
 
-            var dmcColor = ColorMap.GetDMCColor(entry.Key);
+            // Replacing Static call with instance call
+            var dmcColor = _colorMapService.GetDMCColor(entry.Key);
 
             // Define column positions relative to the current column
             var orderColX = currentColumnX;
@@ -173,7 +180,8 @@ public static class PdfSharpGenerator
             gfx.DrawString(symbols[entry.Key], symbolFont, symbolBrush, new XRect(colorColX, yPos, 15, 15), XStringFormats.Center);
 
             // Draw DMC Number
-            gfx.DrawString(dmcColor.DMCNumber.ToString(), bodyFont, XBrushes.Black, new XRect(dmcColX, yPos, 50, rowHeight), XStringFormats.CenterLeft);
+            var dmcText = dmcColor.DMCNumber == uint.MaxValue ? "-" : dmcColor.DMCNumber.ToString();
+            gfx.DrawString(dmcText, bodyFont, XBrushes.Black, new XRect(dmcColX, yPos, 50, rowHeight), XStringFormats.CenterLeft);
 
             // Draw Count
             gfx.DrawString(entry.Value.ToString(), bodyFont, XBrushes.Black, new XRect(countColX, yPos, 50, rowHeight), XStringFormats.CenterLeft);

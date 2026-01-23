@@ -53,12 +53,15 @@ public sealed partial class ColorSummaryLegend : UserControl, INotifyPropertyCha
                 .Select(c2 => (char)c2), (c1, c2) => $"{c1}{c2}"),
     ]; // Total count 1,399
 
-    private readonly SharedInteractionService _sharedInteractionService;
+    private readonly ISharedInteractionService _sharedInteractionService;
+    private readonly IColorMapService _colorMapService;
 
     public ColorSummaryLegend()
     {
         this.InitializeComponent();
-        _sharedInteractionService = App.Current.Services.GetRequiredService<SharedInteractionService>();
+        _sharedInteractionService = App.Current.Services.GetRequiredService<ISharedInteractionService>();
+        _colorMapService = App.Current.Services.GetRequiredService<IColorMapService>();
+        
         ColorSummary.CollectionChanged += (s, e) =>
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TotalDrills)));
@@ -71,7 +74,7 @@ public sealed partial class ColorSummaryLegend : UserControl, INotifyPropertyCha
     {
         if (e.AddedItems.FirstOrDefault() is ColorSummaryItem selectedItem)
         {
-            _sharedInteractionService.HighlightedColor = ColorMap.GetDMCColor(selectedItem.DMCNumber);
+            _sharedInteractionService.HighlightedColor = _colorMapService.GetDMCColor(selectedItem.DMCNumber);
         }
         else if (e.RemovedItems.Any())
         {
@@ -90,7 +93,8 @@ public sealed partial class ColorSummaryLegend : UserControl, INotifyPropertyCha
             int currentSymbolIndex = 0;
             foreach (var entry in summary.OrderByDescending(kvp => kvp.Value))
             {
-                var dmcColor = ColorMap.DefaultColorMap.Values.FirstOrDefault(c => c.Color == entry.Key);
+                // Accessing the instance service from the static context via the control instance
+                var dmcColor = control._colorMapService.DefaultColorMap.Values.FirstOrDefault(c => c.Color == entry.Key);
                 var name = dmcColor?.Name ?? "Unknown";
                 var hex = dmcColor?.Hex ?? $"#{entry.Key.R:X2}{entry.Key.G:X2}{entry.Key.B:X2}";
                 var rgb = $"RGB({entry.Key.R}, {entry.Key.G}, {entry.Key.B})";

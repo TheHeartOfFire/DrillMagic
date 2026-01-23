@@ -1,6 +1,6 @@
 ﻿using DrillMagic.Utils;
 
-ColorMapping.GenerateDMCImage(10);
+Console.WriteLine("DrillMagic Utils Module");
 
 
 
