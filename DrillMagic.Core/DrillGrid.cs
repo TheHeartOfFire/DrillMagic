@@ -6,12 +6,16 @@ using System.Drawing;
 using System.Runtime.CompilerServices;
 using Color = System.Drawing.Color;
 using System.IO;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace DrillMagic.Core
 {
     public partial class DrillGrid : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        private readonly ILogger _logger;
 
         public Color[,] Grid { get; set; } = new Color[0, 0];
         public uint CellSize { get; set; } = 0;
@@ -36,10 +40,11 @@ namespace DrillMagic.Core
 
         public DrillGrid(IColorMapService colorMapService, int height, int width,
             uint cellSize = 0, float rotation = 0,
-            float normalizedStaggerOffset = 0)
+            float normalizedStaggerOffset = 0, ILogger<DrillGrid>? logger = null)
         {
             ArgumentNullException.ThrowIfNull(colorMapService);
             _colorMapService = colorMapService;
+            _logger = logger ?? NullLogger<DrillGrid>.Instance;
 
             Grid = new Color[height, width];
             for (int i = 0; i < height; i++)
@@ -53,11 +58,12 @@ namespace DrillMagic.Core
             Rotation = rotation;
             NormalizedStaggerOffset = normalizedStaggerOffset;
             RecalculateColorSummary();
+            _logger.LogInformation("DrillGrid initialized (Empty) with size {Width}x{Height}", width, height);
         }
 
         public DrillGrid(IColorMapService colorMapService, MemoryStream imageStream,
             uint cellSize = 0, float rotation = 0,
-            float normalizedStaggerOffset = 0)
+            float normalizedStaggerOffset = 0, ILogger<DrillGrid>? logger = null)
         {
             ArgumentNullException.ThrowIfNull(colorMapService);
             ArgumentNullException.ThrowIfNull(imageStream);
@@ -65,12 +71,19 @@ namespace DrillMagic.Core
                 throw new ArgumentException("Cell size cannot be zero.", nameof(cellSize));
 
             _colorMapService = colorMapService;
+            _logger = logger ?? NullLogger<DrillGrid>.Instance;
+
+            _logger.LogInformation("Initializing DrillGrid from image stream with cell size {CellSize}", cellSize);
 
             imageStream.Position = 0;
             using var image = SixLabors.ImageSharp.Image.Load<Rgba32>(imageStream);
+            _logger.LogDebug("Image loaded. Dimensions: {Width}x{Height}", image.Width, image.Height);
 
             int gridHeight = image.Height / (int)cellSize;
             int gridWidth = image.Width / (int)cellSize;
+            
+            _logger.LogDebug("Calculated grid dimensions: {GridWidth}x{GridHeight}", gridWidth, gridHeight);
+            
             Grid = new Color[gridHeight, gridWidth];
 
             for (int i = 0; i < gridHeight; i++)
@@ -87,6 +100,7 @@ namespace DrillMagic.Core
             Rotation = rotation;
             NormalizedStaggerOffset = normalizedStaggerOffset;
             RecalculateColorSummary();
+            _logger.LogInformation("DrillGrid generation complete. Total unique colors: {ColorCount}", ColorSummary.Count);
         }
 
         /// <summary>
@@ -98,12 +112,17 @@ namespace DrillMagic.Core
             if (targetColorCount <= 0)
                 throw new ArgumentException("Target color count must be greater than zero.", nameof(targetColorCount));
 
+            _logger.LogInformation("Starting color reduction. Target: {TargetCount}, Current: {CurrentCount}", targetColorCount, ColorSummary.Count);
+
             // Recalculate summary to ensure it's fresh before starting.
             RecalculateColorSummary();
             var currentSummary = new Dictionary<Color, int>(ColorSummary);
 
             if (currentSummary.Count <= targetColorCount)
+            {
+                _logger.LogInformation("Current color count is already less than or equal to target. No reduction needed.");
                 return;
+            }
 
             while (currentSummary.Count > targetColorCount)
             {
@@ -151,6 +170,7 @@ namespace DrillMagic.Core
 
             // Final recalculation to update the public property and notify listeners
             RecalculateColorSummary();
+            _logger.LogInformation("Color reduction complete. Final color count: {FinalCount}", ColorSummary.Count);
         }
 
         public void RecalculateColorSummary()

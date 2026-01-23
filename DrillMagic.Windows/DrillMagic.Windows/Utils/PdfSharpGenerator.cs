@@ -1,6 +1,7 @@
 using DrillMagic.Core;
 using DrillMagic.Core.Types;
 using DrillMagic.Windows.Controls;
+using Microsoft.Extensions.Logging;
 using PdfSharp.Drawing;
 using PdfSharp.Fonts;
 using PdfSharp.Pdf;
@@ -17,6 +18,7 @@ public class PdfSharpGenerator : IPdfGenerator
     private const float DrillWidth = 0.11811f; // Approx 3mm
     private const float DrillWidthPoints = DrillWidth * 72; // 1 inch = 72 points
     private readonly IColorMapService _colorMapService;
+    private readonly ILogger<PdfSharpGenerator> _logger;
 
     /// <summary>
     /// Static constructor to register our custom font resolver with PDFsharp.
@@ -27,13 +29,15 @@ public class PdfSharpGenerator : IPdfGenerator
         GlobalFontSettings.FontResolver = new FontResolver();
     }
 
-    public PdfSharpGenerator(IColorMapService colorMapService)
+    public PdfSharpGenerator(IColorMapService colorMapService, ILogger<PdfSharpGenerator> logger)
     {
         _colorMapService = colorMapService ?? throw new ArgumentNullException(nameof(colorMapService));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
     public Task<(byte[]? PdfBytes, string? ErrorMessage)> GenerateDrillGridPdf(DrillGrid grid)
     {
+        _logger.LogInformation("Starting PDF generation for grid {Width}x{Height}", grid.Width, grid.Height);
         try
         {
             var symbols = new Dictionary<System.Drawing.Color, string>();
@@ -56,6 +60,8 @@ public class PdfSharpGenerator : IPdfGenerator
             var cellsPerPageY = (int)(availableHeightPoints / DrillWidthPoints);
             var totalPagesX = (grid.Width + cellsPerPageX - 1) / cellsPerPageX;
             var totalPagesY = (grid.Height + cellsPerPageY - 1) / cellsPerPageY;
+            
+            _logger.LogInformation("PDF will contain {TotalPagesX}x{TotalPagesY} pages for the grid", totalPagesX, totalPagesY);
 
             for (int pageY = 0; pageY < totalPagesY; pageY++)
             {
@@ -77,10 +83,12 @@ public class PdfSharpGenerator : IPdfGenerator
 
             using var pdfStream = new MemoryStream();
             document.Save(pdfStream, false);
+            _logger.LogInformation("PDF generation completed successfully");
             return Task.FromResult<(byte[]?, string?)>((pdfStream.ToArray(), null));
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "PDF generation failed");
             return Task.FromResult<(byte[]?, string?)>((null, ex.ToString()));
         }
     }

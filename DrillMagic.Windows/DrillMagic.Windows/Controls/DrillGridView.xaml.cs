@@ -2,6 +2,7 @@ using DrillMagic.Core;
 using DrillMagic.Core.Types;
 using DrillMagic.Windows.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Graphics.Canvas.Text;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Microsoft.UI;
@@ -41,6 +42,7 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
+    private readonly ILogger<DrillGridView> _logger;
     private readonly ISharedInteractionService _sharedInteractionService;
     // Explicitly using the interface to avoid any confusion with the ColorMap class
     private readonly IColorMapService _colorMapService; 
@@ -60,7 +62,10 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
         InitializeComponent();
         _sharedInteractionService = App.Current.Services.GetRequiredService<ISharedInteractionService>();
         _colorMapService = App.Current.Services.GetRequiredService<IColorMapService>();
-        
+        _logger = App.Current.Services.GetRequiredService<ILogger<DrillGridView>>();
+
+        _logger.LogInformation("DrillGridView initialized");
+
         _sharedInteractionService.PropertyChanged += OnInteractionServicePropertyChanged;
         // Pointer events
         PointerPressed += OnPointerPressed;
@@ -77,6 +82,7 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
         if (e.PropertyName == nameof(SharedInteractionService.HighlightedColor))
         {
             _highlightedColor = _sharedInteractionService.HighlightedColor;
+            _logger.LogTrace("Highlighted color changed to {Color}. Invalidating canvas.", _highlightedColor);
             Canvas.Invalidate(); // Redraw the canvas to apply/remove highlight
         }
     }
@@ -84,6 +90,7 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
     {
         if (ColorSummaryLegend.FindName("ColorSummaryGrid") is GridView gridView)
         {
+            _logger.LogInformation("Clearing color summary legend selection");
             gridView.SelectedItem = null;
         }
     }
@@ -97,10 +104,15 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
         }
         if (e.NewValue is DrillGrid newGrid)
         {
+            view._logger.LogInformation("Grid changed. New grid size: {Width}x{Height}", newGrid.Width, newGrid.Height);
             view._transform = Matrix3x2.Identity;
             view._isCentered = false;
             view.UpdateColorToSymbolMap();
             newGrid.PropertyChanged += view.OnGridPropertyChanged;
+        }
+        else
+        {
+            view._logger.LogInformation("Grid cleared");
         }
         view.Canvas.Invalidate();
     }
@@ -109,6 +121,7 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
     {
         if (e.PropertyName == nameof(DrillGrid.ColorSummary))
         {
+            _logger.LogDebug("Grid color summary changed. Updating symbol map.");
             ColorSummaryLegend.Summary = Grid?.ColorSummary ?? [];
             UpdateColorToSymbolMap();
         }
@@ -130,11 +143,13 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
                 currentSymbolIndex++;
             }
         }
+        _logger.LogDebug("Symbol map updated with {Count} entries", _colorToSymbolMap.Count);
     }
 
     private static void OnSymbolOverlayChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var control = (DrillGridView)d;
+        control._logger.LogInformation("Symbol overlay enabled: {IsEnabled}", e.NewValue);
         control.Canvas.Invalidate();
     }
 
@@ -161,6 +176,7 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
                 var ty = (canvasHeight - scaledGridHeight) / 2f;
 
                 _transform = Matrix3x2.CreateScale(scale) * Matrix3x2.CreateTranslation(tx, ty);
+                _logger.LogDebug("Calculated initial transform: Scale={Scale}, Translation=({Tx}, {Ty})", scale, tx, ty);
             }
             _isCentered = true;
         }
@@ -229,6 +245,7 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
         var properties = e.GetCurrentPoint(this);
         var isLeftButtonPressed = properties.Properties.IsLeftButtonPressed;
         var isMiddleButtonPressed = properties.Properties.IsMiddleButtonPressed;
+        _logger.LogTrace("Pointer pressed. Position: {Position}, Left: {Left}, Middle: {Middle}, Mode: {Mode}", properties.Position, isLeftButtonPressed, isMiddleButtonPressed, _sharedInteractionService.CurrentMode);
 
         if (_sharedInteractionService.CurrentMode is InteractionMode.Navigate &&
             e.Pointer.PointerDeviceType == PointerDeviceType.Mouse && (isLeftButtonPressed || isMiddleButtonPressed))
@@ -269,8 +286,12 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
 
         if (!gridPosition.HasValue) return;
 
+        var color = Grid!.Grid[gridPosition.Value.y, gridPosition.Value.x];
+        var dmcColor = _colorMapService.GetDMCColor(color);
+        _logger.LogInformation("Capturing color at ({X}, {Y}): {DMCColor}", gridPosition.Value.x, gridPosition.Value.y, dmcColor.Name);
+
         // Ensuring we use the service instance to look up the color
-        _sharedInteractionService.InspectedColor = _colorMapService.GetDMCColor(Grid!.Grid[gridPosition.Value.y, gridPosition.Value.x]);
+        _sharedInteractionService.InspectedColor = dmcColor;
     }
 
     private void ApplyPaintBucket(Point position)
@@ -279,6 +300,7 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
 
         if (!gridPosition.HasValue) return;
 
+        _logger.LogInformation("Applying paint bucket at ({X}, {Y}) with color {SelectedColor}", gridPosition.Value.x, gridPosition.Value.y, _sharedInteractionService.SelectedColor);
         Grid!.Grid[gridPosition.Value.y, gridPosition.Value.x] = _sharedInteractionService.SelectedColor;
         Grid.RecalculateColorSummary();
     }
@@ -304,6 +326,10 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
 
     private void OnPointerReleased(object sender, PointerRoutedEventArgs e)
     {
+        if (_lastPointerPosition.HasValue)
+        {
+            _logger.LogTrace("Pointer released/canceled. Interaction ended.");
+        }
         _lastPointerPosition = null;
         ReleasePointerCapture(e.Pointer);
     }
@@ -328,6 +354,9 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
         _transform.M11 = Math.Clamp(_transform.M11, MinZoom, MaxZoom);
         _transform.M22 = Math.Clamp(_transform.M22, MinZoom, MaxZoom);
         _transform.Translation = ClampTranslation(_transform.Translation);
+
+        // Optional low-level drawing/interaction log - potentially verbose
+        // _logger.LogTrace("Zoom changed. New scale: {Scale}", _transform.M11);
 
         Canvas.Invalidate();
     }
