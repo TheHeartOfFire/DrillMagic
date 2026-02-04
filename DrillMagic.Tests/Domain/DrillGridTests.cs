@@ -93,5 +93,64 @@ public class DrillGridTests
         // Verify replacement in grid
         grid.Grid[1, 0].Should().Be(c1);
     }
+
+    [Fact]
+    public void GetClosestDMCColor_ShouldReturnOriginalColor_WhenNoMatchFound()
+    {
+        // Arrange
+        // Simulate finding nothing (e.g., empty repository)
+        _mockColorMapService.Setup(s => s.FindClosestDMCColor(It.IsAny<Color>()))
+            .Returns(DMCColor.Empty);
+
+        var grid = new DrillGrid(_mockColorMapService.Object, 10, 10);
+        var inputColor = Color.Magenta;
+
+        // Act
+        var result = grid.GetClosestDMCColor(inputColor);
+
+        // Assert
+        result.Should().Be(inputColor);
+    }
+
+    [Fact]
+    public void GetClosestDMCColor_ShouldReturnCachedResult_OnSecondCall()
+    {
+        // Arrange
+        var inputColor = Color.Magenta;
+        // Use ARGB to match what DMCColor returns via ColorTranslator.FromHtml
+        var matchedColor = Color.FromArgb(255, 0, 0, 0); 
+        var dmc = new DMCColor("Black", 310, "#000000"); // Black matches usually
+
+        _mockColorMapService.Setup(s => s.FindClosestDMCColor(inputColor))
+            .Returns(dmc);
+
+        var grid = new DrillGrid(_mockColorMapService.Object, 10, 10);
+
+        // Act
+        var result1 = grid.GetClosestDMCColor(inputColor);
+        var result2 = grid.GetClosestDMCColor(inputColor);
+
+        // Assert
+        result1.ToArgb().Should().Be(matchedColor.ToArgb());
+        result2.ToArgb().Should().Be(matchedColor.ToArgb());
+
+        // Verify service was called only once due to caching/buffering
+        _mockColorMapService.Verify(s => s.FindClosestDMCColor(inputColor), Times.Once);
+    }
+    
+    [Fact]
+    public void ReduceColors_ShouldDoNothing_WhenCountIsAlreadyLow()
+    {
+        // Arrange
+        var grid = new DrillGrid(_mockColorMapService.Object, 10, 10);
+        grid.Grid[0,0] = Color.Red;
+        grid.RecalculateColorSummary(); // Count = 1
+
+        // Act
+        grid.ReduceColors(2);
+
+        // Assert
+        grid.ColorSummary.Count.Should().Be(1);
+    }
 }
 
