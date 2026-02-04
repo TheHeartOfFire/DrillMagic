@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DrillMagic.Core\DrillMagic.Core.csproj" />
+    <ProjectReference Include="..\DrillMagic.Windows\DrillMagic.Windows\DrillMagic.Windows.csproj" />
   </ItemGroup>
 
 </Project>
