@@ -4,7 +4,7 @@ using DrillMagic.Core;
 using FluentAssertions;
 using Xunit;
 
-namespace DrillMagic.Tests.Core;
+namespace DrillMagic.Test.Core;
 
 public class UtilsTests
 {
@@ -87,7 +87,7 @@ public class UtilsTests
     [Fact]
     public void ToDrawingColor_ShouldConvertCorrectly()
     {
-        var uiColor = Windows.UI.Color.FromArgb(255, 50, 60, 70);
+        var uiColor = global::Windows.UI.Color.FromArgb(255, 50, 60, 70);
         var drawingColor = uiColor.ToDrawingColor();
         drawingColor.A.Should().Be(255);
         drawingColor.R.Should().Be(50);

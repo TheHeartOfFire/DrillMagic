@@ -9,7 +9,7 @@ using Xunit;
 using DrawingColor = System.Drawing.Color;
 using System;
 
-namespace DrillMagic.Tests.Domain;
+namespace DrillMagic.Test.Domain;
 
 public class DrillGridFactoryTests
 {

@@ -6,7 +6,7 @@ using DrillMagic.Core.Types;
 using System.Drawing;
 using System.Collections.Generic;
 
-namespace DrillMagic.Tests.Domain;
+namespace DrillMagic.Test.Domain;
 
 public class DrillGridTests
 {

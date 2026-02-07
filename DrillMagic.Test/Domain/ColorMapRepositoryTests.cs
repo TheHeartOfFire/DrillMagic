@@ -10,7 +10,7 @@ using DrillMagic.Core.Types;
 using System.Collections.Generic;
 using System.Text.Json;
 
-namespace DrillMagic.Tests.Domain
+namespace DrillMagic.Test.Domain
 {
     public class ColorMapRepositoryTests
     {

@@ -9,7 +9,7 @@ using FluentAssertions;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace DrillMagic.Tests.Visualization;
+namespace DrillMagic.Test.Visualization;
 
 public class HistogramGeneratorTests
 {

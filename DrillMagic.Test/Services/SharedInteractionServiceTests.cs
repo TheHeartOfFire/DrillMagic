@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using System.Drawing;
 
-namespace DrillMagic.Tests.Services;
+namespace DrillMagic.Test.Services;
 
 public class SharedInteractionServiceTests
 {
