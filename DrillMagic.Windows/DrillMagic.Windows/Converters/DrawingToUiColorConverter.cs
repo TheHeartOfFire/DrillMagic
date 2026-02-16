@@ -14,7 +14,8 @@ public partial class DrawingToUiColorConverter : IValueConverter
         {
             return new Color { A = drawingColor.A, R = drawingColor.R, G = drawingColor.G, B = drawingColor.B };
         }
-        return Colors.Transparent;
+        // Use Color.FromArgb instead of Colors.Transparent to avoid WinUI COM initialization
+        return Color.FromArgb(0, 0, 0, 0);
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, string language)

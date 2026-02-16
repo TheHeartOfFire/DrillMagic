@@ -1,0 +1,46 @@
+Summary
+  Generated on: 2/15/2026 - 8:54:01 PM
+  Coverage date: 2/15/2026 - 8:53:49 PM
+  Parser: Cobertura
+  Assemblies: 2
+  Classes: 22
+  Files: 29
+  Line coverage: 26.4%
+  Covered lines: 791
+  Uncovered lines: 2203
+  Coverable lines: 2994
+  Total lines: 7822
+  Branch coverage: 23% (218 of 945)
+  Covered branches: 218
+  Total branches: 945
+  Method coverage: 25.8% (78 of 302)
+  Full method coverage: 22.1% (67 of 302)
+  Covered methods: 78
+  Fully covered methods: 67
+  Total methods: 302
+
+DrillMagic.Core                                               91.2%
+  DrillMagic.Core.Constants.DrillSymbols                       100%
+  DrillMagic.Core.DrillGrid                                   98.2%
+  DrillMagic.Core.DrillGridFactory                             100%
+  DrillMagic.Core.Types.ColorMap                                 0%
+  DrillMagic.Core.Types.ColorMapRepository                      62%
+  DrillMagic.Core.Types.ColorMapService                       96.6%
+  DrillMagic.Core.Types.DMCColor                               100%
+  DrillMagic.Core.Utils                                       94.4%
+  DrillMagic.Core.Visualization.HistogramGenerator             100%
+
+DrillMagic.Windows                                            11.5%
+  DrillMagic.Windows.App                                         0%
+  DrillMagic.Windows.Controls.ColorSummaryLegend                 0%
+  DrillMagic.Windows.Controls.DrillGridView                      0%
+  DrillMagic.Windows.Converters.ColorToForegroundConverter    33.3%
+  DrillMagic.Windows.Converters.DrawingToUiColorConverter       75%
+  DrillMagic.Windows.Converters.ObjectToVisibilityConverter     60%
+  DrillMagic.Windows.MainWindow                                  0%
+  DrillMagic.Windows.Models.ColorSummaryItem                     0%
+  DrillMagic.Windows.Program                                     0%
+  DrillMagic.Windows.Services.DrillGridManager                75.6%
+  DrillMagic.Windows.Services.SharedInteractionService         100%
+  DrillMagic.Windows.Utils.FontResolver                       94.2%
+  DrillMagic.Windows.Utils.PdfSharpGenerator                  90.8%

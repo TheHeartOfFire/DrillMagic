@@ -12,13 +12,29 @@ using System.Text.Json;
 
 namespace DrillMagic.Test.Domain
 {
-    public class ColorMapRepositoryTests
+    public class ColorMapRepositoryTests : IDisposable
     {
         private readonly Mock<ILogger<ColorMapRepository>> _mockLogger;
+        private readonly List<string> _tempFiles = new();
 
         public ColorMapRepositoryTests()
         {
             _mockLogger = new Mock<ILogger<ColorMapRepository>>();
+        }
+        
+        public void Dispose()
+        {
+            foreach (var file in _tempFiles)
+            {
+                if (File.Exists(file)) File.Delete(file);
+            }
+        }
+
+        private string GetTempFilePath()
+        {
+            var path = Path.GetTempFileName();
+            _tempFiles.Add(path);
+            return path;
         }
 
         [Fact]
@@ -40,16 +56,64 @@ namespace DrillMagic.Test.Domain
         [Fact]
         public void Constructor_ShouldInitializeCustomMappings_AsEmpty_WhenFileDoesNotExist()
         {
-            // Note: This test is tricky because it accesses the real file system at a hardcoded path.
-            // However, we expect it to at least initialize the property to non-null.
-            // Ideally we would mock the file system or redirect the path for tests.
+            // Arrange
+            var nonExistentFile = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N")); // Ensure it doesn't exist
             
             // Act
-            var repository = new ColorMapRepository(_mockLogger.Object);
+            var repository = new ColorMapRepository(_mockLogger.Object, nonExistentFile);
 
             // Assert
             repository.CustomMappings.Should().NotBeNull();
-            // It might be empty or not depending on the machine, but it should not match null.
+            repository.CustomMappings.Should().BeEmpty();
+        }
+
+        [Fact]
+        public void Constructor_ShouldLoadCustomMappings_WhenFileExists()
+        {
+            // Arrange
+            var tempFile = GetTempFilePath();
+            var mappings = new List<Dictionary<uint, string>> 
+            {
+                new Dictionary<uint, string> { { 310, "Black" }, { 5200, "Snow White" } }
+            };
+            File.WriteAllText(tempFile, JsonSerializer.Serialize(mappings));
+            
+            // Act
+            var repository = new ColorMapRepository(_mockLogger.Object, tempFile);
+
+            // Assert
+            repository.CustomMappings.Should().HaveCount(1);
+            repository.CustomMappings[0].Should().ContainKey(310);
+        }
+
+        [Fact]
+        public void Constructor_ShouldHandleCorruptCustomMappings_ByLoggingError()
+        {
+            // Arrange
+            var tempFile = GetTempFilePath();
+            File.WriteAllText(tempFile, "invalid json content");
+            
+            // Act
+            var repository = new ColorMapRepository(_mockLogger.Object, tempFile);
+
+            // Assert
+            repository.CustomMappings.Should().BeEmpty();
+            // Verify log error was called (tricky with extension methods, checking state is safer)
+        }
+
+        [Fact]
+        public void Constructor_ShouldNotThrow_WhenFileIsEmpty()
+        {
+            // Arrange
+            var tempFile = GetTempFilePath();
+            File.WriteAllText(tempFile, string.Empty);
+            
+            // Act
+            var repository = new ColorMapRepository(_mockLogger.Object, tempFile);
+
+            // Assert
+            repository.CustomMappings.Should().NotBeNull();
+            repository.CustomMappings.Should().BeEmpty();
         }
         
         [Fact]

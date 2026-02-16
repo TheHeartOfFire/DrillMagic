@@ -109,7 +109,8 @@ public class DrillGridManagerTests
 
     private static MemoryStream CreateTestImageStream(int width, int height)
     {
-        var image = new Image<Rgba32>(width, height);
+        var runStream = new MemoryStream();
+        using var image = new Image<Rgba32>(width, height);
         // Fill with some color to ensure valid pixel data
         image.ProcessPixelRows(accessor => {
             for (int y = 0; y < accessor.Height; y++)
@@ -122,9 +123,52 @@ public class DrillGridManagerTests
             }
         });
         
-        var stream = new MemoryStream();
-        image.SaveAsPng(stream);
-        stream.Position = 0;
-        return stream;
+        image.SaveAsPng(runStream);
+        runStream.Position = 0;
+        return runStream;
+    }
+
+    [Fact]
+    public async Task LoadImageAsync_ShouldHandleException_AndResetState()
+    {
+        // Arrange
+        var invalidStream = new MemoryStream([0, 0, 0, 0]); // Not a valid image
+        
+        // Act
+        Func<Task> act = async () => await _sut.LoadImageAsync(invalidStream);
+
+        // Assert
+        await act.Should().ThrowAsync<Exception>();
+        _sut.IsBusy.Should().BeFalse();
+    }
+
+    [Fact]
+    public async Task SelectGridAsync_ShouldReuseCachedGrid_WhenCalledTwice()
+    {
+        // Arrange
+        using var stream = CreateTestImageStream(10, 10);
+        await _sut.LoadImageAsync(stream);
+        var size = _sut.AvailableCellSizes[0];
+
+        // Act
+        await _sut.SelectGridAsync(size);
+        var firstGrid = _sut.SelectedGrid;
+        
+        await _sut.SelectGridAsync(size);
+        var secondGrid = _sut.SelectedGrid;
+
+        // Assert
+        firstGrid.Should().NotBeNull();
+        secondGrid.Should().BeSameAs(firstGrid);
+    }
+
+    [Fact]
+    public async Task SelectGridAsync_ShouldDoNothing_WhenNoImageLoaded()
+    {
+        // Act
+        await _sut.SelectGridAsync(5);
+
+        // Assert
+        _sut.SelectedGrid.Should().BeNull();
     }
 }
