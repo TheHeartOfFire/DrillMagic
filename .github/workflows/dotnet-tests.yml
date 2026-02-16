@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 9.0.x
     - name: Restore dependencies
-      run: dotnet restore DrillMagic.Tests/DrillMagic.Tests.csproj
+      run: dotnet restore DrillMagic.Test/DrillMagic.Test.csproj
     - name: Build
-      run: dotnet build DrillMagic.Tests/DrillMagic.Tests.csproj --no-restore
+      run: dotnet build DrillMagic.Test/DrillMagic.Test.csproj --no-restore
     - name: Test
-      run: dotnet test DrillMagic.Tests/DrillMagic.Tests.csproj --no-build --verbosity normal
+      run: dotnet test DrillMagic.Test/DrillMagic.Test.csproj --no-build --verbosity normal

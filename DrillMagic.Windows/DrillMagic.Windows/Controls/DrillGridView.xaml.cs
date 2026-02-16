@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Numerics;
+using DrillMagic.Core.Constants; // Added
 using Windows.Foundation;
 using Windows.UI;
 
@@ -133,13 +134,13 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
     {
         _colorToSymbolMap.Clear();
         if (Grid?.ColorSummary is null) return;
-
+        
         int currentSymbolIndex = 0;
         foreach (var color in Grid.ColorSummary.OrderByDescending(kvp => kvp.Value))
         {
-            if (currentSymbolIndex < ColorSummaryLegend.Symbols.Length)
+            if (currentSymbolIndex < DrillSymbols.Symbols.Length)
             {
-                _colorToSymbolMap[color.Key] = ColorSummaryLegend.Symbols[currentSymbolIndex].ToString();
+                _colorToSymbolMap[color.Key] = DrillSymbols.Symbols[currentSymbolIndex].ToString();
                 currentSymbolIndex++;
             }
         }

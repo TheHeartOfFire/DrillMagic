@@ -8,27 +8,21 @@ namespace DrillMagic.Windows.Converters;
 
 public partial class ColorToForegroundConverter : IValueConverter
 {
+    // Make this public or internal so it can be tested without creating a Brush
+    public static Color GetContrastColor(Color bg)
+    {
+        double luminance = (0.299 * bg.R + 0.587 * bg.G + 0.114 * bg.B);
+        // Avoid using Microsoft.UI.Colors to allow unit testing without full generic app host
+        return luminance > 186 ? Color.FromArgb(255, 0, 0, 0) : Color.FromArgb(255, 255, 255, 255);
+    }
+
     public object Convert(object value, Type targetType, object parameter, string language)
     {
         if (value is Color color)
         {
-            // Calculate perceived brightness (luminance) using the standard formula.
-            double luminance = (0.299 * color.R + 0.587 * color.G + 0.114 * color.B);
-
-            // Use a threshold of 186, which is a common value for this calculation,
-            // to determine whether the color is light or dark.
-            if (luminance > 186)
-            {
-                return new SolidColorBrush(Colors.Black); // Bright background, so use dark text.
-            }
-            else
-            {
-                return new SolidColorBrush(Colors.White); // Dark background, so use light text.
-            }
+            return new SolidColorBrush(GetContrastColor(color));
         }
-
-        // Return a default brush if the value is not a Color.
-        return new SolidColorBrush(Colors.Black);
+        return null; // or DependencyProperty.UnsetValue
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, string language)

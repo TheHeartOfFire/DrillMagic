@@ -17,12 +17,16 @@ public class ColorMapRepository : IColorMapRepository
     public IReadOnlyDictionary<uint, DMCColor> DefaultColorMap { get; private set; } = new Dictionary<uint, DMCColor>();
     public List<Dictionary<uint, string>> CustomMappings { get; private set; } = [];
 
-    private static readonly string _customMappingsFilePath = Path.Combine(GetFolderPath(SpecialFolder.ApplicationData),
-        "Drill Magic", "Color Mapping", "CustomMappings.json");
+    // Made instance variable and configurable for testing
+    private readonly string _customMappingsFilePath;
 
-    public ColorMapRepository(ILogger<ColorMapRepository>? logger = null)
+    public ColorMapRepository(ILogger<ColorMapRepository>? logger = null, string? customMappingsFilePath = null)
     {
         _logger = logger ?? NullLogger<ColorMapRepository>.Instance;
+        
+        _customMappingsFilePath = customMappingsFilePath ?? Path.Combine(GetFolderPath(SpecialFolder.ApplicationData),
+            "Drill Magic", "Color Mapping", "CustomMappings.json");
+
         Initialize();
     }
 

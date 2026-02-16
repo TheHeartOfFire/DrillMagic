@@ -14,6 +14,17 @@ public class FontResolver : IFontResolver
 {
     // A simple cache to avoid reading the same font file multiple times.
     private static readonly Dictionary<string, byte[]> FontCache = new();
+    
+    private readonly string _fontsDirectory;
+
+    public FontResolver() : this(Environment.GetFolderPath(Environment.SpecialFolder.Fonts))
+    {
+    }
+
+    public FontResolver(string fontsDirectory)
+    {
+        _fontsDirectory = fontsDirectory;
+    }
 
     /// <summary>
     /// Called by PDFsharp to get the raw data of a font file.
@@ -25,8 +36,8 @@ public class FontResolver : IFontResolver
             return fontData;
         }
 
-        // All system fonts are located in the C:\Windows\Fonts directory.
-        var fontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), faceName);
+        // Use the configured directory.
+        var fontPath = Path.Combine(_fontsDirectory, faceName);
 
         if (File.Exists(fontPath))
         {

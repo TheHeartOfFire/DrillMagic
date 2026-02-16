@@ -3,8 +3,9 @@ using System.Drawing;
 using DrillMagic.Core;
 using FluentAssertions;
 using Xunit;
+using CoreUtils = DrillMagic.Core.Utils;
 
-namespace DrillMagic.Tests.Core;
+namespace DrillMagic.Test.Core;
 
 public class UtilsTests
 {
@@ -87,7 +88,7 @@ public class UtilsTests
     [Fact]
     public void ToDrawingColor_ShouldConvertCorrectly()
     {
-        var uiColor = Windows.UI.Color.FromArgb(255, 50, 60, 70);
+        var uiColor = global::Windows.UI.Color.FromArgb(255, 50, 60, 70);
         var drawingColor = uiColor.ToDrawingColor();
         drawingColor.A.Should().Be(255);
         drawingColor.R.Should().Be(50);
@@ -168,13 +169,13 @@ public class UtilsTests
     public void FromHSL_ShouldHandleEdgeCases()
     {
         // Black
-        var black = Utils.FromHSL(0, 0, 0);
+        var black = CoreUtils.FromHSL(0, 0, 0);
         black.R.Should().Be(0);
         black.G.Should().Be(0);
         black.B.Should().Be(0);
 
         // White
-        var white = Utils.FromHSL(180, 0.5f, 1.0f);
+        var white = CoreUtils.FromHSL(180, 0.5f, 1.0f);
         white.R.Should().Be(255);
         white.G.Should().Be(255);
         white.B.Should().Be(255);
@@ -182,25 +183,25 @@ public class UtilsTests
         // Check H prime conversions
         // 0-60 (Red-Yellow) covered by simple tests
         // 60-120 (Yellow-Green)
-        var green = Utils.FromHSL(120, 1.0f, 0.5f);
+        var green = CoreUtils.FromHSL(120, 1.0f, 0.5f);
         green.R.Should().Be(0);
         green.G.Should().Be(255);
         green.B.Should().Be(0);
         
         // 180 (Cyan)
-        var cyan = Utils.FromHSL(180, 1.0f, 0.5f);
+        var cyan = CoreUtils.FromHSL(180, 1.0f, 0.5f);
         cyan.R.Should().Be(0);
         cyan.G.Should().Be(255);
         cyan.B.Should().Be(255);
         
         // 240 (Blue)
-        var blue = Utils.FromHSL(240, 1.0f, 0.5f);
+        var blue = CoreUtils.FromHSL(240, 1.0f, 0.5f);
         blue.R.Should().Be(0);
         blue.G.Should().Be(0);
         blue.B.Should().Be(255);
         
         // 300 (Magenta)
-        var magenta = Utils.FromHSL(300, 1.0f, 0.5f);
+        var magenta = CoreUtils.FromHSL(300, 1.0f, 0.5f);
         magenta.R.Should().Be(255);
         magenta.G.Should().Be(0);
         magenta.B.Should().Be(255);

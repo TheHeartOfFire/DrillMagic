@@ -1,4 +1,5 @@
-﻿using DrillMagic.Core.Types;
+﻿using DrillMagic.Core.Constants;
+using DrillMagic.Core.Types;
 using DrillMagic.Windows.Models;
 using DrillMagic.Windows.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,30 +29,6 @@ public sealed partial class ColorSummaryLegend : UserControl, INotifyPropertyCha
     public ObservableCollection<ColorSummaryItem> ColorSummary { get; } = new();
 
     public int TotalDrills => ColorSummary.Sum(c => c.Quantity);
-
-    public static readonly string[] Symbols =
-    [
-        // A-Z (Single characters)
-        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-        // a-z (Single characters)
-        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-        // 0-9 (Single characters)
-        "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-        // Standard keyboard symbols (13 characters)
-        "?", "!", ":", "(", "{", "&", "@", "#", "*", "=", "/", "-", "—",
-        // Remaining miscellaneous symbols (18 characters)
-        "□", "△", "♠", "♣", "♥", "♦", "☆", "☾", "▱", "◫", "⌂", "⬡", "±", "÷", "∞", "⌽", "✓", "→",
-        // AA-ZZ (Double characters)
-        .. Enumerable.Range('A', 'Z' - 'A' + 1)
-            .Select(c1 => (char)c1)
-            .SelectMany(c1 => Enumerable.Range('A', 'Z' - 'A' + 1)
-                .Select(c2 => (char)c2), (c1, c2) => $"{c1}{c2}"),
-        // aa-zz (Double characters)
-        .. Enumerable.Range('a', 'z' - 'a' + 1)
-            .Select(c1 => (char)c1)
-            .SelectMany(c1 => Enumerable.Range('a', 'z' - 'a' + 1)
-                .Select(c2 => (char)c2), (c1, c2) => $"{c1}{c2}"),
-    ]; // Total count 1,399
 
     private readonly ISharedInteractionService _sharedInteractionService;
     private readonly IColorMapService _colorMapService;
@@ -105,12 +82,30 @@ public sealed partial class ColorSummaryLegend : UserControl, INotifyPropertyCha
                     name,
                     hex,
                     rgb,
-                    Symbols[currentSymbolIndex].ToString(),
+                    DrillSymbols.Symbols[currentSymbolIndex % DrillSymbols.Symbols.Length].ToString(),
                     dmcColor?.DMCNumber ?? uint.MaxValue
                 ));
 
                 currentSymbolIndex++;
             }
+        }
+    }
+
+    private void AssignSymbols(IEnumerable<ColorSummaryItem> items)
+    {
+        var sortedSummary = items.OrderByDescending(i => i.Quantity).ToList();
+        ColorSummary.Clear();
+        // Manually adding to ObservableCollection since AddRange isn't standard
+        foreach (var item in sortedSummary)
+        {
+            ColorSummary.Add(item);
+        }
+
+        var symbolIndex = 0;
+        foreach (var item in sortedSummary)
+        {
+            item.Symbol = DrillSymbols.Symbols[symbolIndex % DrillSymbols.Symbols.Length];
+            symbolIndex++;
         }
     }
 }

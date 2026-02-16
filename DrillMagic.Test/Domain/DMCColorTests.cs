@@ -3,7 +3,7 @@ using DrillMagic.Core.Types;
 using FluentAssertions;
 using Xunit;
 
-namespace DrillMagic.Tests.Domain;
+namespace DrillMagic.Test.Domain;
 
 public class DMCColorTests
 {

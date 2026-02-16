@@ -1,4 +1,5 @@
 using DrillMagic.Core;
+using DrillMagic.Core.Constants;
 using DrillMagic.Core.Types;
 using DrillMagic.Windows.Controls;
 using Microsoft.Extensions.Logging;
@@ -44,7 +45,7 @@ public class PdfSharpGenerator : IPdfGenerator
             int currentSymbolIndex = 0;
             foreach (var color in grid.ColorSummary.OrderByDescending(kvp => kvp.Value))
             {
-                symbols[color.Key] = ColorSummaryLegend.Symbols[currentSymbolIndex].ToString();
+                symbols[color.Key] = DrillSymbols.Symbols[currentSymbolIndex].ToString();
                 currentSymbolIndex++;
             }
 

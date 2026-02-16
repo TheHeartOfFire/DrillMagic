@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System;
 
-namespace DrillMagic.Tests.Domain;
+namespace DrillMagic.Test.Domain;
 
 public class ColorMapServiceTests
 {
@@ -132,7 +132,7 @@ public class ColorMapServiceTests
     [Fact]
     public void GetDMCColor_ByUiColor_ShouldReturnColor_WhenExactMatch()
     {
-        var blackColor = Windows.UI.Color.FromArgb(255, 0, 0, 0); // ARGB
+        var blackColor = global::Windows.UI.Color.FromArgb(255, 0, 0, 0); // ARGB
         var result = _service.GetDMCColor(blackColor);
         result.DMCNumber.Should().Be(310);
     }
