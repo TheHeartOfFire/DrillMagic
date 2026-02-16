@@ -10,7 +10,8 @@
 	  <UseWinUI>true</UseWinUI>
 	  <Nullable>enable</Nullable>
     <PublishReadyToRun>false</PublishReadyToRun>
-	  <RuntimeIdentifier>win-$(Platform)</RuntimeIdentifier>
+	  <RuntimeIdentifier Condition="'$(Platform)' != 'AnyCPU'">win-$(Platform)</RuntimeIdentifier>
+	  <RuntimeIdentifier Condition="'$(Platform)' == 'AnyCPU'">win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
