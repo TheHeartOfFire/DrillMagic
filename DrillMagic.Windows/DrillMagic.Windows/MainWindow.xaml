@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="using:DrillMagic.Windows"
     xmlns:controls="using:DrillMagic.Windows.Controls"
+    xmlns:converters="using:DrillMagic.Windows.Converters"
     xmlns:core="using:DrillMagic.Core.Types"
     xmlns:winex="using:WinUIEx"
     xmlns:media="using:Microsoft.UI.Xaml.Media"
@@ -16,62 +17,456 @@
         <media:MicaBackdrop/>
     </winex:WindowEx.SystemBackdrop>
 
-    <Grid>
+    <Grid AllowDrop="True" DragOver="RootGrid_DragOver" Drop="RootGrid_Drop">
+        <Grid.Resources>
+            <converters:ObjectToVisibilityConverter x:Key="ObjectToVisibilityConverter"/>
+            <converters:ColorToForegroundConverter x:Key="ColorToForegroundConverter"/>
+        </Grid.Resources>
+
+        <Grid.KeyboardAccelerators>
+            <KeyboardAccelerator Key="S" Modifiers="Control" Invoked="SaveAccelerator_Invoked"/>
+            <KeyboardAccelerator Key="S" Modifiers="Control,Shift" Invoked="SaveAsAccelerator_Invoked"/>
+            <KeyboardAccelerator Key="O" Modifiers="Control" Invoked="OpenAccelerator_Invoked"/>
+        </Grid.KeyboardAccelerators>
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <CommandBar Grid.Row="0"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top"
-            OverflowButtonVisibility="Collapsed" 
-            IsDynamicOverflowEnabled="False"
-            IsOpen="True"
-            IsSticky="True"
-                    Background="#22000000">
-            <CommandBar.Content>
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                    <AppBarButton Icon="OpenFile" Label="Open" Click="OpenFile_Click"/>
-                    <AppBarButton Icon="Print" Label="Print" Click="PrintButton_Click" x:Name="PrintButton"/>
-                    <AppBarSeparator/>
-                    <AppBarToggleButton x:Name="PointerButton" Icon="TouchPointer" Label="Navigate" Click="PointerButton_Click" IsChecked="true"/>
-                    <AppBarToggleButton x:Name="PaintBucketButton" Icon="Highlight" Label="Coloring" Click="PaintBucketButton_Click"/>
-                    <AppBarToggleButton x:Name="ColorInspectorButton" Icon="FontColor" Label="Inspect" Click="ColorInspectorButton_Click"/>
-                    <AppBarToggleButton x:Name="SymbolOverlayButton" Icon="Character" Label="Symbols" Click="SymbolOverlayButton_Click" IsChecked="true"/>
-                    <AppBarButton Icon="Filter" Label="Reduce Colors" Click="ReduceColors_Click"/>
-                    <AppBarButton x:Name="ClearHighlightButton" Icon="Clear" Label="Clear Highlight" Click="ClearHighlight_Click" Visibility="Collapsed"/>
-                    <AppBarSeparator/>
+        <!-- ==================== TOP STUDIO BAR ==================== -->
+        <Border Grid.Row="0" Background="#18000000" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="0,0,0,1">
+            <Grid Padding="12,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-                    <StackPanel x:Name="CellSizePanel" Orientation="Vertical" Margin="8,0,0,0" Visibility="Collapsed">
-                        <TextBlock Text="{x:Bind FormatCellSize(CellSizeSlider.Value), Mode=OneWay}" FontSize="12" Margin="0,0,0,2"/>
-                        <Slider x:Name="CellSizeSlider" Value="10" Width="100" Minimum="1" Maximum="20" StepFrequency="1" ValueChanged="CellSizeSlider_ValueChanged"/>
+                <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" HorizontalScrollMode="Enabled" VerticalScrollMode="Disabled">
+                    <StackPanel Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
+                        <!-- Logo & Brand Header -->
+                        <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,8,0" VerticalAlignment="Center">
+                            <Border Width="26" Height="26" CornerRadius="6" Background="{ThemeResource AccentFillColorDefaultBrush}" VerticalAlignment="Center">
+                                <FontIcon Glyph="&#xE8B9;" Foreground="White" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="DrillMagic" FontWeight="Bold" FontSize="15" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <AppBarSeparator/>
+
+                        <!-- File Operations -->
+                        <AppBarButton x:Name="OpenButton" Icon="OpenFile" Label="Open">
+                            <AppBarButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Open Image or Project... (Ctrl+O)" Icon="OpenFile" Click="OpenFile_Click"/>
+                                    <MenuFlyoutSubItem x:Name="RecentProjectsMenu" Text="Recent Projects" Icon="Clock"/>
+                                </MenuFlyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
+                        <AppBarButton x:Name="SaveButton" Icon="Save" Label="Save">
+                            <AppBarButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Save (Ctrl+S)" Icon="Save" Click="SaveButton_Click"/>
+                                    <MenuFlyoutItem Text="Save As... (Ctrl+Shift+S)" Icon="SaveLocal" Click="SaveAsButton_Click"/>
+                                </MenuFlyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
+                        <AppBarButton x:Name="ExportButton" Icon="Share" Label="Export">
+                            <AppBarButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Export as PNG Image..." Icon="Pictures" Click="ExportPng_Click"/>
+                                    <MenuFlyoutItem Text="Export as PDF Pattern..." Icon="Document" Click="PrintButton_Click" x:Name="PrintButton"/>
+                                </MenuFlyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
+                        <AppBarButton x:Name="DoctorImageAppBarButton" Icon="Crop" Label="Doctor Image" Click="EditSourceImageButton_Click"
+                                      IsEnabled="{x:Bind DrillGridManager.HasSourceImage, Mode=OneWay}"
+                                      ToolTipService.ToolTip="Re-open Image Preparation &amp; Doctoring Editor"/>
+
+                        <AppBarSeparator/>
+
+                        <!-- Tool Modes -->
+                        <AppBarToggleButton x:Name="PointerButton" Icon="TouchPointer" Label="Navigate" Click="PointerButton_Click" IsChecked="true" ToolTipService.ToolTip="Navigate / Pan / Zoom"/>
+                        <AppBarToggleButton x:Name="PaintBucketButton" Icon="Highlight" Label="Coloring" Click="PaintBucketButton_Click" ToolTipService.ToolTip="Paint &amp; Recolor Drills"/>
+                        <AppBarToggleButton x:Name="ColorInspectorButton" Icon="FontColor" Label="Inspect" Click="ColorInspectorButton_Click" ToolTipService.ToolTip="Color Inspector (Eyedropper)"/>
+
+                        <AppBarSeparator/>
+
+                        <!-- Display & Reduction Controls -->
+                        <AppBarToggleButton x:Name="SymbolOverlayButton" Icon="Character" Label="Symbols" Click="SymbolOverlayButton_Click" IsChecked="true" ToolTipService.ToolTip="Toggle DMC Symbols on Drills"/>
+                        <AppBarButton Icon="Filter" Label="Reduce Colors" Click="ReduceColors_Click" ToolTipService.ToolTip="Reduce palette colors"/>
+                        <AppBarButton x:Name="ColorThresholdAppBarButton" Icon="Bullets" Label="Min Drills" Click="ColorThresholdButton_Click" ToolTipService.ToolTip="Set minimum drill count threshold for colors (eliminate rare colors)"/>
+                        <AppBarButton x:Name="ClearHighlightButton" Icon="Clear" Label="Clear Highlight" Click="ClearHighlight_Click" Visibility="Collapsed"/>
+
+                        <AppBarSeparator/>
+
+                        <!-- Current Color Swatch & Palette -->
+                        <AppBarButton x:Name="ToolkitPickerButton" Click="ToolkitPickerButton_Click" 
+                                      HorizontalAlignment="Left" Label="{x:Bind SelectedColorName, Mode=OneWay}"
+                                      Icon="FontColor" Background="{x:Bind SelectedBrush, Mode=OneWay}"
+                                      ToolTipService.ToolTip="Active painting color">
+                            <AppBarButton.Flyout>
+                                <Flyout x:Name="ToolkitColorFlyout" Placement="Bottom">
+                                    <Border Padding="10" Background="{ThemeResource SystemControlBackgroundBaseLowBrush}">
+                                        <StackPanel Spacing="8">
+                                            <TextBox x:Name="ToolkitSearchBox" PlaceholderText="Filter palette (optional)" TextChanged="ToolkitSearchBox_TextChanged"/>
+                                            <ct:ColorPicker x:Name="ToolkitColorPicker"
+                                                IsColorPaletteVisible="True"
+                                                IsColorSpectrumVisible="true"
+                                                CustomPaletteColumnCount="12"
+                                                ColorChanged="ToolkitColorPicker_ColorChanged"/>
+                                        </StackPanel>
+                                    </Border>
+                                </Flyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
                     </StackPanel>
-                    <AppBarSeparator x:Name="CellSizeSeparator" Visibility="Collapsed"/>
-                    <AppBarButton x:Name="ToolkitPickerButton" Click="ToolkitPickerButton_Click" 
-                                  HorizontalAlignment="Left" Label="{x:Bind SelectedColorName, Mode=OneWay}"
-                                  Icon="FontColor" Background="{x:Bind SelectedBrush, Mode=OneWay}">
+                </ScrollViewer>
 
-                        <AppBarButton.Flyout>
-                            <Flyout x:Name="ToolkitColorFlyout" Placement="Bottom">
-                                <Border Padding="8" Background="{ThemeResource SystemControlBackgroundBaseLowBrush}">
-                                    <StackPanel>
-                                        <TextBox x:Name="ToolkitSearchBox" PlaceholderText="Filter palette (optional)" TextChanged="ToolkitSearchBox_TextChanged" Margin="0,0,0,8"/>
-                                        <ct:ColorPicker x:Name="ToolkitColorPicker"
-                                    IsColorPaletteVisible="True"
-                                    IsColorSpectrumVisible="true"
-                                    CustomPaletteColumnCount="12"
-                                    ColorChanged="ToolkitColorPicker_ColorChanged"/>
-                                        
-                                    </StackPanel>
-                                </Border>
-                            </Flyout>
-                        </AppBarButton.Flyout>
-                    </AppBarButton>
+                <!-- Right: Toggle Inspector Sidebar Button -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="8,0,0,0">
+                    <AppBarSeparator/>
+                    <AppBarToggleButton x:Name="TopToggleInspectorButton" Icon="DockRight" Label="Inspector" Click="ToggleInspector_Click" IsChecked="true" ToolTipService.ToolTip="Toggle Studio Inspector Panel"/>
                 </StackPanel>
-            </CommandBar.Content>
-        </CommandBar>
+            </Grid>
+        </Border>
 
-        <controls:DrillGridView Grid.Row="1" x:Name="MyDrillGridView" Grid="{x:Bind DrillGridManager.SelectedGrid, Mode=OneWay}" />
+        <!-- ==================== MAIN WORKSPACE ==================== -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- CANVAS VIEWPORT & WELCOME SCREEN -->
+            <Grid Grid.Column="0">
+                <!-- Drill Canvas -->
+                <controls:DrillGridView x:Name="MyDrillGridView" Grid="{x:Bind DrillGridManager.SelectedGrid, Mode=OneWay}"/>
+
+                <!-- Welcome Screen (Shown when no grid is loaded) -->
+                <Border x:Name="WelcomeOverlay" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        Visibility="{x:Bind WelcomeOverlayVisibility, Mode=OneWay}">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="520" Margin="24">
+                        <StackPanel Spacing="18" HorizontalAlignment="Center">
+                            <!-- Hero Icon -->
+                            <Border Width="80" Height="80" CornerRadius="20" Background="{ThemeResource AccentFillColorDefaultBrush}" HorizontalAlignment="Center">
+                                <FontIcon Glyph="&#xE8B9;" Foreground="White" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+
+                            <StackPanel Spacing="6" HorizontalAlignment="Center">
+                                <TextBlock Text="Welcome to DrillMagic" FontSize="26" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Create diamond painting patterns with precise DMC floss matching, interactive recoloring, and multi-version snapshots."
+                                           TextWrapping="Wrap" TextAlignment="Center" FontSize="14" Opacity="0.75"/>
+                            </StackPanel>
+
+                            <!-- Primary Actions -->
+                            <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Center" Margin="0,8,0,0">
+                                <Button Content="Open Image or Project" Style="{ThemeResource AccentButtonStyle}" Click="OpenFile_Click" Padding="20,10" FontSize="14"/>
+                                <Button x:Name="WelcomeRecentButton" Content="Recent Projects" Click="WelcomeRecentButton_Click" Padding="16,10" FontSize="14">
+                                    <Button.Flyout>
+                                        <MenuFlyout x:Name="WelcomeRecentFlyout"/>
+                                    </Button.Flyout>
+                                </Button>
+                            </StackPanel>
+
+                            <!-- Drag & Drop Hint -->
+                            <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                    BorderThickness="1" CornerRadius="8" Padding="14,10" Margin="0,10,0,0" HorizontalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                    <FontIcon Glyph="&#xE896;" FontSize="14" Opacity="0.6"/>
+                                    <TextBlock Text="Or drag &amp; drop any image or .drillmagic file right here" FontSize="12" Opacity="0.7" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!-- RIGHT COLLAPSIBLE INSPECTOR SIDEBAR -->
+            <Border Grid.Column="1" x:Name="InspectorPanel" Width="330"
+                    Background="{ThemeResource LayerFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1,0,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Inspector Header -->
+                    <Grid Grid.Row="0" Padding="16,12,12,10" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="0,0,0,1">
+                        <TextBlock Text="Studio Inspector" FontWeight="SemiBold" FontSize="14" VerticalAlignment="Center"/>
+                        <Button Click="ToggleInspector_Click" HorizontalAlignment="Right" Padding="6,4" Background="Transparent" BorderThickness="0" ToolTipService.ToolTip="Close Inspector">
+                            <FontIcon Glyph="&#xE711;" FontSize="12"/>
+                        </Button>
+                    </Grid>
+
+                    <!-- Segmented Tabs -->
+                    <Grid Grid.Row="1" Margin="12,10,12,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ToggleButton x:Name="TabPaletteBtn" Grid.Column="0" Content="Palette" IsChecked="True" Click="InspectorTab_Click" HorizontalAlignment="Stretch" Margin="0,0,2,0"/>
+                        <ToggleButton x:Name="TabGridBtn" Grid.Column="1" Content="Grid" Click="InspectorTab_Click" HorizontalAlignment="Stretch" Margin="2,0,2,0"/>
+                        <ToggleButton x:Name="TabVersionsBtn" Grid.Column="2" Content="Versions" Click="InspectorTab_Click" HorizontalAlignment="Stretch" Margin="2,0,0,0"/>
+                    </Grid>
+
+                    <!-- TAB 1: Palette & Legend Content -->
+                    <Grid Grid.Row="2" x:Name="PaletteTabContent" Visibility="Visible">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Minimum Color Count Threshold Card -->
+                        <Border Grid.Row="0" Margin="12,4,12,8" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="12,10">
+                            <StackPanel Spacing="6">
+                                <Grid>
+                                    <TextBlock Text="Minimum Drill Count" FontWeight="SemiBold" FontSize="12" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="MinCountValueText" Text="5 drills" FontSize="12" FontWeight="SemiBold"
+                                               HorizontalAlignment="Right" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"/>
+                                </Grid>
+                                <Slider x:Name="MinCountSlider" Minimum="1" Maximum="50" Value="5" StepFrequency="1"
+                                        ValueChanged="MinCountSlider_ValueChanged"/>
+                                <Grid>
+                                    <TextBlock x:Name="MinCountSubtext" Text="0 colors below threshold" FontSize="11" Opacity="0.7"
+                                               VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                                    <Button x:Name="ApplyMinCountButton" Content="Apply" Click="ApplyMinCountButton_Click"
+                                            HorizontalAlignment="Right" Padding="12,4" FontSize="11" Style="{ThemeResource AccentButtonStyle}"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <controls:ColorSummaryLegend Grid.Row="1" x:Name="InspectorLegend" Summary="{x:Bind DrillGridManager.SelectedGrid.ColorSummary, Mode=OneWay}"/>
+                    </Grid>
+
+                    <!-- TAB 2: Grid & Adjustments Content -->
+                    <ScrollViewer Grid.Row="2" x:Name="GridTabContent" Visibility="Collapsed" Padding="16,8">
+                        <StackPanel Spacing="16">
+                            <!-- Edit Source Image Action -->
+                            <Button x:Name="EditSourceImageButton" Click="EditSourceImageButton_Click"
+                                    HorizontalAlignment="Stretch" Padding="12,8"
+                                    IsEnabled="{x:Bind DrillGridManager.HasSourceImage, Mode=OneWay}">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon Glyph="&#xE70F;" FontSize="14"/>
+                                    <TextBlock Text="Edit Source Image..." FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Dimensions Card -->
+                            <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="14">
+                                <StackPanel Spacing="8">
+                                    <TextBlock Text="Grid Dimensions" FontWeight="SemiBold" FontSize="13"/>
+                                    <TextBlock Text="{x:Bind FormatGridDimensions(DrillGridManager.SelectedGrid), Mode=OneWay}" FontSize="15" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{x:Bind FormatGridColors(DrillGridManager.SelectedGrid), Mode=OneWay}" FontSize="12" Opacity="0.7"/>
+
+                                    <Border Height="1" Background="{ThemeResource CardStrokeColorDefaultBrush}" Margin="0,4"/>
+
+                                    <!-- Drill Shape & Physical Scale -->
+                                    <TextBlock Text="Drill Shape &amp; Scale" FontWeight="SemiBold" FontSize="13"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="12">
+                                        <RadioButton x:Name="SquareDrillRadio" Content="Square (2.5mm)" IsChecked="True" Checked="DrillShapeRadio_Checked"/>
+                                        <RadioButton x:Name="RoundDrillRadio" Content="Round (2.8mm)" Checked="DrillShapeRadio_Checked"/>
+                                    </StackPanel>
+                                    <TextBlock Text="{x:Bind FormatPhysicalDimensions(DrillGridManager.SelectedGrid, DrillGridManager.ActiveDrillShape), Mode=OneWay}"
+                                               FontSize="12" FontWeight="Medium" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"/>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Drill Grid Scaling Card -->
+                            <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="14">
+                                <StackPanel Spacing="12">
+                                    <TextBlock Text="Drill Grid Scaling" FontWeight="SemiBold" FontSize="13"/>
+
+                                    <!-- Scaling Mode Switch -->
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <ToggleButton x:Name="ModeCellSizeBtn" Grid.Column="0" Content="Cell Size (px)" IsChecked="True" Click="ScalingMode_Click" HorizontalAlignment="Stretch" Margin="0,0,2,0"/>
+                                        <ToggleButton x:Name="ModeGridCountBtn" Grid.Column="1" Content="Grid Count (drills)" Click="ScalingMode_Click" HorizontalAlignment="Stretch" Margin="2,0,0,0"/>
+                                    </Grid>
+
+                                    <!-- Hidden stack panel preserved for binding compatibility -->
+                                    <StackPanel x:Name="CellSizePanel" Visibility="Collapsed"/>
+                                    <AppBarSeparator x:Name="CellSizeSeparator" Visibility="Collapsed"/>
+
+                                    <!-- PANEL 1: Cell Size Scaling -->
+                                    <StackPanel x:Name="CellSizeScalingPanel" Spacing="8" Visibility="Visible">
+                                        <Grid>
+                                            <TextBlock Text="Cell Size" FontSize="12" Opacity="0.8" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{x:Bind FormatCellSize(CellSizeSlider.Value), Mode=OneWay}" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"/>
+                                        </Grid>
+                                        <Slider x:Name="CellSizeSlider" Value="10" Minimum="1" Maximum="150" StepFrequency="1" ValueChanged="CellSizeSlider_ValueChanged"/>
+                                        <TextBlock Text="Note: Changing cell size re-slices the pattern from the original image." FontSize="11" Opacity="0.6" TextWrapping="Wrap"/>
+                                    </StackPanel>
+
+                                    <!-- PANEL 2: Target Grid Count (Width x Height Drills) -->
+                                    <StackPanel x:Name="GridCountScalingPanel" Spacing="10" Visibility="Collapsed">
+                                        <Grid ColumnSpacing="8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <NumberBox x:Name="TargetWidthBox" Header="Width (drills)" Minimum="1" Value="100" SpinButtonPlacementMode="Compact" ValueChanged="TargetDimensions_ValueChanged"/>
+                                            <NumberBox x:Name="TargetHeightBox" Grid.Column="1" Header="Height (drills)" Minimum="1" Value="75" SpinButtonPlacementMode="Compact" ValueChanged="TargetDimensions_ValueChanged"/>
+                                        </Grid>
+
+                                        <CheckBox x:Name="LockAspectRatioCheck" Content="Lock Aspect Ratio" IsChecked="True" Checked="LockAspectRatio_Checked" Unchecked="LockAspectRatio_Unchecked" FontSize="12"/>
+
+                                        <!-- Edge Shaving Alert Banner -->
+                                        <Border x:Name="ShavingAlertBorder" Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6" Padding="10,8">
+                                            <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                                <FontIcon x:Name="ShavingAlertIcon" Glyph="&#xE7BA;" FontSize="14" Foreground="{ThemeResource SystemFillColorCautionBrush}" VerticalAlignment="Top" Margin="0,2,0,0"/>
+                                                <TextBlock x:Name="ShavingAlertText" Text="Full image represented." FontSize="11" TextWrapping="Wrap" Opacity="0.9"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <Button x:Name="ApplyDimensionsButton" Content="Apply Grid Dimensions" Click="ApplyDimensionsButton_Click" HorizontalAlignment="Stretch" Style="{ThemeResource AccentButtonStyle}" Padding="0,7"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Display Options Card -->
+                            <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="14">
+                                <StackPanel Spacing="10">
+                                    <TextBlock Text="Display Options" FontWeight="SemiBold" FontSize="13"/>
+                                    <ToggleSwitch x:Name="InspectorSymbolSwitch" Header="Show DMC Symbols" IsOn="True" Toggled="SymbolSwitch_Toggled"/>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Active Paint Color Card -->
+                            <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="14">
+                                <StackPanel Spacing="10">
+                                    <TextBlock Text="Active Paint Color" FontWeight="SemiBold" FontSize="13"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                                        <Border Width="38" Height="38" CornerRadius="6" Background="{x:Bind SelectedBrush, Mode=OneWay}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1"/>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="{x:Bind SelectedColorName, Mode=OneWay}" FontWeight="Medium"/>
+                                            <TextBlock Text="Use the color swatch above to pick" FontSize="11" Opacity="0.6"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <!-- TAB 3: Versions Content -->
+                    <Grid Grid.Row="2" x:Name="VersionsTabContent" Visibility="Collapsed" Padding="16,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Sub-tab switch between Grid Versions and Base Image History -->
+                        <Grid Grid.Row="0" Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ToggleButton x:Name="SubTabGridsBtn" Grid.Column="0" Content="Drill Grids" IsChecked="True" Click="SubTabVersions_Click" HorizontalAlignment="Stretch" Margin="0,0,2,0"/>
+                            <ToggleButton x:Name="SubTabBaseImagesBtn" Grid.Column="1" Content="Base Images" Click="SubTabVersions_Click" HorizontalAlignment="Stretch" Margin="2,0,0,0"/>
+                        </Grid>
+
+                        <!-- SECTION A: Drill Grid Versions -->
+                        <Grid Grid.Row="1" x:Name="GridVersionsPanel" Visibility="Visible">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Button x:Name="CreateVersionSnapshotButton" Content="+ Snapshot Current Version" Style="{ThemeResource AccentButtonStyle}" HorizontalAlignment="Stretch" Click="CreateVersionSnapshotButton_Click" Margin="0,0,0,12"/>
+                            <TextBlock Grid.Row="1" Text="Saved Grid Iterations" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,8"/>
+
+                            <ListView Grid.Row="2" x:Name="VersionsListView" SelectionMode="Single" SelectionChanged="VersionsListView_SelectionChanged" ItemsSource="{x:Bind DrillGridManager.Versions, Mode=OneWay}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Padding="4,6">
+                                            <TextBlock Text="{Binding Name}" FontWeight="Medium"/>
+                                            <TextBlock Text="{Binding SummaryText}" FontSize="11" Opacity="0.7"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+
+                        <!-- SECTION B: Base Image History -->
+                        <Grid Grid.Row="1" x:Name="BaseImageVersionsPanel" Visibility="Collapsed">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Button x:Name="DoctorActiveImageButton" Click="EditSourceImageButton_Click"
+                                    Style="{ThemeResource AccentButtonStyle}" HorizontalAlignment="Stretch" Margin="0,0,0,12"
+                                    IsEnabled="{x:Bind DrillGridManager.HasSourceImage, Mode=OneWay}">
+                                <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+                                    <FontIcon Glyph="&#xE70F;" FontSize="14"/>
+                                    <TextBlock Text="Doctor Current Image..." FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
+
+                            <TextBlock Grid.Row="1" Text="Base Image Iterations" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,8"/>
+
+                            <ListView Grid.Row="2" x:Name="BaseImageVersionsListView" SelectionMode="Single"
+                                      ItemsSource="{x:Bind DrillGridManager.SourceImageHistory, Mode=OneWay}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Padding="4,6">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Name}" FontWeight="Medium"/>
+                                                <TextBlock Text="{Binding SummaryText}" FontSize="11" Opacity="0.7"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
+                                                <Button Content="Re-slice" FontSize="11" Padding="8,4" Click="ResliceToImageVersion_Click" Tag="{Binding Id}" ToolTipService.ToolTip="Re-slice diamond painting grid from this image"/>
+                                                <Button Content="Doctor" FontSize="11" Padding="8,4" Click="DoctorImageVersion_Click" Tag="{Binding Id}" ToolTipService.ToolTip="Open this image version in Image Doctor"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- ==================== BOTTOM STATUS BAR ==================== -->
+        <Border Grid.Row="2" Background="{ThemeResource SystemControlBackgroundBaseLowBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="0,1,0,0" Padding="16,6">
+            <Grid>
+                <!-- Left: Grid Dimensions, Physical Scale & Color Count -->
+                <StackPanel Orientation="Horizontal" Spacing="16" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock Text="{x:Bind FormatGridDimensions(DrillGridManager.SelectedGrid), Mode=OneWay}" FontSize="12" Opacity="0.8"/>
+                    <TextBlock Text="{x:Bind FormatPhysicalDimensions(DrillGridManager.SelectedGrid, DrillGridManager.ActiveDrillShape), Mode=OneWay}" FontSize="12" Opacity="0.85" FontWeight="Medium"/>
+                    <TextBlock Text="{x:Bind FormatGridColors(DrillGridManager.SelectedGrid), Mode=OneWay}" FontSize="12" Opacity="0.8"/>
+                </StackPanel>
+
+                <!-- Center: Active Tool Mode -->
+                <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Tool:" FontSize="12" Opacity="0.6"/>
+                    <TextBlock Text="{x:Bind CurrentModeText, Mode=OneWay}" FontWeight="Medium" FontSize="12"/>
+                </StackPanel>
+
+                <!-- Right: Active Project Name & Cell Size -->
+                <StackPanel Orientation="Horizontal" Spacing="16" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Text="{x:Bind FormatCellSize(CellSizeSlider.Value), Mode=OneWay}" FontSize="12" Opacity="0.8"/>
+                    <TextBlock Text="{x:Bind DrillGridManager.ProjectName, Mode=OneWay}" FontWeight="Medium" FontSize="12" Opacity="0.9"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </winex:WindowEx>

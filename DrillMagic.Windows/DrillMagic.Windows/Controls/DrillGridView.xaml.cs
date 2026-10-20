@@ -165,7 +165,7 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
             var gridWidth = (float)Grid.Width;
             var gridHeight = (float)Grid.Height;
 
-            if (gridWidth > 0 && gridHeight > 0)
+            if (gridWidth > 0 && gridHeight > 0 && canvasWidth > 0 && canvasHeight > 0)
             {
                 var scaleX = canvasWidth / gridWidth;
                 var scaleY = canvasHeight / gridHeight;
@@ -178,8 +178,8 @@ public sealed partial class DrillGridView : UserControl, INotifyPropertyChanged
 
                 _transform = Matrix3x2.CreateScale(scale) * Matrix3x2.CreateTranslation(tx, ty);
                 _logger.LogDebug("Calculated initial transform: Scale={Scale}, Translation=({Tx}, {Ty})", scale, tx, ty);
+                _isCentered = true;
             }
-            _isCentered = true;
         }
 
         args.DrawingSession.Transform = _transform;

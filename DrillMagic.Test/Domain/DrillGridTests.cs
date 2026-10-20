@@ -152,5 +152,98 @@ public class DrillGridTests
         // Assert
         grid.ColorSummary.Count.Should().Be(1);
     }
+
+    [Fact]
+    public void GetColorsBelowThresholdCount_ShouldReturnCorrectCount()
+    {
+        // Arrange
+        var grid = new DrillGrid(_mockColorMapService.Object, 10, 10);
+        var c1 = Color.FromArgb(255, 0, 0); // Count 3
+        var c2 = Color.FromArgb(0, 255, 0); // Count 1
+        var c3 = Color.FromArgb(0, 0, 255); // Count 2
+
+        grid.Grid[0, 0] = c1;
+        grid.Grid[0, 1] = c1;
+        grid.Grid[0, 2] = c1;
+        grid.Grid[1, 0] = c2;
+        grid.Grid[2, 0] = c3;
+        grid.Grid[2, 1] = c3;
+
+        grid.RecalculateColorSummary();
+
+        // Act & Assert
+        grid.GetColorsBelowThresholdCount(1).Should().Be(0); // 1 or less returns 0
+        grid.GetColorsBelowThresholdCount(2).Should().Be(1); // c2 has 1 < 2
+        grid.GetColorsBelowThresholdCount(3).Should().Be(2); // c2 (1) and c3 (2) < 3
+        grid.GetColorsBelowThresholdCount(4).Should().Be(3); // all 3 colors < 4
+    }
+
+    [Fact]
+    public void EnforceMinimumColorCount_ShouldMergeRareColorsIntoClosestColor()
+    {
+        // Arrange
+        var grid = new DrillGrid(_mockColorMapService.Object, 10, 10);
+
+        var c1 = Color.FromArgb(100, 100, 100); // 5 instances
+        var c2 = Color.FromArgb(102, 102, 102); // 1 instance (closest to c1)
+        var c3 = Color.FromArgb(250, 250, 250); // 10 instances (far from c1 and c2)
+
+        for (int i = 0; i < 5; i++) grid.Grid[0, i] = c1;
+        grid.Grid[1, 0] = c2;
+        for (int i = 0; i < 10; i++) grid.Grid[2, i] = c3;
+
+        grid.RecalculateColorSummary();
+        grid.ColorSummary.Count.Should().Be(3);
+
+        // Act - threshold 3: c2 (count 1) should be merged into closest color c1
+        int eliminated = grid.EnforceMinimumColorCount(3);
+
+        // Assert
+        eliminated.Should().Be(1);
+        grid.ColorSummary.Count.Should().Be(2);
+        grid.ColorSummary.Should().ContainKey(c1);
+        grid.ColorSummary.Should().ContainKey(c3);
+        grid.ColorSummary.Should().NotContainKey(c2);
+        grid.ColorSummary[c1].Should().Be(6); // 5 + 1
+        grid.ColorSummary[c3].Should().Be(10);
+        grid.Grid[1, 0].Should().Be(c1); // cell was updated
+    }
+
+    [Fact]
+    public void EnforceMinimumColorCount_ShouldPreserveAtLeastOneColor_WhenAllBelowThreshold()
+    {
+        // Arrange: 2 colors with count 1 each, threshold 10
+        var grid = new DrillGrid(_mockColorMapService.Object, 5, 5);
+        var c1 = Color.Red;
+        var c2 = Color.Blue;
+        grid.Grid[0, 0] = c1;
+        grid.Grid[0, 1] = c2;
+
+        grid.RecalculateColorSummary();
+        grid.ColorSummary.Count.Should().Be(2);
+
+        // Act
+        int eliminated = grid.EnforceMinimumColorCount(10);
+
+        // Assert: 1 color remains, not 0
+        eliminated.Should().Be(1);
+        grid.ColorSummary.Count.Should().Be(1);
+        grid.ColorSummary.Values.First().Should().Be(2);
+    }
+
+    [Fact]
+    public void EnforceMinimumColorCount_ShouldReturnZero_WhenThresholdIsOneOrLess()
+    {
+        // Arrange
+        var grid = new DrillGrid(_mockColorMapService.Object, 5, 5);
+        grid.Grid[0, 0] = Color.Red;
+        grid.RecalculateColorSummary();
+
+        // Act
+        int eliminated = grid.EnforceMinimumColorCount(1);
+
+        // Assert
+        eliminated.Should().Be(0);
+    }
 }
 

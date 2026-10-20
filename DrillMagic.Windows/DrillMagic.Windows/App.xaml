@@ -12,6 +12,8 @@
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
             </ResourceDictionary.MergedDictionaries>
             <converters:ObjectToVisibilityConverter x:Key="ObjectToVisibilityConverter"/>
+            <x:Double x:Key="ContentDialogMaxWidth">5000</x:Double>
+            <x:Double x:Key="ContentDialogMaxHeight">4000</x:Double>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

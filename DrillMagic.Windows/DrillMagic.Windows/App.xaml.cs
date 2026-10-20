@@ -1,4 +1,4 @@
-﻿using DrillMagic.Core;
+using DrillMagic.Core;
 using DrillMagic.Core.Types;
 using DrillMagic.Windows.Services;
 using DrillMagic.Windows.Utils;
@@ -79,9 +79,13 @@ public partial class App : Application
         // Core Services
         services.AddSingleton<IColorMapRepository, ColorMapRepository>();
         services.AddSingleton<IColorMapService, ColorMapService>();
+        services.AddSingleton<DrillMagic.Core.Projects.IProjectPackageService, DrillMagic.Core.Projects.ZipProjectPackageService>();
+        services.AddSingleton<DrillMagic.Core.Export.IGridImageExportService, DrillMagic.Core.Export.ImageSharpGridExporter>();
+        services.AddSingleton<DrillMagic.Core.Editing.IImageDoctorService, DrillMagic.Core.Editing.ImageDoctorService>();
         
         // App Services
         services.AddSingleton<IDrillGridManager, DrillGridManager>();
+        services.AddSingleton<IRecentProjectsService, RecentProjectsService>();
         services.AddSingleton<SharedInteractionService>();
         services.AddSingleton<ISharedInteractionService>(sp => sp.GetRequiredService<SharedInteractionService>());
         

@@ -18,8 +18,18 @@ public class DrillGridFactory : IDrillGridFactory
         return new DrillGrid(_colorMapService, height, width, cellSize, rotation, normalizedStaggerOffset);
     }
 
+    public DrillGrid CreateGrid(System.Drawing.Color[,] grid, uint cellSize = 0, float rotation = 0, float normalizedStaggerOffset = 0)
+    {
+        return new DrillGrid(_colorMapService, grid, cellSize, rotation, normalizedStaggerOffset);
+    }
+
     public DrillGrid CreateGridFromImage(MemoryStream imageStream, uint cellSize = 0, float rotation = 0, float normalizedStaggerOffset = 0)
     {
         return new DrillGrid(_colorMapService, imageStream, cellSize, rotation, normalizedStaggerOffset);
+    }
+
+    public DrillGrid CreateGridFromImage(MemoryStream imageStream, int targetGridWidth, int targetGridHeight, uint cellSize = 0, float rotation = 0, float normalizedStaggerOffset = 0)
+    {
+        return new DrillGrid(_colorMapService, imageStream, targetGridWidth, targetGridHeight, cellSize, rotation: rotation, normalizedStaggerOffset: normalizedStaggerOffset);
     }
 }

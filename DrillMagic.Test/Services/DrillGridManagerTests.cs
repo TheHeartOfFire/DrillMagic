@@ -171,4 +171,196 @@ public class DrillGridManagerTests
         // Assert
         _sut.SelectedGrid.Should().BeNull();
     }
+
+    [Fact]
+    public async Task CreateVersionSnapshotAsync_WhenGridLoaded_AddsVersionAndMarksDirty()
+    {
+        using var stream = CreateTestImageStream(10, 10);
+        await _sut.LoadImageAsync(stream);
+
+        var countBefore = _sut.Versions.Count;
+        var snapshot = await _sut.CreateVersionSnapshotAsync("Test Snapshot");
+
+        snapshot.Should().NotBeNull();
+        snapshot.Name.Should().Be("Test Snapshot");
+        _sut.Versions.Count.Should().Be(countBefore + 1);
+        _sut.ActiveVersion.Should().Be(snapshot);
+        _sut.IsDirty.Should().BeTrue();
+    }
+
+    [Fact]
+    public void MarkDirty_UpdatesIsDirty()
+    {
+        _sut.IsDirty = false;
+        _sut.MarkDirty(true);
+        _sut.IsDirty.Should().BeTrue();
+        _sut.MarkDirty(false);
+        _sut.IsDirty.Should().BeFalse();
+    }
+
+    [Fact]
+    public async Task LoadImageAsync_ShouldPopulateInitialSourceImageHistory()
+    {
+        using var stream = CreateTestImageStream(30, 40);
+        await _sut.LoadImageAsync(stream);
+
+        _sut.SourceImageHistory.Should().HaveCount(1);
+        var initial = _sut.SourceImageHistory[0];
+        initial.Name.Should().Be("Original Image");
+        initial.Width.Should().Be(30);
+        initial.Height.Should().Be(40);
+        _sut.ActiveSourceImageVersion.Should().Be(initial);
+        _sut.HasSourceImage.Should().BeTrue();
+    }
+
+    [Fact]
+    public async Task ApplyDoctoredImageAsync_ShouldAddNewSourceImageVersion_AndReSliceGrid()
+    {
+        using var origStream = CreateTestImageStream(30, 30);
+        await _sut.LoadImageAsync(origStream);
+
+        using var doctoredStream = CreateTestImageStream(20, 20);
+        await _sut.ApplyDoctoredImageAsync(doctoredStream, "Cropped 20x20");
+
+        _sut.SourceImageHistory.Should().HaveCount(2);
+        var second = _sut.SourceImageHistory[1];
+        second.Name.Should().Be("Cropped 20x20");
+        second.Width.Should().Be(20);
+        second.Height.Should().Be(20);
+        _sut.ActiveSourceImageVersion.Should().Be(second);
+        _sut.IsDirty.Should().BeTrue();
+        _sut.SelectedGrid.Should().NotBeNull();
+        _sut.Versions.Should().Contain(v => v.Name.Contains("Cropped 20x20"));
+    }
+
+    [Fact]
+    public async Task SwitchToSourceImageVersionAsync_ShouldSwitchActiveVersion_AndReSlice()
+    {
+        using var origStream = CreateTestImageStream(40, 40);
+        await _sut.LoadImageAsync(origStream);
+
+        var origVersionId = _sut.ActiveSourceImageVersion!.Id;
+
+        using var doctoredStream = CreateTestImageStream(20, 20);
+        await _sut.ApplyDoctoredImageAsync(doctoredStream, "Doctored");
+
+        _sut.ActiveSourceImageVersion!.Name.Should().Be("Doctored");
+
+        // Now switch back to original
+        await _sut.SwitchToSourceImageVersionAsync(origVersionId);
+
+        _sut.ActiveSourceImageVersion.Should().NotBeNull();
+        _sut.ActiveSourceImageVersion!.Id.Should().Be(origVersionId);
+        _sut.ActiveSourceImageVersion.Name.Should().Be("Original Image");
+        _sut.SelectedGrid.Should().NotBeNull();
+    }
+
+    [Fact]
+    public async Task LoadImageAsync_WithSourceImageName_ShouldSetSourceImageName_AndProjectName_AndHasSavedProjectFalse()
+    {
+        using var stream = CreateTestImageStream(30, 30);
+        await _sut.LoadImageAsync(stream, "landscape_sunset.png");
+
+        _sut.SourceImageName.Should().Be("landscape_sunset.png");
+        _sut.ProjectName.Should().Be("landscape_sunset");
+        _sut.HasSavedProject.Should().BeFalse();
+        _sut.CurrentFilePath.Should().BeNull();
+    }
+
+    [Fact]
+    public async Task SaveProjectAsync_ShouldUpdateProjectNameFromFilePath_AndSetHasSavedProjectTrue()
+    {
+        using var stream = CreateTestImageStream(20, 20);
+        await _sut.LoadImageAsync(stream, "raw_camera_img.jpg");
+
+        _sut.HasSavedProject.Should().BeFalse();
+
+        string tempPath = Path.Combine(Path.GetTempPath(), $"MyCraftProject_{Guid.NewGuid():N}.drillmagic");
+        try
+        {
+            await _sut.SaveProjectAsync(tempPath);
+
+            _sut.HasSavedProject.Should().BeTrue();
+            _sut.CurrentFilePath.Should().Be(tempPath);
+            _sut.ProjectName.Should().StartWith("MyCraftProject_");
+            _sut.CurrentProject!.Manifest.Name.Should().StartWith("MyCraftProject_");
+        }
+        finally
+        {
+            if (File.Exists(tempPath)) File.Delete(tempPath);
+        }
+    }
+
+    [Fact]
+    public async Task LoadImageAsync_WithHighResolutionImage_ShouldSupportCellSizesUpTo150()
+    {
+        // High resolution image (300x300) should populate available cell sizes up to 150
+        using var stream = CreateTestImageStream(300, 300);
+        await _sut.LoadImageAsync(stream);
+
+        _sut.AvailableCellSizes.Should().NotBeEmpty();
+        _sut.AvailableCellSizes.Max().Should().Be(150);
+        _sut.AvailableCellSizes.Should().HaveCount(150);
+    }
+
+    [Fact]
+    public async Task EnforceMinimumColorCountAsync_ShouldCreateSnapshotAndMarkDirty()
+    {
+        using var stream = CreateTestImageStream(30, 30);
+        await _sut.LoadImageAsync(stream);
+
+        _sut.SelectedGrid.Should().NotBeNull();
+        // Introduce a speckle color
+        _sut.SelectedGrid!.Grid[0, 0] = System.Drawing.Color.FromArgb(123, 45, 67);
+        _sut.SelectedGrid.RecalculateColorSummary();
+
+        int initialVersions = _sut.Versions.Count;
+        int eliminated = await _sut.EnforceMinimumColorCountAsync(5);
+
+        eliminated.Should().BeGreaterThanOrEqualTo(1);
+        _sut.IsDirty.Should().BeTrue();
+        _sut.Versions.Count.Should().Be(initialVersions + 1);
+        _sut.ActiveVersion!.Name.Should().Contain("Min Count Threshold");
+    }
+
+    [Fact]
+    public async Task SelectGridByDimensionsAsync_ShouldCreateGridWithTargetDimensions_AndSnapshot()
+    {
+        // 200x160 image, target 40x30 drills
+        // 200/40 = 5, 160/30 = 5.33 -> cell size 5
+        using var stream = CreateTestImageStream(200, 160);
+        await _sut.LoadImageAsync(stream);
+
+        int initialVersions = _sut.Versions.Count;
+        await _sut.SelectGridByDimensionsAsync(40, 30);
+
+        _sut.SelectedGrid.Should().NotBeNull();
+        _sut.SelectedGrid!.Width.Should().Be(40);
+        _sut.SelectedGrid.Height.Should().Be(30);
+        _sut.SelectedGrid.CellSize.Should().Be(5);
+        _sut.IsDirty.Should().BeTrue();
+        _sut.Versions.Count.Should().Be(initialVersions + 1);
+        _sut.ActiveVersion!.Name.Should().Contain("40×30 drills");
+    }
+
+    [Fact]
+    public async Task AnalyzeTargetDimensions_ShouldReturnAccurateShavingAnalysis()
+    {
+        using var stream = CreateTestImageStream(100, 80);
+        await _sut.LoadImageAsync(stream);
+
+        _sut.SourceImageWidth.Should().Be(100);
+        _sut.SourceImageHeight.Should().Be(80);
+
+        var analysis = _sut.AnalyzeTargetDimensions(10, 8);
+        analysis.Should().NotBeNull();
+        analysis!.EffectiveCellSize.Should().Be(10);
+        analysis.HasShaving.Should().BeFalse();
+        analysis.IsExceedingResolution.Should().BeFalse();
+
+        var shavedAnalysis = _sut.AnalyzeTargetDimensions(15, 8);
+        shavedAnalysis.Should().NotBeNull();
+        shavedAnalysis!.EffectiveCellSize.Should().Be(6); // 100/15 = 6, 80/8 = 10 -> min is 6
+        shavedAnalysis.HasShaving.Should().BeTrue();
+    }
 }

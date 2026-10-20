@@ -12,11 +12,6 @@
         <canvas:CanvasControl x:Name="Canvas" Draw="Canvas_Draw" ClearColor="Transparent"/>
         <local:ColorSummaryLegend x:Name="ColorSummaryLegend"
                                   Summary="{x:Bind Grid.ColorSummary, Mode=OneWay}"
-                                  HorizontalAlignment="Left"
-                                  VerticalAlignment="Bottom"
-                                  Margin="20"
-                                  MaxWidth="350"
-                                  MaxHeight="400"
-                                  Visibility="{x:Bind Grid, Converter={StaticResource ObjectToVisibilityConverter}, Mode=OneWay}"/>
+                                  Visibility="Collapsed"/>
     </Grid>
 </UserControl>
